@@ -100,11 +100,13 @@ hr {
   margin-bottom: 40px;
 }
 
+
+
 /*Wrappers' custom styles*/
 #ui-wrapper {
-    display: block;
+    display: none;
     margin-top: 100px;
 }
 #login-wrapper {
-    display: none;
+    display: block;
 }
