@@ -102,5 +102,9 @@ hr {
 
 /*Wrappers' custom styles*/
 #ui-wrapper {
-    display:none;
+    display: block;
+    margin-top: 100px;
+}
+#login-wrapper {
+    display: none;
 }
