@@ -3,6 +3,7 @@ var $currentDateController = $("#current-date");
 var currentDate = new Date();
 var $dateControllerCheckbox = $('#date-controller-checkbox');
 var $draggableComponents = $('.draggable-component');
+var $draggablesShowBorder = $('#draggables-show-border');
 
 //Controlling the date at the UI Pannel
 $currentDateController.attr('placeholder', currentDate.getDate() + "/"
@@ -32,3 +33,11 @@ $(function () {
     });
 });
 
+$draggablesShowBorder.click(function () {
+    //hacked the validation for the border string using the debugger.
+    if ($draggableComponents.css('border') === "0px none rgb(51, 51, 51)") {
+        $draggableComponents.css('border', '1px solid rgb(193, 193, 193)');
+    } else {
+        $draggableComponents.css('border', '');
+    }
+});

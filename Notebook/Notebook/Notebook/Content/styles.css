@@ -104,7 +104,7 @@ hr {
     padding: 10px; 
     float: left; 
     margin: 0 10px 10px 0;
-    border: 1px solid #c1c1c1;
+    border: none;
     border-radius: 10px;
 }
 textarea {
