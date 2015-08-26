@@ -27,7 +27,8 @@ $dateControllerCheckbox.change(function () {
 //Control draggables
 $(function () {
     $draggableComponents.draggable({
-        containment: "parent"
+        containment: "parent",
+        cursor: "move"
     });
 });
 
