@@ -64,9 +64,25 @@
             </div>
         </div>
     </div>
+    <script src="Scripts/system.js"></script>
+
+    <script>
+        System.config({
+            transpiler: 'babel',
+            optional:[
+                    "runtime"
+            ],
+            map:{'babel':'node_modules/babel-core/browser.js'}
+        });
+        System.import('Scripts/jquery-2.1.4.min.js');
+        System.import('Scripts/bootstrap.min.js');
+    </script>
+
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <!--<script src="Scripts/jquery-2.1.4.min.js"></script>-->
+
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="Scripts/bootstrap.min.js"></script>
+    <!--<script src="Scripts/bootstrap.min.js"></script>-->
+
 </body>
 </html>
