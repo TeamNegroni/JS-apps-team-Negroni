@@ -11,7 +11,8 @@
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet">
     <link href="Content/bootstrap.min.css" rel="stylesheet">
     <link href="Content/styles.css" rel="stylesheet">
-
+    <link href="Content/jquery-ui.min.css" rel="stylesheet" />
+    <link href="Content/jquery-ui.structure.min.css" rel="stylesheet" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -56,14 +57,10 @@
                         <textarea class="form-control" rows="10" placeholder="Textarea"></textarea>
                     </form>
                 </div>
-                <div class="col-md-8" id="calendar-wrapper">
-                    <form>
-                        <textarea class="form-control" rows="10" placeholder="Textarea"></textarea>
-                    </form>
-                </div>
+                <div class="col-md-8" id="calendar-wrapper">#CALENDAR</div>
             </div>
             <div class="row">
-                <div class="col-md-4"><input class="form-control" type="text" placeholder="DATE" readonly></div>
+                <div class="col-md-4"><input class="form-control" id="date-controller" type="text" placeholder="Date" readonly></div>
                 <div class="col-md-4">Option Two</div>
                 <div class="col-md-4">Option Three</div>
             </div>
@@ -71,7 +68,9 @@
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="Scripts/jquery-2.1.4.min.js"></script>
+    <script src="Scripts/jquery-ui.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/uiController.js"></script>
 </body>
 </html>
