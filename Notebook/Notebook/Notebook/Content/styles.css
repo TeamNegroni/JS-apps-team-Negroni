@@ -2,7 +2,7 @@
 .form-signin {
     max-width: 280px;
     margin: 60px auto 10px;
-}
+
 .form-signin-heading {
     text-align: center;
     font-weight: bold;
@@ -41,6 +41,7 @@ input[type="password"] {
     font-weight: bold;
     text-shadow: 0px -1px 0px rgba(0,0,0,0.2);
   }
+}
 p.sign-up {
   text-shadow: 0px 1px 2px #222;
   color: #fff;
@@ -81,7 +82,7 @@ hr {
     margin-top: 100px;
 }
 #login-wrapper {
-    display: block;
+    display: none;
 }
 #calendar-wrapper {
     display: none;
