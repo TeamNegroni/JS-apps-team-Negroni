@@ -1,13 +1,4 @@
 ﻿/*Login div preset styles*/
-#fullBg {  
-    z-index: -1;
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0px;
-    background: url('https://31.media.tumblr.com/3b08b64bfe69d670c91c03a5e2fd42b6/tumblr_mv5lnjrRQ51qfj2dqo1_1280.jpg') no-repeat center center fixed; 
-    background-size: cover;
-}
 
 .form-signin {
   max-width: 280px;
