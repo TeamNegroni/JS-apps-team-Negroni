@@ -116,9 +116,9 @@ hr {
 #input-wrapper {
     display: none;
 }
-#date-picker {
+#current-date {
     display: block;
 }
-#current-date {
+#date-picker {
     display: none;
 }
