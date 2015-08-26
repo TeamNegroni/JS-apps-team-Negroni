@@ -1,3 +1,6 @@
 ﻿var currentDate = new Date();
-$("#date-controller").attr('placeholder', currentDate.getDate()
-    + currentDate.getMonth() + " " + currentDate.getFullYear());
+$("#current-date").attr('placeholder', currentDate.getDate() + "/"
+    + currentDate.getMonth() + "/" + currentDate.getFullYear());
+$(function () {
+    $("#date-picker").datepicker();
+});

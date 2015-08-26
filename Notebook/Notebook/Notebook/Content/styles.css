@@ -110,9 +110,15 @@ hr {
 #login-wrapper {
     display: none;
 }
-#calendar-wrapper{
+#calendar-wrapper {
     display: block;
 }
-#input-wrapper{
+#input-wrapper {
+    display: none;
+}
+#date-picker {
+    display: block;
+}
+#current-date {
     display: none;
 }
