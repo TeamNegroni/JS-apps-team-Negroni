@@ -111,3 +111,8 @@ textarea {
     max-width: 375px;
     max-height: 240px;
 }
+
+/*Input attributes status*/
+.input-attribute {
+    disabled: true;
+}
