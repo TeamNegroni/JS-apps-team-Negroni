@@ -111,14 +111,24 @@ hr {
     display: none;
 }
 #calendar-wrapper {
-    display: block;
+    display: none;
 }
 #input-wrapper {
-    display: none;
+    display: block;
 }
 #current-date {
     display: block;
 }
 #date-picker {
     display: none;
+}
+
+/*Draggables styles*/
+.draggable-component {
+    width: 50px; 
+    height: 50px; 
+    padding: 0.5em; 
+    float: left; 
+    margin: 0 10px 10px 0;
+    border: 1px;
 }
