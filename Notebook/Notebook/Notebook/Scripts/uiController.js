@@ -48,8 +48,7 @@ function GetSelectedText() {
     var selText = "";
     if (window.getSelection) {  // all browsers, except IE before version 9
         if (document.activeElement &&
-                (document.activeElement.tagName.toLowerCase() == "textarea" ||
-                 document.activeElement.tagName.toLowerCase() == "input")) {
+                (document.activeElement.tagName.toLowerCase() == "textarea")) {
             var text = document.activeElement.value;
             selText = text.substring(document.activeElement.selectionStart,
                                       document.activeElement.selectionEnd);
