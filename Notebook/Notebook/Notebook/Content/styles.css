@@ -98,21 +98,8 @@ hr {
     display: none;
 }
 
-/*Draggables styles*/
-/*.draggable-component {
-    width: 400px; 
-    height: 265px; 
-    padding: 10px; 
-    float: left; 
-    margin: 0 10px 10px 0;
-    border: none;
-    border-radius: 10px;
-}
-textarea {
-    max-width: 375px;
-    max-height: 240px;
-}
-    */
+/*Grid components styles*/
+
 #grid {
     display: inline-block;
     list-style-type: none;
@@ -143,6 +130,7 @@ textarea {
 #grid #gridAdder {
     text-align: center;
 }
+
 /*Input attributes status*/
 .input-attribute {
     disabled: true;
