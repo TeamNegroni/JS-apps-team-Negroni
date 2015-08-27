@@ -26,23 +26,6 @@ $dateControllerCheckbox.change(function () {
     }
 });
 
-//Control draggables
-$(function () {
-    $draggableComponents.draggable({
-        containment: "parent",
-        cursor: "move"
-    });
-});
-
-$draggablesShowBorder.click(function () {
-    //hacked the validation for the border string using the debugger.
-    if ($draggableComponents.css('border') === "0px none rgb(51, 51, 51)") {
-        $draggableComponents.css('border', '1px solid rgb(193, 193, 193)');
-    } else {
-        $draggableComponents.css('border', '');
-    }
-});
-
 //Control selection menu
 function GetSelectedText() {
     var selText = "";

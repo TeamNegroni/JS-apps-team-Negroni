@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -66,11 +66,9 @@
                     </div>
                 </div>
                 <div class="col-md-8" id="input-wrapper">
-                    <div class="draggable-component">
-                        <form>
-                            <textarea class="form-control " placeholder="Textarea"></textarea>
-                        </form>
-                    </div>
+                   <ul id="grid">
+                           <li id="gridAdder" class="gridPiece">+</li>
+                   </ul>
                 </div>
                 <div class="col-md-8" id="calendar-wrapper">#CALENDAR</div>
             </div>
@@ -83,11 +81,6 @@
                             <input type="checkbox" id="date-controller-checkbox"> TO DO Mode
                         </label>
                     </div>
-                </div>                
-                <div class="col-md-4">
-                    <div class="btn-group" role="group" aria-label="Group one">
-                        <button type="button" class="btn btn-default" id="draggables-show-border">Show draggables' borders</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -99,5 +92,6 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="Notes.js"></script>
     <script src="Scripts/uiController.js"></script>
+    <script src="Scripts/grid.js"></script>
 </body>
 </html>

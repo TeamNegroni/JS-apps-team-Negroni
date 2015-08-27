@@ -88,7 +88,8 @@ hr {
     display: none;
 }
 #input-wrapper {
-    display: block;
+    width: 1250px;
+    height: 500px;
 }
 #current-date {
     display: block;
@@ -98,7 +99,7 @@ hr {
 }
 
 /*Draggables styles*/
-.draggable-component {
+/*.draggable-component {
     width: 400px; 
     height: 265px; 
     padding: 10px; 
@@ -111,7 +112,37 @@ textarea {
     max-width: 375px;
     max-height: 240px;
 }
+    */
+#grid {
+    display: inline-block;
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    width: 100%;
+}
 
+#grid .gridPiece {
+    float: left;
+    border: 1px solid black;
+    height: 200px;
+    width: 200px;
+    margin: 5px;
+}
+
+.sortable-placeholderPiece {
+    margin: 5px; /* depends on .grindPiece */
+    float: left;
+    border: 1px red solid;
+}
+
+.resizable-helperPiece {
+    border: 3px dotted gray;
+    margin: -3px;
+}
+
+#grid #gridAdder {
+    text-align: center;
+}
 /*Input attributes status*/
 .input-attribute {
     disabled: true;
