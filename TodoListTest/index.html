@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="todoListStyle.css"/>
+    <link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.9.2/themes/base/jquery-ui.css">
+    <title></title>
+</head>
+<body>
+<div id="container">
+    <ul id="grid">
+        <li id="gridAdder" class="gridPiece">+</li>
+    </ul>
+    <!--<div id="content" contenteditable="true"></div>-->
+    <div id="todo" class="ui-widget-content">
+        <ul id="todo-list"></ul>
+        <div id="todo-panel">
+            <label for="newitem">Add item</label>
+            <input type="text" name="newitem" id="newitem">
+            <input type="submit" value="Add">
+        </div>
+    </div>
+</div>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.js"></script>
+<script src="grid.js"></script>
+<script src="todoList.js"></script>
+</body>
+</html>
