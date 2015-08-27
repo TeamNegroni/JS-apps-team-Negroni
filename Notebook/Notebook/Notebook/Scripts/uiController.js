@@ -81,4 +81,4 @@ function activateInputAttributes() {
 }
 
 document.onmouseup = activateInputAttributes;
-//document.onkeyup = doSomethingWithSelectedText;
+document.onkeyup = activateInputAttributes;
