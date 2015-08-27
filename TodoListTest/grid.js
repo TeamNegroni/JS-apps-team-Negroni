@@ -9,9 +9,10 @@
         cursor: 'move',
         revert: true,
         scroll: true,
-        tolerance: 'pointer'
+        tolerance: 'pointer',
+        placeholder: "sortable-placeholderPiece",
+        forcePlaceholderSize: true
     });
-
 
 
     $adder.on('click', function () {
@@ -22,12 +23,15 @@
         index += 1;
 
         $newPiece.resizable({
-            grid: [200,200], // value to be edited
+            grid: [200, 200], // value to be edited
             autoHide: true,
             animate: true,
+            helper: "resizable-helperPiece",
             animateEasing: "easeInOutQuint"
         });
 
+        $newPiece.hide();
         $newPiece.insertBefore('#gridAdder');
+        $newPiece.show(500);
     });
 }());

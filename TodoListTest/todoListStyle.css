@@ -7,10 +7,6 @@
     border: 1px solid black;
 }
 
-.ui-resizable-helper {
-    border: 3px dotted gray;
-}
-
 #grid {
     display: inline-block;
     list-style-type: none;
@@ -25,6 +21,17 @@
     height: 200px;
     width: 200px;
     margin: 5px;
+}
+
+.sortable-placeholderPiece {
+    margin: 5px; /* depends on .grindPiece */
+    float: left;
+    border: 1px red solid;
+}
+
+.resizable-helperPiece {
+    border: 3px dotted gray;
+    margin: -3px;
 }
 
 #grid #gridAdder {

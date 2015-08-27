@@ -14,9 +14,7 @@
         }
     });
 
-    $todoWrapper.resizable({
-
-    });
+    $todoWrapper.resizable({});
 
     $todoWrapper.on('click', 'input[type="submit"]', function () {
         var todoHtml = $todoList.html();
