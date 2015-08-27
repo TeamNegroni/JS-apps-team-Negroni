@@ -23,7 +23,7 @@
         index += 1;
 
         $newPiece.resizable({
-            grid: [200, 200], // value to be edited
+            grid: [362, 362], // value to be edited
             autoHide: true,
             animate: true,
             helper: "resizable-helperPiece",

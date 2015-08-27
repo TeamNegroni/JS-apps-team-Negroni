@@ -88,9 +88,10 @@ hr {
     display: none;
 }
 #input-wrapper {
-    width: 1250px;
-    height: 500px;    
-    overflow: scroll;
+    width: 1110px;
+    height: 500px;
+    padding: 0;
+    overflow-y: auto;
 }
 #current-date {
     display: block;
@@ -112,8 +113,8 @@ hr {
 #grid .gridPiece {
     float: left;
     border: 1px solid black;
-    height: 200px;
-    width: 200px;
+    height: 350px;
+    width: 350px;
     margin: 5px;
 }
 
