@@ -1,0 +1,52 @@
+#container {
+    width: 1250px;
+    height: 500px;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    border: 1px solid black;
+}
+
+tr {
+    height: 100px;
+}
+
+td {
+    width: 100px;
+    border: 1px solid black;
+}
+
+table{
+    table-layout: fixed;
+    width: 200px;
+}
+
+#todo {
+    display: none;
+    border: 1px solid black;
+}
+
+#todo #todo-panel {
+    padding: 10px;
+}
+
+#todo #todo-list {
+    list-style-type: circle;
+}
+
+#todo #todo-list .done {
+    color: green;
+    list-style: disc;
+}
+
+#content {
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    border: 1px solid black;
+    font: medium -moz-fixed;
+    height: 28px;
+    overflow: auto;
+    padding: 2px;
+    resize: both;
+    width: 400px;
+}
