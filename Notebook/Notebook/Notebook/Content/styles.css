@@ -89,7 +89,8 @@ hr {
 }
 #input-wrapper {
     width: 1250px;
-    height: 500px;
+    height: 500px;    
+    overflow: scroll;
 }
 #current-date {
     display: block;
