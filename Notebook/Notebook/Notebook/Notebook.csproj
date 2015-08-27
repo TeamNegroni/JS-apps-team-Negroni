@@ -71,6 +71,7 @@
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.structure.min.css" />
     <Content Include="packages.config" />
+    <Content Include="Scripts\grid.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
