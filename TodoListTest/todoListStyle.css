@@ -7,18 +7,28 @@
     border: 1px solid black;
 }
 
-tr {
-    height: 100px;
+.ui-resizable-helper {
+    border: 3px dotted gray;
 }
 
-td {
-    width: 100px;
+#grid {
+    display: inline-block;
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    width: 100%;
+}
+
+#grid .gridPiece {
+    float: left;
     border: 1px solid black;
+    height: 200px;
+    width: 200px;
+    margin: 5px;
 }
 
-table{
-    table-layout: fixed;
-    width: 200px;
+#grid #gridAdder {
+    text-align: center;
 }
 
 #todo {

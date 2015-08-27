@@ -15,7 +15,7 @@
     });
 
     $todoWrapper.resizable({
-        grid:
+
     });
 
     $todoWrapper.on('click', 'input[type="submit"]', function () {
