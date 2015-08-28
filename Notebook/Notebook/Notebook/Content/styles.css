@@ -137,3 +137,7 @@ hr {
 .input-attribute {
     disabled: true;
 }
+
+.form-sign-up{
+    display:none;
+}
