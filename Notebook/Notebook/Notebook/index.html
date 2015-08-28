@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Notebook application</title>
-
+    <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
     <!-- Bootstrap -->
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet">
     <link href="Content/bootstrap.min.css" rel="stylesheet">
@@ -24,12 +24,20 @@
 <body cz-shortcut-listen ="true">
     <div class="container">
         <div id="login-wrapper">
+            <button class="btn btn-lg btn-primary btn-block register" type="submit">Not registered</button>
             <form class="form-signin">
                 <h1 class="form-signin-heading">Please Login</h1>
                 <input type="text" class="form-control" name="username" placeholder="Account name" required="" autofocus="" />
                 <input type="password" class="form-control" name="password" placeholder="Password" required="" />
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+            </form>
+            <form class="form-sign-up">
+                <h1 class="form-sign-up-heading">Please Sign Up</h1>
+                <input type="text" class="form-control form-sign-up-username" name="username" placeholder="Account name" required="" autofocus="" />
+                <input type="password" class="form-control password1" name="password" placeholder="Password" required="" />
+                <input type="password" class="form-control password2" name="password" placeholder="Password" required="" />
+                <button class="btn btn-lg btn-primary btn-block btn-sign-up" type="submit">Register</button>
             </form>
             <p class="text-center sign-up"><strong>Sign up</strong> for a new account</p>
         </div>
@@ -48,7 +56,7 @@
                         <button type="button" class="btn btn-default input-attribute" disabled="disabled">Textarea</button>
                         <button type="button" class="btn btn-default input-attribute" disabled="disabled"><em>Something</em></button>
                         <button type="button" class="btn btn-default input-attribute" disabled="disabled"><em>Something</em></button>
-                    </div>                    
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -85,7 +93,7 @@
                                        </ul>
                                    </div>
                                    <button type="button" class="btn btn-default input-type" ><em>Something</em></button>
-                               </div>   
+                               </div>
                            </li>
                    </ul>
                 </div>
@@ -93,7 +101,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                    <input class="form-control" id="current-date" type="text" placeholder="Date" readonly />                    
+                    <input class="form-control" id="current-date" type="text" placeholder="Date" readonly />
                     <input type="text" id="date-picker" />
                     <div class="checkbox">
                         <label>
@@ -104,6 +112,7 @@
             </div>
         </div>
     </div>
+    <!--<script>Parse.initialize("ot544ZKOQzqFTvJlCH33vIR3pTLRch4wZZQEU70P", "mi3vvCD2EwmNmEAXPkXjcjvIpzKddrA4JT5td4mE");</script>-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="Scripts/jquery-2.1.4.min.js"></script>
     <script src="Scripts/jquery-ui.min.js"></script>
@@ -112,5 +121,43 @@
     <script src="Scripts/Notes.js"></script>
     <script src="Scripts/uiController.js"></script>
     <script src="Scripts/grid.js"></script>
+
+    <script>
+        Parse.initialize("ot544ZKOQzqFTvJlCH33vIR3pTLRch4wZZQEU70P", "mi3vvCD2EwmNmEAXPkXjcjvIpzKddrA4JT5td4mE");
+        var $textFieldUsername = $('.form-sign-up .form-sign-up-username');
+        var $signUpButton = $('.form-sign-up .btn-sign-up');
+        var $signUpFieldPassword1 = $('.form-sign-up .password1');
+        var $signUpFieldPassword2 = $('.form-sign-up .password2');
+        var $register = $('.register');
+
+        $register.on('click', function(ev) {
+            var $this = $(this);
+            var $formSignin = $('.form-signin');
+            var $formSignUp = $('.form-sign-up');
+            $formSignin.css('display', 'none');
+            $formSignUp.css('display', 'inline-block');
+            $this.css('display', 'none');
+        });
+
+        $signUpButton.on('click', function() {
+            var User = Parse.User;
+            console.log($textFieldUsername.val());
+            console.log($signUpFieldPassword1.val());
+            User.signUp($textFieldUsername.val(),$signUpFieldPassword1.val()) ;
+            console.log('user registered');
+        });
+
+        console.log('aaaa')
+        //var User = Parse.User;
+        //User.signUp('Don1', '1234')
+        //        .then(function(){
+        //            console.log('user registered');
+        //        });
+        //
+        //var TestObject = Parse.Object.extend("TestObject");
+        //var testObject = new TestObject();
+        //testObject.save({foo: "bar"}).then(function(object) {alert("yay! it worked");
+        //});
+    </script>
 </body>
 </html>

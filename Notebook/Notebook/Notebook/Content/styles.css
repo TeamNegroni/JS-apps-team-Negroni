@@ -82,7 +82,8 @@ hr {
     margin-top: 100px;
 }
 #login-wrapper {
-    display: none;
+
+    display: inline-block;
 }
 #calendar-wrapper {
     display: none;
@@ -136,8 +137,6 @@ hr {
 /*Input attributes status*/
 .input-attribute {
     disabled: true;
-}
-
 /*Input type IMG*/
 .btn-file {
     position: relative;
@@ -156,5 +155,7 @@ hr {
     outline: none;
     background: white;
     cursor: inherit;
-    display: block;
+    display: block;}
+.form-sign-up{
+    display:none;
 }
