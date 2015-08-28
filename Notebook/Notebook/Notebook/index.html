@@ -127,17 +127,25 @@
         var $signUpButton = $('.form-sign-up .btn-sign-up');
         var $signUpFieldPassword1 = $('.form-sign-up .password1');
         var $signUpFieldPassword2 = $('.form-sign-up .password2');
-        $signUpButton.click('button', function() {
+        $signUpButton.on('click', function() {
             var User = Parse.User;
             console.log($textFieldUsername.val());
             console.log($signUpFieldPassword1.val());
             User.signUp($textFieldUsername.val(),$signUpFieldPassword1.val()) ;
-        }, true);
-    var TestObject = Parse.Object.extend("TestObject");
-    var testObject = new TestObject();
-    testObject.save({foo: "bar"}).then(function(object) {
-    alert("yay! it worked");
-    });
+            console.log('user registered');
+        });
+
+        console.log('aaaa')
+        //var User = Parse.User;
+        //User.signUp('Don1', '1234')
+        //        .then(function(){
+        //            console.log('user registered');
+        //        });
+        //
+        //var TestObject = Parse.Object.extend("TestObject");
+        //var testObject = new TestObject();
+        //testObject.save({foo: "bar"}).then(function(object) {alert("yay! it worked");
+        //});
     </script>
 </body>
 </html>
