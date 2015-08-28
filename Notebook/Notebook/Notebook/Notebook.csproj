@@ -70,6 +70,7 @@
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.structure.min.css" />
+    <Content Include="Scripts\Notes.js" />
     <Content Include="packages.config" />
     <Content Include="Scripts\grid.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
