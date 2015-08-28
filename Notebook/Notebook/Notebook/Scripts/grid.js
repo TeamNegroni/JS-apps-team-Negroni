@@ -87,7 +87,7 @@
 
     $inputTypeImage.on('click', function () {
         var $newPiece = $('<li/>');
-        var $input = $('<input/>').attr('type', 'file');
+        var $input = $('<input/>').attr('type', 'file').attr('accept', 'image/x-png, image/gif, image/jpeg');
         var $span = $('<span/>').addClass('file-input').addClass('btn').addClass('btn-primary').addClass('btn-file').html('Browse').append($input);
         $newPiece.addClass('gridPiece');
 
