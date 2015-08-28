@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Notebook application</title>
-
+    <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
     <!-- Bootstrap -->
     <link href="Content/bootstrap-theme.min.css" rel="stylesheet">
     <link href="Content/bootstrap.min.css" rel="stylesheet">
@@ -104,6 +104,7 @@
             </div>
         </div>
     </div>
+    <script>Parse.initialize("ot544ZKOQzqFTvJlCH33vIR3pTLRch4wZZQEU70P", "mi3vvCD2EwmNmEAXPkXjcjvIpzKddrA4JT5td4mE");</script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="Scripts/jquery-2.1.4.min.js"></script>
     <script src="Scripts/jquery-ui.min.js"></script>
@@ -112,5 +113,13 @@
     <script src="Notes.js"></script>
     <script src="Scripts/uiController.js"></script>
     <script src="Scripts/grid.js"></script>
+
+    <script>
+    var TestObject = Parse.Object.extend("TestObject");
+    var testObject = new TestObject();
+    testObject.save({foo: "bar"}).then(function(object) {
+    alert("yay! it worked");
+    });
+    </script>
 </body>
 </html>

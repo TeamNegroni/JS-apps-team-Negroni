@@ -82,7 +82,7 @@ hr {
     margin-top: 100px;
 }
 #login-wrapper {
-    display: none;
+    display: inline-block;
 }
 #calendar-wrapper {
     display: none;
