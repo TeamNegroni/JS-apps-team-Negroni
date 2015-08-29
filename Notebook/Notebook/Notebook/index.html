@@ -24,12 +24,12 @@
 <body cz-shortcut-listen ="true">
     <div class="container">
         <div id="login-wrapper">
-            <form class="form-signin" id="id-form-sign-in">
+            <form class="form-sign-in" id="id-form-sign-in">
                 <h1 class="form-signin-heading">Please Login</h1>
-                <input type="text" class="form-control" name="username" placeholder="Account name" required="" autofocus="" />
-                <input type="password" class="form-control" name="password" placeholder="Password" required="" />
+                <input type="text" class="form-control  form-sign-in-username" name="username" placeholder="Account name" required="" autofocus="" />
+                <input type="password" class="form-control form-sign-in-password" name="password" placeholder="Password" required="" />
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+                <button class="btn btn-lg btn-primary btn-block form-sign-in-button" type="submit">Log in</button>
             </form>
             <form class="form-sign-up" id="id-form-sign-up">
                 <h1 class="form-sign-up-heading" >Please Sign Up</h1>
@@ -132,7 +132,7 @@
 
     <script>
         Parse.initialize("ot544ZKOQzqFTvJlCH33vIR3pTLRch4wZZQEU70P", "mi3vvCD2EwmNmEAXPkXjcjvIpzKddrA4JT5td4mE");
-        var $textFieldUsername = $('.form-sign-up .form-sign-up-username');
+        var $signUpFieldUsername = $('.form-sign-up .form-sign-up-username');
         var $signUpFieldEmail = $('.form-sign-up .email');
         var $signUpButton = $('.form-sign-up .btn-sign-up');
         var $signUpFieldPassword1 = $('.form-sign-up .password1');
@@ -140,10 +140,15 @@
         var $register = $('.register');
         var $formSignUp = $('#id-form-sign-up');
         var $textSignUp = $('.text-center .sign-up');
+
+        var $signInFieldUsername = $('.form-sign-in .form-sign-in-username');
+        var $signInFieldPassword = $('.form-sign-in .form-sign-in-password');
+        var $signInButton = $('.form-sign-in-button');
+
         var $container = $(".container");
         $register.on('click', function(ev) {
             var $this = $(this);
-            var $formSignin = $('.form-signin');
+            var $formSignin = $('.form-sign-in');
             var $formSignUp = $('.form-sign-up');
             $formSignin.css('display', 'none');
             $formSignUp.css('display', 'inline-block');
@@ -152,20 +157,23 @@
 
         $signUpButton.on('click', function(event) {
             event.preventDefault();
-            console.log($textFieldUsername.val());
+            var loggedInUser = Parse.User.current();
+            Parse.User.logOut();
+            console.log(loggedInUser);
+            console.log($signUpFieldUsername.val());
             console.log($signUpFieldPassword1.val());
-            //User.signUp($textFieldUsername.val(),$signUpFieldPassword1.val()) ;
+            //User.signUp($signUpFieldUsername.val(),$signUpFieldPassword1.val()) ;
             //console.log('user registered');
 
             var user = new Parse.User();
-            user.set("username", $textFieldUsername.val());
+            user.set("username", $signUpFieldUsername.val());
             user.set("password", $signUpFieldPassword1.val());
             //user.set("email", $signUpFieldEmail.val());
             user.signUp(null, {
                 success: function(user) {
                     //form.submit;
                     var $nameTitle = $('<div/>');
-                    $nameTitle.html('Logged in as ' + $textFieldUsername.val());
+                    $nameTitle.html('Logged in as ' + $signUpFieldUsername.val());
                     $formSignUp.css('display', 'none');
                     $register.css('display','none');
                     $textSignUp.css('display', 'none');
@@ -176,8 +184,33 @@
                     alert("Error: " + error.code + " " + error.message);
                 }
             });
-
         });
+
+        $signInButton.on('click', function(ev) {
+            var $this = $(this);
+            var $formSignin = $('.form-sign-in');
+            var loggedInUser = Parse.User.current();
+            Parse.User.logOut();
+            loggedInUser =  Parse.User.current();
+            if(!loggedInUser){
+                Parse.User.logIn($signInFieldUsername.val(), $signInFieldPassword.val(), {
+                    success: function(user) {
+                        $formSignin.css('display', 'none');
+                        $this.css('display', 'none');
+                        var $nameTitle = $('<div/>');
+                        $nameTitle.html('Logged in as ' + $signInFieldUsername.val());
+                        $register.css('display','none');
+                    },
+                    error: function(user, error) {
+                        alert("Error: " + error.code + " " + error.message);
+                    }
+                });
+            } else {
+                console.log(loggedInUser.get("username"));
+            }
+        });
+
+
 
         //var User = Parse.User;
         //User.signUp('Don1', '1234')
