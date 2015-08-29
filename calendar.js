@@ -2,7 +2,7 @@
     var $toggleButton = $('#calendar-toggleButton'),
         $calendar = $('#calendar');
 
-    buildCalendar(todaysDate);
+    buildCalendar(todaysDate,$calendar);
     $calendar.hide();
 
     var toggleButtonContent = 'View Calendar';
@@ -19,7 +19,7 @@
         $calendar.toggle(100);
     });
 
-    function buildCalendar(todaysDate) {
+    function buildCalendar(todaysDate,$wrapper) {
         var MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var WEEK_DAY_NAMES = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
@@ -55,7 +55,6 @@
                 goingOnYear;
 
             if ($(this).html() === '&lt;') {
-                console.log('Clicked on <');
                 if(date.getMonth() === 0) {
                     goingOnMonth = 11;
                     goingOnYear = date.getFullYear() - 1;
@@ -64,7 +63,6 @@
                     goingOnYear = date.getFullYear();
                 }
             } else {
-                console.log('Clicked on >');
                 if(date.getMonth() === 11) {
                     goingOnMonth = 0;
                     goingOnYear = date.getFullYear() + 1;
@@ -111,9 +109,9 @@
 
 
         // blending it all together
-        $calendar.append($controls);
-        $calendar.append($daysTable);
-        $calendar.append($currentDateLink);
+        $wrapper.append($controls);
+        $wrapper.append($daysTable);
+        $wrapper.append($currentDateLink);
 
         function updateMonthAndYearLabel() {
             $currentMonthAndYear.html(date.getMonthName() + ' ' + date.getFullYear());

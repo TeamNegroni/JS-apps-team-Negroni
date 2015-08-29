@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="267faaf9-c30b-4365-a591-4065df015bf0" name="Default" comment="" />
+    <list default="true" id="267faaf9-c30b-4365-a591-4065df015bf0" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/calendar.js" afterPath="$PROJECT_DIR$/calendar.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower_components/jQuery/dist/jquery.js" afterPath="$PROJECT_DIR$/bower_components/jQuery/dist/jquery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower_components/jQuery/src/manipulation.js" afterPath="$PROJECT_DIR$/bower_components/jQuery/src/manipulation.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower_components/jQuery/src/sizzle/dist/sizzle.js" afterPath="$PROJECT_DIR$/bower_components/jQuery/src/sizzle/dist/sizzle.js" />
+    </list>
     <ignored path="JS-apps-team-Negroni.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,11 +31,41 @@
           <file leaf-file-name="calendar.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/calendar.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5430108">
-                  <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
+                <state vertical-scroll-proportion="0.4265233">
+                  <caret line="56" column="44" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
                   <folding>
-                    <element signature="e#5294#5561#0" expanded="false" />
+                    <element signature="e#5220#5487#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="jquery.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bower_components/jQuery/dist/jquery.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="714" column="29" selection-start-line="714" selection-start-column="29" selection-end-line="714" selection-end-column="29" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="manipulation.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bower_components/jQuery/src/manipulation.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="220" column="39" selection-start-line="220" selection-start-column="39" selection-end-line="220" selection-end-column="39" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="sizzle.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bower_components/jQuery/src/sizzle/dist/sizzle.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="161" column="29" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -124,8 +159,11 @@
         <option value="$PROJECT_DIR$/callendar.js" />
         <option value="$PROJECT_DIR$/../../WebstormProjects/JS/UI&amp;DOM/EXAM/Task2/tasks/task-2.js" />
         <option value="$PROJECT_DIR$/calendarStyle.css" />
-        <option value="$PROJECT_DIR$/calendar.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/bower_components/jQuery/dist/jquery.js" />
+        <option value="$PROJECT_DIR$/bower_components/jQuery/src/manipulation.js" />
+        <option value="$PROJECT_DIR$/bower_components/jQuery/src/sizzle/dist/sizzle.js" />
+        <option value="$PROJECT_DIR$/calendar.js" />
       </list>
     </option>
   </component>
@@ -293,7 +331,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="82" column="68" selection-start-line="82" selection-start-column="68" selection-end-line="82" selection-end-column="68" />
           <folding>
-            <element signature="e#5294#5561#0" expanded="false" />
+            <element signature="e#5220#5487#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -353,7 +391,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="47" column="63" selection-start-line="47" selection-start-column="63" selection-end-line="47" selection-end-column="63" />
           <folding>
-            <element signature="e#5294#5561#0" expanded="false" />
+            <element signature="e#5220#5487#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -450,21 +488,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/calendar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5430108">
-          <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
-          <folding>
-            <element signature="e#5294#5561#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.24242425">
           <caret line="8" column="44" selection-start-line="8" selection-start-column="44" selection-end-line="8" selection-end-column="44" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/jQuery/dist/jquery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="714" column="29" selection-start-line="714" selection-start-column="29" selection-end-line="714" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/jQuery/src/manipulation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="220" column="39" selection-start-line="220" selection-start-column="39" selection-end-line="220" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower_components/jQuery/src/sizzle/dist/sizzle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="161" column="29" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calendar.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4265233">
+          <caret line="56" column="44" selection-start-line="56" selection-start-column="44" selection-end-line="56" selection-end-column="44" />
+          <folding>
+            <element signature="e#5220#5487#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
