@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="267faaf9-c30b-4365-a591-4065df015bf0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/calendar.js" afterPath="$PROJECT_DIR$/calendar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/calendarStyle.css" afterPath="$PROJECT_DIR$/calendarStyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="JS-apps-team-Negroni.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,8 +28,8 @@
           <file leaf-file-name="calendar.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/calendar.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.17889088">
-                  <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
+                <state vertical-scroll-proportion="0.08765653">
+                  <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
                   <folding />
                 </state>
               </provider>
@@ -61,20 +59,20 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.3024911">
+                <state vertical-scroll-proportion="-6.5384617">
                   <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="calendarStyle.css" pinned="false" current-in-tab="false">
+          <file leaf-file-name="calendarStyle.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/calendarStyle.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
+                <state vertical-scroll-proportion="0.7397959">
                   <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
                   <folding />
                 </state>
@@ -126,8 +124,8 @@
         <option value="$PROJECT_DIR$/callendar.js" />
         <option value="$PROJECT_DIR$/../../WebstormProjects/JS/UI&amp;DOM/EXAM/Task2/tasks/task-2.js" />
         <option value="$PROJECT_DIR$/calendarStyle.css" />
-        <option value="$PROJECT_DIR$/calendar.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/calendar.js" />
       </list>
     </option>
   </component>
@@ -321,6 +319,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.5384617">
+          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../../WebstormProjects/JS/UI&amp;DOM/EXAM/Task2/tasks/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -329,26 +335,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/calendar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17889088">
-          <caret line="80" column="30" selection-start-line="80" selection-start-column="30" selection-end-line="80" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/calendarStyle.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.7397959">
           <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
+    <entry file="file://$PROJECT_DIR$/calendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3024911">
-          <caret line="10" column="20" selection-start-line="10" selection-start-column="20" selection-end-line="10" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.08765653">
+          <caret line="62" column="38" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
           <folding />
         </state>
       </provider>

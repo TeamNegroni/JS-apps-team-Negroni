@@ -1,11 +1,12 @@
 (function () {
     var $toggleButton = $('#calendar-toggleButton'),
         $calendar = $('#calendar');
+
     buildCalendar();
+    $calendar.hide();
 
     var toggleButtonContent = 'View Calendar';
     $toggleButton.html(toggleButtonContent);
-    $calendar.hide();
 
     $toggleButton.on('click', function () {
         if (toggleButtonContent === 'View Calendar') {
@@ -34,25 +35,38 @@
         console.log(date.getDayName());
         console.log(date.getMonthName());
 
-        var $controls = $('<div/>').addClass('controls'),
-            $button = $('<button/>').addClass('btn'),
-            $currentMonth = $('<div/>').addClass('current-month');
-        var $daysTable = $('<table/>').addClass('.daysTable'),
+        var $controls = $('<div/>'),
+            $button = $('<button/>'),
+            $currentMonth = $('<div/>');
+        var $daysTable = $('<table/>'),
             headTemplate,
             daysTemplate;
+        var $currentDateLink = $('<div/>');
 
-        //var $currentDateLink = $('<div/>').addClass('current-date-link').addClass('current-date');
-        //$currentDateLink.text(date.getDay() + ' ' + date.getMonthName() + ' ' + date.getFullYear());
-        //
-        //$picker.append($currentDateLink);
-
+        // setting up controls part
+        $controls.addClass('controls');
+        $button.addClass('btn');
+        $currentMonth.addClass('current-month');
         $controls.append($button.clone().text('<'));
         $controls.append($currentMonth);
         $controls.append($button.clone().text('>'));
 
+        // setting up the table with days
+        $daysTable.addClass('.daysTable');
         headTemplate = buildHeadTemplate();
         daysTemplate = refreshDays(); // might need to be outside this scope for update purposes
         $daysTable.html(headTemplate + daysTemplate);
+
+        // setting up the lowest(current day) part
+        $currentDateLink
+            .addClass('current-date-link')
+            .addClass('current-date');
+        $currentDateLink.text(date.getDayName() + ' ' + date.getMonthName() + ' ' + date.getFullYear());
+
+        // blending it all together
+        $calendar.append($controls);
+        $calendar.append($daysTable);
+        $calendar.append($currentDateLink);
 
         function buildHeadTemplate() {
             var headTemplate = '<thead>';
@@ -95,8 +109,5 @@
 
             return daysTableTemplate;
         }
-
-        $calendar.append($controls);
-        $calendar.append($daysTable);
     }
 }());
