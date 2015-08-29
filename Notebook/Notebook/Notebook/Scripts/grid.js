@@ -28,7 +28,13 @@
 
     $inputTypeTextarea.on('click', function () {
         var $newPiece = $('<li/>');
-        var $textArea = $('<textarea/>').addClass('form-control').attr('row', 3).css('max-width',300);
+        var $textArea = $('<textarea/>').addClass('form-control').attr('row', 3).css('max-width', 300);
+        var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
+
+        $iconRemove.on('click', function () {
+            $(this).parent().fadeOut(300, function(){ $(this).remove();});;
+        });
+
         $newPiece.addClass('gridPiece');
         
         $newPiece.text(index);
@@ -43,6 +49,7 @@
         });
         
         $newPiece.append($textArea);
+        $newPiece.append($iconRemove);
         $newPiece.hide();
         $newPiece.insertBefore('#gridAdder');
         $newPiece.show(500);
@@ -54,6 +61,12 @@
         var $newPiece = $('<li/>');
         var $input = $('<input/>').attr('type', 'file').attr('accept', 'image/x-png, image/gif, image/jpeg');
         var $span = $('<span/>').addClass('file-input').addClass('btn').addClass('btn-primary').addClass('btn-file').html('Browse').append($input);
+        var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
+
+        $iconRemove.on('click', function () {
+            $(this).parent().fadeOut(300, function () { $(this).remove(); });;
+        });
+
         $newPiece.addClass('gridPiece');
 
         $newPiece.text(index);
@@ -68,6 +81,7 @@
         });
 
         $newPiece.append($span);
+        $newPiece.append($iconRemove);
         $newPiece.hide();
         $newPiece.insertBefore('#gridAdder');
         $newPiece.show(500);
