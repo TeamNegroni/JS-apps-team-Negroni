@@ -196,7 +196,7 @@
                 }
 
                 if (inCurrentMonth) {
-                    if (todaysDate.getDate() === day && todaysDate.getMonth() === currentMonth && date.getFullYear() === currentDate.getFullYear()) {
+                    if (todaysDate.getDate() === day && todaysDate.getMonth() === currentMonth && date.getFullYear() === todaysDate.getFullYear()) {
                         cssClass = currentMonthCssClass + ' ' + currentDayCssClass;
                     } else {
                         cssClass = currentMonthCssClass;
