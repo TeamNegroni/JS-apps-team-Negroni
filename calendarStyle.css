@@ -5,7 +5,7 @@
     border: 1px solid black;
     left: 0;
     width: 250px;
-    height: 320px;
+    height: 400px;
 }
 
 #calendar .controls {
@@ -45,12 +45,13 @@
 }
 
 #calendar .daysTable {
-    border-collapse: collapse;
     margin: 0 auto;
     margin-top: 5px;
     position: relative;
     top: 50%;
     margin-top: -150px;
+    border-spacing: 1px;
+    border-collapse: separate;
 }
 
 #calendar .daysTable th, td {
@@ -69,6 +70,10 @@
     cursor: pointer;
     background-color: #33CC33;
     color: white;
+}
+
+#calendar .daysTable td.current-day {
+    border: 2px solid red;
 }
 
 #calendar .current-date-link {
