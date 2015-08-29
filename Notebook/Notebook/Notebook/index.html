@@ -163,7 +163,6 @@
             event.preventDefault();
             var loggedInUser = Parse.User.current();
             Parse.User.logOut();
-            console.log(loggedInUser);
             console.log($signUpFieldUsername.val());
             console.log($signUpFieldPassword1.val());
             //User.signUp($signUpFieldUsername.val(),$signUpFieldPassword1.val()) ;
@@ -175,8 +174,6 @@
             //user.set("email", $signUpFieldEmail.val());
             user.signUp(null, {
                 success: function(user) {
-                    //form.submit;
-                    var $nameTitle = $('<div/>');
                     $nameTitle.html('Logged in as ' + $signUpFieldUsername.val());
                     $formSignUp.css('display', 'none');
                     $register.css('display','none');
@@ -192,10 +189,12 @@
         });
 
         $signInButton.on('click', function(ev) {
+            event.preventDefault();
             var $this = $(this);
             var $formSignin = $('.form-sign-in');
             var loggedInUser = Parse.User.current();
             Parse.User.logOut();
+            console.log($logOut.html());
             loggedInUser =  Parse.User.current();
             if(!loggedInUser){
                 Parse.User.logIn($signInFieldUsername.val(), $signInFieldPassword.val(), {
@@ -219,15 +218,13 @@
         });
 
         $logOut.on('click', function(ev) {
-            var $this = $(this);
+            $logOut.detach();
+            $nameTitle.detach();
             var $formSignin = $('.form-sign-in');
             Parse.User.logOut();
-            $nameTitle.html();
-            $nameTitle.css('display', 'none');
             $formSignin.css('display', 'inline-block');
             $signInButton.css('display', 'inline-block');
-            $register.css('display','inline-block');
-            $this.css('display', 'none');
+            $register.css('display','inline-block');      
         });
 
 
