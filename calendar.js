@@ -80,7 +80,7 @@
         $currentDateLink.html('Today');
         $currentDateLink.on('click', function () {
             console.log(todaysDate);
-            // !!! Add connection to the server about the date info, use date variable,
+            // !!! Add connection to the server about the todaysDate info, use todaysDate variable,
             // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
         });
 
