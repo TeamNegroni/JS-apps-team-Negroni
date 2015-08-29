@@ -33,40 +33,56 @@
 
         todaysDate = todaysDate || new Date();
         var date = new Date(todaysDate);    // you are welcome :)
-        console.log(date.getDayName());
-        console.log(date.getMonthName());
-        console.log(date.getDate());
 
         var $controls = $('<div/>'),
             $button = $('<button/>'),
-            $currentMonth = $('<div/>');
+            $currentMonthAndYear = $('<div/>');
         var $daysTable = $('<table/>'),
             headTemplate,
             daysTemplate;
-        var $currentDateLink = $('<div/>');
+        var $currentDateLink = $('<button/>');
 
         // setting up controls part
         // TODO: moving between months when pressing arrows
         $controls.addClass('controls');
         $button.addClass('btn');
-        $currentMonth.addClass('current-month');
+        $currentMonthAndYear.addClass('current-month-and-year');
+        $currentMonthAndYear.html(date.getMonthName() + ' ' + date.getFullYear());
         $controls.append($button.clone().text('<'));
-        $controls.append($currentMonth);
+        $controls.append($currentMonthAndYear);
         $controls.append($button.clone().text('>'));
 
         // setting up the table with days
         // TODO: when a day is pressed must ask the server for data on that day
         $daysTable.addClass('daysTable');
         headTemplate = buildHeadTemplate();
-        daysTemplate = refreshDays('current-day', 'current-month', 'another-month'); // might need to be outside this scope for update purposes
+        daysTemplate = refreshDays(date, 'current-day', 'current-month', 'another-month'); // might need to be outside this scope for update purposes
         $daysTable.html(headTemplate + daysTemplate);
+        $daysTable.on('click', 'td', function (e) {
+            var $clickedDay = $(e.target);
+            if ($clickedDay.hasClass('current-month')) {
+                date = new Date(+date.getFullYear(), +date.getMonth(), +$clickedDay.html());
+                console.log(date);
+                // !!! Add connection to the server about the date info, use date variable,
+                // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
+            } else {
+                // TODO: Transition between months must be added
+                $currentMonthAndYear.html(date.getMonthName() + ' ' + date.getFullYear());
+                console.log('Ne');
+            }
+
+        });
 
         // setting up the lowest(current day) part
-        // TODO: add onclick to focus the today's date in the table
         $currentDateLink
             .addClass('current-date-link')
             .addClass('current-date');
-        $currentDateLink.text(date.getDayName() + ' ' + date.getMonthName() + ' ' + date.getFullYear());
+        $currentDateLink.html('Today');
+        $currentDateLink.on('click', function () {
+            console.log(date);
+            // !!! Add connection to the server about the date info, use date variable,
+            // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
+        });
 
 
         // blending it all together
@@ -94,8 +110,8 @@
             return days;
         }
 
-        function refreshDays(currentDayCssClass, currentMonthCssClass, anotherMonthCssClass) {
-            var currentMonthDays = getDaysInMonth(date.getMonth(), date.getFullYear()),
+        function refreshDays(currentDay, currentDayCssClass, currentMonthCssClass, anotherMonthCssClass) {
+            var currentMonthDays = getDaysInMonth(currentDay.getMonth(), currentDay.getFullYear()),
                 daysTableTemplate = '',
                 inRow = false;
             var currentMonth = date.getMonth(),

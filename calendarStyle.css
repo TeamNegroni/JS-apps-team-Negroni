@@ -24,7 +24,7 @@
     width: calc(100% - 24px);
 }
 
-#calendar .controls .current-month {
+#calendar .controls .current-month-and-year {
     display: inline-block;
     width: 180px;
     text-align: center;
