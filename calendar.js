@@ -38,8 +38,7 @@
             $button = $('<button/>'),
             $currentMonthAndYear = $('<div/>');
         var $daysTable = $('<table/>'),
-            headTemplate,
-            daysTemplate;
+            headTemplate = buildHeadTemplate();
         var $currentDateLink = $('<button/>');
 
         // setting up controls part
@@ -47,24 +46,43 @@
         $controls.addClass('controls');
         $button.addClass('btn');
         $currentMonthAndYear.addClass('current-month-and-year');
-        $currentMonthAndYear.html(date.getMonthName() + ' ' + date.getFullYear());
+        updateMonthAndYearLabel();
         $controls.append($button.clone().html('<'));
         $controls.append($currentMonthAndYear);
         $controls.append($button.clone().html('>'));
         $controls.on('click', 'button', function () {
+            var goingOnMonth,
+                goingOnYear;
+
             if ($(this).html() === '&lt;') {
                 console.log('Clicked on <');
+                if(date.getMonth() === 0) {
+                    goingOnMonth = 11;
+                    goingOnYear = date.getFullYear() - 1;
+                } else {
+                    goingOnMonth = date.getMonth() - 1;
+                    goingOnYear = date.getFullYear();
+                }
             } else {
                 console.log('Clicked on >');
+                if(date.getMonth() === 11) {
+                    goingOnMonth = 0;
+                    goingOnYear = date.getFullYear() + 1;
+                } else {
+                    goingOnMonth = date.getMonth() + 1;
+                    goingOnYear = date.getFullYear();
+                }
             }
+            date = new Date(goingOnYear,goingOnMonth,1);
+
+            updateTable(date);
+            updateMonthAndYearLabel();
         });
 
         // setting up the table with days
         // TODO: when a day is pressed must ask the server for data on that day
         $daysTable.addClass('daysTable');
-        headTemplate = buildHeadTemplate();
-        daysTemplate = refreshDays(date, 'current-day', 'current-month', 'another-month'); // might need to be outside this scope for update purposes
-        $daysTable.html(headTemplate + daysTemplate);
+        updateTable(date);
         $daysTable.on('click', 'td', function (e) {
             var $clickedDay = $(e.target);
             if ($clickedDay.hasClass('current-month')) {
@@ -74,7 +92,7 @@
                 // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
             } else {
                 // TODO: Transition between months must be added
-                $currentMonthAndYear.html(date.getMonthName() + ' ' + date.getFullYear());
+                updateMonthAndYearLabel();
                 console.log('Ne');
             }
 
@@ -97,6 +115,15 @@
         $calendar.append($daysTable);
         $calendar.append($currentDateLink);
 
+        function updateMonthAndYearLabel() {
+            $currentMonthAndYear.html(date.getMonthName() + ' ' + date.getFullYear());
+        }
+
+        function updateTable(date) {
+            var daysTemplate = updateDays(date, 'current-day', 'current-month', 'another-month'); // might need to be outside this scope for update purposes
+            $daysTable.html(headTemplate + daysTemplate);
+        }
+
         function buildHeadTemplate() {
             var headTemplate = '<thead>';
             for (var i = 0; i < WEEK_DAY_NAMES.length; i++) {
@@ -117,7 +144,7 @@
             return days;
         }
 
-        function refreshDays(currentDate, currentDayCssClass, currentMonthCssClass, anotherMonthCssClass) {
+        function updateDays(currentDate, currentDayCssClass, currentMonthCssClass, anotherMonthCssClass) {
             var currentMonthDays = getDaysInMonth(currentDate.getMonth(), currentDate.getFullYear()),
                 daysTableTemplate = '',
                 inRow = false;
@@ -169,7 +196,7 @@
                 }
 
                 if (inCurrentMonth) {
-                    if (date.getDate() === day && date.getMonth() === currentMonth && date.getFullYear() === currentDate.getFullYear()) {
+                    if (todaysDate.getDate() === day && todaysDate.getMonth() === currentMonth && date.getFullYear() === currentDate.getFullYear()) {
                         cssClass = currentMonthCssClass + ' ' + currentDayCssClass;
                     } else {
                         cssClass = currentMonthCssClass;
