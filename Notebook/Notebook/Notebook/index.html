@@ -146,6 +146,10 @@
         var $signInButton = $('.form-sign-in-button');
 
         var $container = $(".container");
+
+        var $nameTitle = $('<div/>');
+        var $logOut = $('<div/>').html('Log Out');
+
         $register.on('click', function(ev) {
             var $this = $(this);
             var $formSignin = $('.form-sign-in');
@@ -178,6 +182,7 @@
                     $register.css('display','none');
                     $textSignUp.css('display', 'none');
                     console.log($nameTitle.html());
+                    $container.prepend($logOut);
                     $container.prepend($nameTitle);
                 },
                 error: function(user, error) {
@@ -197,9 +202,12 @@
                     success: function(user) {
                         $formSignin.css('display', 'none');
                         $this.css('display', 'none');
-                        var $nameTitle = $('<div/>');
+
+
                         $nameTitle.html('Logged in as ' + $signInFieldUsername.val());
                         $register.css('display','none');
+                        $container.prepend($logOut);
+                        $container.prepend($nameTitle);
                     },
                     error: function(user, error) {
                         alert("Error: " + error.code + " " + error.message);
@@ -208,6 +216,18 @@
             } else {
                 console.log(loggedInUser.get("username"));
             }
+        });
+
+        $logOut.on('click', function(ev) {
+            var $this = $(this);
+            var $formSignin = $('.form-sign-in');
+            Parse.User.logOut();
+            $nameTitle.html();
+            $nameTitle.css('display', 'none');
+            $formSignin.css('display', 'inline-block');
+            $signInButton.css('display', 'inline-block');
+            $register.css('display','inline-block');
+            $this.css('display', 'none');
         });
 
 
