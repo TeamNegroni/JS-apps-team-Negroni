@@ -5,6 +5,8 @@ var $dateControllerCheckbox = $('#date-controller-checkbox');
 var $draggableComponents = $('.draggable-component');
 var $draggablesShowBorder = $('#draggables-show-border');
 var $inputAttribute = $('.input-attribute');
+var $gridAdder = $('#gridAdder');
+var $editControllerCheckbox = $('#edit-controller');
 
 //Controlling the date at the UI Pannel
 $currentDateController.attr('placeholder', currentDate.getDate() + "/"
@@ -23,6 +25,15 @@ $dateControllerCheckbox.change(function () {
     } else {
         $currentDateController.show();
         $datePicker.hide();
+    }
+});
+
+//Change modes from VIEW to EDIT
+$editControllerCheckbox.change(function () {
+    if ($(this).is(':checked')) {
+        $gridAdder.hide(200);
+    } else {
+        $gridAdder.show(200);
     }
 });
 
