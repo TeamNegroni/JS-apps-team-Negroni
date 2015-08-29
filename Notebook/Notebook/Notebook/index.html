@@ -130,7 +130,9 @@
         var $signUpFieldPassword1 = $('.form-sign-up .password1');
         var $signUpFieldPassword2 = $('.form-sign-up .password2');
         var $register = $('.register');
-
+        var $formSignUp = $('#id-form-sign-up');
+        var $textSignUp = $('.text-center .sign-up');
+        var $container = $(".container");
         $register.on('click', function(ev) {
             var $this = $(this);
             var $formSignin = $('.form-signin');
@@ -141,7 +143,7 @@
         });
 
         $signUpButton.on('click', function(event) {
-            event.preventDefault()
+            event.preventDefault();
             console.log($textFieldUsername.val());
             console.log($signUpFieldPassword1.val());
             //User.signUp($textFieldUsername.val(),$signUpFieldPassword1.val()) ;
@@ -154,7 +156,13 @@
             user.signUp(null, {
                 success: function(user) {
                     //form.submit;
-                    console.log('user registered')
+                    var $nameTitle = $('<div/>');
+                    $nameTitle.html('Logged in as ' + $textFieldUsername.val());
+                    $formSignUp.css('display', 'none');
+                    $register.css('display','none');
+                    $textSignUp.css('display', 'none');
+                    console.log($nameTitle.html());
+                    $container.prepend($nameTitle);
                 },
                 error: function(user, error) {
                     alert("Error: " + error.code + " " + error.message);
