@@ -1,8 +1,8 @@
 (function () {
     var $grid = $('#grid'),
-        $adder = $('#gridAdder');
+        $adderSign = $('#adder-sign');
     var index = 1;
-    var $inputTypes = $('[class*="input-type-"]');
+    var $inputTypes = $('#input-type-wrapper');
     var $inputTypeImage = $('.input-type-image');
     var $inputTypeTextarea = $('.input-type-textarea');
     var $inputTypeIssueNote = $('.input-type-issue-note');
@@ -62,6 +62,10 @@
     //        $newPiece.show(500);
     //    });
     //})
+    $adderSign.on('click', function () {
+        $adderSign.hide(200);
+        $inputTypes.show(200);
+    });
 
     $inputTypeTextarea.on('click', function () {
         var $newPiece = $('<li/>');
@@ -83,6 +87,8 @@
         $newPiece.hide();
         $newPiece.insertBefore('#gridAdder');
         $newPiece.show(500);
+        $inputTypes.hide(200);
+        $adderSign.show(200);
     });
 
     $inputTypeImage.on('click', function () {
@@ -106,6 +112,8 @@
         $newPiece.hide();
         $newPiece.insertBefore('#gridAdder');
         $newPiece.show(500);
+        $inputTypes.hide(200);
+        $adderSign.show(200);
     });   
 }());
 

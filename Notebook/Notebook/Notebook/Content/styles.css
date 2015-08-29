@@ -168,6 +168,6 @@ hr {
     display:none;
 }
 
-[class*="input-type-"] {
+#input-type-wrapper {
     display:none;
 }
