@@ -48,9 +48,16 @@
         $button.addClass('btn');
         $currentMonthAndYear.addClass('current-month-and-year');
         $currentMonthAndYear.html(date.getMonthName() + ' ' + date.getFullYear());
-        $controls.append($button.clone().text('<'));
+        $controls.append($button.clone().html('<'));
         $controls.append($currentMonthAndYear);
-        $controls.append($button.clone().text('>'));
+        $controls.append($button.clone().html('>'));
+        $controls.on('click', 'button', function () {
+            if ($(this).html() === '&lt;') {
+                console.log('Clicked on <');
+            } else {
+                console.log('Clicked on >');
+            }
+        });
 
         // setting up the table with days
         // TODO: when a day is pressed must ask the server for data on that day
@@ -110,24 +117,24 @@
             return days;
         }
 
-        function refreshDays(currentDay, currentDayCssClass, currentMonthCssClass, anotherMonthCssClass) {
-            var currentMonthDays = getDaysInMonth(currentDay.getMonth(), currentDay.getFullYear()),
+        function refreshDays(currentDate, currentDayCssClass, currentMonthCssClass, anotherMonthCssClass) {
+            var currentMonthDays = getDaysInMonth(currentDate.getMonth(), currentDate.getFullYear()),
                 daysTableTemplate = '',
                 inRow = false;
-            var currentMonth = date.getMonth(),
+            var currentMonth = currentDate.getMonth(),
                 previousMonthDays,
                 nextMonthDays;
 
             // might refactor to get only the count of the days in month
             if (currentMonth === 0) {
-                previousMonthDays = getDaysInMonth(11, date.getFullYear() - 1);
-                nextMonthDays = getDaysInMonth(1, date.getFullYear());
+                previousMonthDays = getDaysInMonth(11, currentDate.getFullYear() - 1);
+                nextMonthDays = getDaysInMonth(1, currentDate.getFullYear());
             } else if (currentMonth === 11) {
-                previousMonthDays = getDaysInMonth(10, date.getFullYear());
-                nextMonthDays = getDaysInMonth(0, date.getFullYear() + 1);
+                previousMonthDays = getDaysInMonth(10, currentDate.getFullYear());
+                nextMonthDays = getDaysInMonth(0, currentDate.getFullYear() + 1);
             } else {
-                previousMonthDays = getDaysInMonth(currentMonth - 1, date.getFullYear() - 1);
-                nextMonthDays = getDaysInMonth(currentMonth + 1, date.getFullYear());
+                previousMonthDays = getDaysInMonth(currentMonth - 1, currentDate.getFullYear() - 1);
+                nextMonthDays = getDaysInMonth(currentMonth + 1, currentDate.getFullYear());
             }
 
             var currentMonthDaysIndex = 0,
@@ -162,7 +169,7 @@
                 }
 
                 if (inCurrentMonth) {
-                    if (date.getDate() === day) {
+                    if (date.getDate() === day && date.getMonth() === currentMonth && date.getFullYear() === currentDate.getFullYear()) {
                         cssClass = currentMonthCssClass + ' ' + currentDayCssClass;
                     } else {
                         cssClass = currentMonthCssClass;
