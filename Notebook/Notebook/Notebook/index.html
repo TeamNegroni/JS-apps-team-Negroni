@@ -37,6 +37,7 @@
                 <input type="password" class="form-control password1" name="password" placeholder="Password" required="" />
                 <input type="password" class="form-control password2" name="password" placeholder="Password" required="" />
                 <button class="btn btn-lg btn-primary btn-block btn-sign-up" type="submit">Register</button>
+                <button class="btn btn-lg btn-primary btn-block btn-go-back-to-sign-in" type="submit">I am registered. Go Back To Log-In</button>
             </form>
             <p class="text-center sign-up"><strong>Sign up</strong> for a new account</p>
             <button class="btn btn-lg btn-primary btn-block register" type="submit">Not registered</button>
@@ -135,6 +136,7 @@
         var $signUpFieldUsername = $('.form-sign-up .form-sign-up-username');
         var $signUpFieldEmail = $('.form-sign-up .email');
         var $signUpButton = $('.form-sign-up .btn-sign-up');
+        var $signUpBackToSignInButton = $('.form-sign-up .btn-go-back-to-sign-in');
         var $signUpFieldPassword1 = $('.form-sign-up .password1');
         var $signUpFieldPassword2 = $('.form-sign-up .password2');
         var $register = $('.register');
@@ -201,8 +203,6 @@
                     success: function(user) {
                         $formSignin.css('display', 'none');
                         $this.css('display', 'none');
-
-
                         $nameTitle.html('Logged in as ' + $signInFieldUsername.val());
                         $register.css('display','none');
                         $container.prepend($logOut);
@@ -224,10 +224,18 @@
             Parse.User.logOut();
             $formSignin.css('display', 'inline-block');
             $signInButton.css('display', 'inline-block');
-            $register.css('display','inline-block');      
+            $register.css('display','inline-block');
         });
 
-
+        $signUpBackToSignInButton.on('click', function(ev) {
+            var $formSignin = $('.form-sign-in');
+            $formSignUp.css('display', 'none');
+            $register.css('display','none');
+            $textSignUp.css('display', 'none');
+            $formSignin.css('display', 'inline-block');
+            $signInButton.css('display', 'inline-block');
+            $register.css('display','inline-block');
+        });
 
         //var User = Parse.User;
         //User.signUp('Don1', '1234')
