@@ -10,6 +10,19 @@
     var $inputTypeBankNote = $('.input-type-bank-note');
     var $inputTypeShoppingNote = $('.input-type-shopping-note');
 
+    function generateNoteDiv() {
+        var noteDiv = $('<div/>').attr('id', 'note');
+        var noteTitle = $('<input/>');
+        noteTitle.attr('id', 'note-title');
+        noteTitle.attr('placeholder', 'Title');
+        var noteContent = $('<textarea/>').attr('rows', '3').attr('cols', '22').attr('id', 'note-content').attr('placeholder', 'Content');
+
+        noteDiv.append(noteTitle);
+        noteDiv.append(noteContent);
+
+        return noteDiv;
+    }
+
     $grid.sortable({
         containment: 'parent',
         items: 'li:not(#gridAdder)',
@@ -47,9 +60,9 @@
             helper: "resizable-helperPiece",
             animateEasing: "easeInOutQuint"
         });
-        
-        $newPiece.append($textArea);
+
         $newPiece.append($iconRemove);
+        $newPiece.append($textArea);
         $newPiece.hide();
         $newPiece.insertBefore('#gridAdder');
         $newPiece.show(500);
@@ -80,14 +93,54 @@
             animateEasing: "easeInOutQuint"
         });
 
-        $newPiece.append($span);
         $newPiece.append($iconRemove);
+        $newPiece.append($span);
         $newPiece.hide();
         $newPiece.insertBefore('#gridAdder');
         $newPiece.show(500);
         $inputTypes.hide(200);
         $adderSign.show(200);
-    });   
+    });
+
+    $inputTypeIssueNote.on('click', function () {
+        var $newPiece = $('<li/>');
+        var noteBody = generateNoteDiv();
+        var issueSpecs = $('<div/>').html('<div class="specific"><form class="form-inline"><div class="form-group"><label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label><div class="input-group"><div class="input-group-addon">Issue</div><input type="text" class="form-control" placeholder="Description"></div></div></form><button type="submit" class="btn btn-primary">Add</button></div>');
+        var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
+        var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
+
+        noteBody.append(issueSpecs);
+
+        $iconRemove.on('click', function () {
+            $(this).parent().fadeOut(300, function () { $(this).remove(); });;
+        });
+
+        $iconSave.on('click', function () {
+            //implement note creation
+        })
+
+        $newPiece.addClass('gridPiece');
+
+        $newPiece.text(index);
+        index += 1;
+
+        $newPiece.resizable({
+            grid: [362, 362], // value to be edited
+            autoHide: true,
+            animate: true,
+            helper: "resizable-helperPiece",
+            animateEasing: "easeInOutQuint"
+        });
+
+        $newPiece.append($iconRemove);
+        $newPiece.append(noteBody);
+        $newPiece.append($iconSave);
+        $newPiece.hide();
+        $newPiece.insertBefore('#gridAdder');
+        $newPiece.show(500);
+        $inputTypes.hide(200);
+        $adderSign.show(200);
+    });
 }());
 
 $(document).on('change', '.btn-file :file', function () {
