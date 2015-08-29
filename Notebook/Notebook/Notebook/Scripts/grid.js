@@ -17,6 +17,7 @@
         noteTitle.attr('placeholder', 'Title');
         var noteContent = $('<textarea/>').attr('rows', '3').attr('cols', '22').attr('id', 'note-content').attr('placeholder', 'Content');
 
+
         noteDiv.append(noteTitle);
         noteDiv.append(noteContent);
 
@@ -105,18 +106,26 @@
     $inputTypeIssueNote.on('click', function () {
         var $newPiece = $('<li/>');
         var noteBody = generateNoteDiv();
-        var issueSpecs = $('<div/>').html('<div class="specific"><form class="form-inline"><div class="form-group"><label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label><div class="input-group"><div class="input-group-addon">Issue</div><input type="text" class="form-control" placeholder="Description"></div></div></form><button type="submit" class="btn btn-primary">Add</button></div>');
+        var issueSpecs = $('<div/>').html('<div class="specific"><form class="form-inline"><div class="form-group">' +
+            '<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>' +
+            '<div class="input-group"><div class="input-group-addon">Issue</div>' +
+            '<input type="text" class="form-control" placeholder="Description"></div></div></form>' +
+            '<button type="submit" class="btn btn-primary">Add</button></div>');
         var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
         var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
 
-        noteBody.append(issueSpecs);
+        // Emo: Stopped for now because it makes the traversing over the DOM hard.
+        // noteBody.append(issueSpecs);
 
         $iconRemove.on('click', function () {
             $(this).parent().fadeOut(300, function () { $(this).remove(); });;
         });
 
-        $iconSave.on('click', function () {
-            //implement note creation
+        $iconSave.on('click', function (event) {
+            var $this = $(this);
+            var $previous = $this.prev();
+            console.log($previous.html());
+            var MyIssueNote = module.getIssueNote('MyIssue', 'blqblq', 'golem problem');
         })
 
         $newPiece.addClass('gridPiece');
