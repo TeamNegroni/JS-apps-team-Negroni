@@ -137,11 +137,13 @@ hr {
 /*Input attributes status*/
 .input-attribute {
     disabled: true;
+
 /*Input type IMG*/
 .btn-file {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -157,6 +159,8 @@ hr {
     cursor: inherit;
     display: block;
 }
-#login-wrapper>.form-sign-up{
+
+}
+#id-form-sign-up{
     display:none;
 }

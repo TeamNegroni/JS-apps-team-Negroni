@@ -24,22 +24,22 @@
 <body cz-shortcut-listen ="true">
     <div class="container">
         <div id="login-wrapper">
-            <button class="btn btn-lg btn-primary btn-block register" type="submit">Not registered</button>
-            <form class="form-signin">
+            <form class="form-signin" id="id-form-sign-in">
                 <h1 class="form-signin-heading">Please Login</h1>
                 <input type="text" class="form-control" name="username" placeholder="Account name" required="" autofocus="" />
                 <input type="password" class="form-control" name="password" placeholder="Password" required="" />
 
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
             </form>
-            <form class="form-sign-up">
-                <h1 class="form-sign-up-heading">Please Sign Up</h1>
+            <form class="form-sign-up" id="id-form-sign-up">
+                <h1 class="form-sign-up-heading" >Please Sign Up</h1>
                 <input type="text" class="form-control form-sign-up-username" name="username" placeholder="Account name" required="" autofocus="" />
                 <input type="password" class="form-control password1" name="password" placeholder="Password" required="" />
                 <input type="password" class="form-control password2" name="password" placeholder="Password" required="" />
                 <button class="btn btn-lg btn-primary btn-block btn-sign-up" type="submit">Register</button>
             </form>
             <p class="text-center sign-up"><strong>Sign up</strong> for a new account</p>
+            <button class="btn btn-lg btn-primary btn-block register" type="submit">Not registered</button>
         </div>
         <!--Change display option at the styles.css file-->
         <div id="ui-wrapper">
