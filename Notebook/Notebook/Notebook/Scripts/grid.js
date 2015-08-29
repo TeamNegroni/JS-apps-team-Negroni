@@ -2,7 +2,7 @@
     var $grid = $('#grid'),
         $adder = $('#gridAdder');
     var index = 1;
-    var $inputType = $('.input-type');
+    var $inputTypes = $('[class*="input-type-"]');
     var $inputTypeImage = $('.input-type-image');
     var $inputTypeTextarea = $('.input-type-textarea');
     var $inputTypeIssueNote = $('.input-type-issue-note');

@@ -134,11 +134,15 @@ hr {
     text-align: center;
 }
 
+#adder-sign {
+    font-size: 32px;
+}
+
 /*Input attributes status*/
 .input-attribute {
     disabled: true;
-
-/*Input type IMG*/
+}
+/*Input types*/
 .btn-file {
     position: relative;
     overflow: hidden;
@@ -160,7 +164,10 @@ hr {
     display: block;
 }
 
-}
 #id-form-sign-up{
+    display:none;
+}
+
+[class*="input-type-"] {
     display:none;
 }
