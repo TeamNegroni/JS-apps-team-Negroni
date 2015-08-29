@@ -155,7 +155,8 @@ hr {
     outline: none;
     background: white;
     cursor: inherit;
-    display: block;}
-.form-sign-up{
+    display: block;
+}
+#login-wrapper>.form-sign-up{
     display:none;
 }

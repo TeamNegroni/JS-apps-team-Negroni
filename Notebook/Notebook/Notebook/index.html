@@ -125,6 +125,7 @@
     <script>
         Parse.initialize("ot544ZKOQzqFTvJlCH33vIR3pTLRch4wZZQEU70P", "mi3vvCD2EwmNmEAXPkXjcjvIpzKddrA4JT5td4mE");
         var $textFieldUsername = $('.form-sign-up .form-sign-up-username');
+        var $signUpFieldEmail = $('.form-sign-up .email');
         var $signUpButton = $('.form-sign-up .btn-sign-up');
         var $signUpFieldPassword1 = $('.form-sign-up .password1');
         var $signUpFieldPassword2 = $('.form-sign-up .password2');
@@ -139,15 +140,29 @@
             $this.css('display', 'none');
         });
 
-        $signUpButton.on('click', function() {
-            var User = Parse.User;
+        $signUpButton.on('click', function(event) {
+            event.preventDefault()
             console.log($textFieldUsername.val());
             console.log($signUpFieldPassword1.val());
-            User.signUp($textFieldUsername.val(),$signUpFieldPassword1.val()) ;
-            console.log('user registered');
+            //User.signUp($textFieldUsername.val(),$signUpFieldPassword1.val()) ;
+            //console.log('user registered');
+
+            var user = new Parse.User();
+            user.set("username", $textFieldUsername.val());
+            user.set("password", $signUpFieldPassword1.val());
+            //user.set("email", $signUpFieldEmail.val());
+            user.signUp(null, {
+                success: function(user) {
+                    //form.submit;
+                    console.log('user registered')
+                },
+                error: function(user, error) {
+                    alert("Error: " + error.code + " " + error.message);
+                }
+            });
+
         });
 
-        console.log('aaaa')
         //var User = Parse.User;
         //User.signUp('Don1', '1234')
         //        .then(function(){
