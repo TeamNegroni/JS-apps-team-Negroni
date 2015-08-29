@@ -1,8 +1,8 @@
-(function () {
+(function (todaysDate) {
     var $toggleButton = $('#calendar-toggleButton'),
         $calendar = $('#calendar');
 
-    buildCalendar();
+    buildCalendar(todaysDate);
     $calendar.hide();
 
     var toggleButtonContent = 'View Calendar';
@@ -19,7 +19,7 @@
         $calendar.toggle(100);
     });
 
-    function buildCalendar() {
+    function buildCalendar(todaysDate) {
         var MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var WEEK_DAY_NAMES = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
@@ -31,7 +31,8 @@
             return WEEK_DAY_NAMES[this.getDay()];
         };
 
-        var date = new Date();    // you are welcome :)
+        todaysDate = todaysDate || new Date();
+        var date = new Date(todaysDate);    // you are welcome :)
         console.log(date.getDayName());
         console.log(date.getMonthName());
 
@@ -44,6 +45,7 @@
         var $currentDateLink = $('<div/>');
 
         // setting up controls part
+            // TODO: moving between months when pressing arrows
         $controls.addClass('controls');
         $button.addClass('btn');
         $currentMonth.addClass('current-month');
@@ -52,16 +54,19 @@
         $controls.append($button.clone().text('>'));
 
         // setting up the table with days
+            // TODO: when a day is pressed must ask the server for data on that day
         $daysTable.addClass('.daysTable');
         headTemplate = buildHeadTemplate();
         daysTemplate = refreshDays(); // might need to be outside this scope for update purposes
         $daysTable.html(headTemplate + daysTemplate);
 
         // setting up the lowest(current day) part
+            // TODO: add onclick to focus the today's date in the table
         $currentDateLink
             .addClass('current-date-link')
             .addClass('current-date');
         $currentDateLink.text(date.getDayName() + ' ' + date.getMonthName() + ' ' + date.getFullYear());
+
 
         // blending it all together
         $calendar.append($controls);
