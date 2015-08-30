@@ -181,17 +181,17 @@ hr {
     margin-left: 10px;
 }
 /*Notes css*/
-#note {
+.note {
 	margin: 10px;
 	padding: 20px;
 	width: 300px;
 	height: 250px;
 }
-#note-title {
+.note-title {
 	margin:0;
 	display: block;
 }
-#note-content {
+.note-content {
 	margin:10px 0px 10px 0px;
 	display: block;
 }

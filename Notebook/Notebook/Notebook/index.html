@@ -218,13 +218,14 @@
                         query.find({
                             success: function(results) {
                                 alert("Successfully retrieved " + results.length + " objects.");
-
+                                generateIssueNoteExternal();
                                 for (var i = 0; i < results.length; i++) {
                                     var object = results[i];
-                                    alert(object.get('idNumber') +
-                                            ' ' + object.get('title') +
-                                            ' ' + object.get('content') +
-                                            ' ' + object.get('issue'));
+                                    generatePreviouslyCreatedIssues(object);
+                                   // alert(object.get('idNumber') +
+                                   //         ' ' + object.get('title') +
+                                   //         ' ' + object.get('content') +
+                                   //         ' ' + object.get('issue'));
                                 }
                             },
                             error: function(error) {
