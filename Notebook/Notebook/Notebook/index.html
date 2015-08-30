@@ -212,6 +212,26 @@
                         $register.css('display','none');
                         $container.prepend($logOut);
                         $container.prepend($nameTitle);
+                        var IssueNote = Parse.Object.extend("IssueNote");
+                        var query = new Parse.Query(IssueNote);
+                        query.equalTo("user", Parse.User.current());
+                        query.find({
+                            success: function(results) {
+                                alert("Successfully retrieved " + results.length + " objects.");
+
+                                for (var i = 0; i < results.length; i++) {
+                                    var object = results[i];
+                                    alert(object.get('idNumber') +
+                                            ' ' + object.get('title') +
+                                            ' ' + object.get('content') +
+                                            ' ' + object.get('issue'));
+                                }
+                            },
+                            error: function(error) {
+                                alert("Error: " + error.code + " " + error.message);
+                            }
+                        });
+
                     },
                     error: function(user, error) {
                         alert("Error: " + error.code + " " + error.message);
