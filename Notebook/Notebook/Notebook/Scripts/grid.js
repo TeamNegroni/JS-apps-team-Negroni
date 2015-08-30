@@ -1,103 +1,103 @@
-(function () {   
+var index = 1;
+
+function generateNoteDiv(id) {
+    var noteDiv = $('<div/>').attr('class', 'note' + id);
+    var noteTitle = $('<input/>').attr('class', 'note-title').attr('placeholder', 'Title');
+    var noteContent = $('<textarea/>').attr('rows', '3').attr('cols', '22').attr('class', 'note-content').attr('placeholder', 'Content');
+
+    noteDiv.append(noteTitle);
+    noteDiv.append(noteContent);
+
+    return noteDiv;
+}
+
+function generateIssueNoteExternal() {
+    var $newPiece = $('<li/>');
+    var noteBody = generateNoteDiv(index);
+    var noteClassName = '.note' + index;
+    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
+    var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
+    var issueSpecs = $('<div/>').html('<div class="input-group-addon">Issue</div>' +
+    '<input type="text" class="form-control note-issue" placeholder="Description">');
+
+    noteBody.append(issueSpecs);
+
+    $iconRemove.on('click', function () {
+        $(this).parent().fadeOut(300, function () {
+            $(this).remove();
+        });
+    });
+
+    $iconSave.on('click', function (event) {
+        var $this = $(this);
+        var $note = $(noteClassName);
+        var $title = $note.find('.note-title');
+        var $content = $note.find('.note-content');
+        var $issue = $note.find('.note-issue');
+
+        ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
+        ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
+        ($('<div/>')).addClass('note-issue-text').html('Issue:' + $issue.val()).insertBefore($this);
+
+        var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
+        var user = Parse.User.current();
+        var IssueNote = Parse.Object.extend("IssueNote");
+        var storedNote = new IssueNote({
+            idNumber: MyIssueNote.id,
+            title: MyIssueNote.title,
+            content: MyIssueNote.content,
+            issue: MyIssueNote.issue,
+            user: user
+        });
+
+        storedNote.save(null, {
+            success: function (storedNote) {
+                console.log("successfully saved")
+            },
+            error: function (storedNote, error) {
+                alert("Error: " + error.code + " " + error.message);
+            }
+        });
+    })
+
+    $newPiece.addClass('gridPiece').addClass('external');
+    $newPiece.text(index);
+    index += 1;
+
+    $newPiece.resizable({
+        grid: [362, 362], // value to be edited
+        autoHide: true,
+        animate: true,
+        helper: "resizable-helperPiece",
+        animateEasing: "easeInOutQuint"
+    });
+
+    $newPiece.append($iconRemove);
+    $newPiece.append(noteBody);
+    $newPiece.append($iconSave);
+    $newPiece.hide();
+    $newPiece.insertBefore('#gridAdder');
+    $newPiece.show(500);
+}
+
+function generatePreviouslyCreatedIssues(existingIssueNote) {
+    var $parent = $('.external');
+    ($('<div/>')).addClass('note-title-text').html('Title:' + existingIssueNote.get('title')).appendTo($parent);
+    ($('<div/>')).addClass('note-content-text').html('Content:' + existingIssueNote.get('content')).appendTo($parent);
+    ($('<div/>')).addClass('note-issue-text').html('Issue:' + existingIssueNote.get('issue')).appendTo($parent);
+}
+
+(function () {
     var $grid = $('#grid'),
         $adderSign = $('#adder-sign');
-    var index = 1;
     var $inputTypes = $('#input-type-wrapper');
     var $inputTypeImage = $('.input-type-image');
     var $inputTypeTextarea = $('.input-type-textarea');
     var $inputTypeIssueNote = $('.input-type-issue-note');
     var $inputTypeMeetingNote = $('.input-type-meeting-note');
     var $inputTypeBankNote = $('.input-type-bank-note');
-    var $inputTypeShoppingNote = $('.input-type-shopping-note');
-
-    function generateNoteDiv(id) {
-        var noteDiv = $('<div/>').attr('class', 'note' + id);
-        var noteTitle = $('<input/>').attr('class', 'note-title').attr('placeholder', 'Title');
-        var noteContent = $('<textarea/>').attr('rows', '3').attr('cols', '22').attr('class', 'note-content').attr('placeholder', 'Content');
-        
-        noteDiv.append(noteTitle);
-        noteDiv.append(noteContent);
-
-        return noteDiv;
-    }
-
-    function generatePreviouslyCreatedIssues(existingIssueNote) {
-        var $parent = $('.external');
-        ($('<div/>')).addClass('note-title-text').html('Title:' + existingIssueNote.get('title')).appendTo($parent);
-        ($('<div/>')).addClass('note-content-text').html('Content:' + existingIssueNote.get('content')).appendTo($parent);
-        ($('<div/>')).addClass('note-issue-text').html('Issue:' + existingIssueNote.get('issue')).appendTo($parent);
-    }
-
-    function generateIssueNoteExternal() {
-        var $newPiece = $('<li/>');
-        var noteBody = generateNoteDiv(index);
-        var noteClassName = '.note' + index;
-        var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
-        var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
-        var issueSpecs = $('<div/>').html('<div class="input-group-addon">Issue</div>' +
-        '<input type="text" class="form-control note-issue" placeholder="Description">');
-
-        noteBody.append(issueSpecs);
-
-        $iconRemove.on('click', function () {
-            $(this).parent().fadeOut(300, function () {
-                $(this).remove();
-            });
-        });
-
-        $iconSave.on('click', function (event) {
-            var $note = $(noteClassName);
-            var $title = $note.find('.note-title');
-            var $content = $note.find('.note-content');
-            var $issue = $note.find('.note-issue');
-
-            ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
-            ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
-            ($('<div/>')).addClass('note-issue-text').html('Issue:' + $issue.val()).insertBefore($this);
-
-            var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
-            var user = Parse.User.current();
-            var IssueNote = Parse.Object.extend("IssueNote");
-            var storedNote = new IssueNote({
-                idNumber: MyIssueNote.id,
-                title: MyIssueNote.title,
-                content: MyIssueNote.content,
-                issue: MyIssueNote.issue,
-                user: user
-            });
-
-            storedNote.save(null, {
-                success: function (storedNote) {
-                    console.log("successfully saved")
-                },
-                error: function (storedNote, error) {
-                    alert("Error: " + error.code + " " + error.message);
-                }
-            });
-        })
-
-        $newPiece.addClass('gridPiece').addClass('external');
-        $newPiece.text(index);
-        index += 1;
-
-        $newPiece.resizable({
-            grid: [362, 362], // value to be edited
-            autoHide: true,
-            animate: true,
-            helper: "resizable-helperPiece",
-            animateEasing: "easeInOutQuint"
-        });
-
-        $newPiece.append($iconRemove);
-        $newPiece.append(noteBody);
-        $newPiece.append($iconSave);
-        $newPiece.hide();
-        $newPiece.insertBefore('#gridAdder');
-        $newPiece.show(500);
-        $inputTypes.hide(200);
-        $adderSign.show(200);
-    }
-
+    var $inputTypeShoppingNote = $('.input-type-shopping-note');      
+    
     $grid.sortable({
         containment: 'parent',
         items: 'li:not(#gridAdder)',
