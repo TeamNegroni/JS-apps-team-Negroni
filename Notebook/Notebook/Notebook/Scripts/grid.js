@@ -1,4 +1,4 @@
-(function () {
+(function () {   
     var $grid = $('#grid'),
         $adderSign = $('#adder-sign');
     var index = 1;
