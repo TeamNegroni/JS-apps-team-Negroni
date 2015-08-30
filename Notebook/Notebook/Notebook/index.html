@@ -123,6 +123,9 @@
     </div>
     <!--<script>Parse.initialize("ot544ZKOQzqFTvJlCH33vIR3pTLRch4wZZQEU70P", "mi3vvCD2EwmNmEAXPkXjcjvIpzKddrA4JT5td4mE");</script>-->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script>
+        Parse.initialize("ot544ZKOQzqFTvJlCH33vIR3pTLRch4wZZQEU70P", "mi3vvCD2EwmNmEAXPkXjcjvIpzKddrA4JT5td4mE");
+    </script>
     <script src="Scripts/jquery-2.1.4.min.js"></script>
     <script src="Scripts/jquery-ui.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -132,7 +135,7 @@
     <script src="Scripts/grid.js"></script>
 
     <script>
-        Parse.initialize("ot544ZKOQzqFTvJlCH33vIR3pTLRch4wZZQEU70P", "mi3vvCD2EwmNmEAXPkXjcjvIpzKddrA4JT5td4mE");
+
         var $signUpFieldUsername = $('.form-sign-up .form-sign-up-username');
         var $signUpFieldEmail = $('.form-sign-up .email');
         var $signUpButton = $('.form-sign-up .btn-sign-up');
@@ -151,6 +154,8 @@
 
         var $nameTitle = $('<div/>');
         var $logOut = $('<div/>').html('Log Out');
+
+        var $iconSave = $('span.glyphicon.glyphicon-ok')
 
         $register.on('click', function(ev) {
             var $this = $(this);
@@ -236,6 +241,7 @@
             $signInButton.css('display', 'inline-block');
             $register.css('display','inline-block');
         });
+
 
         //var User = Parse.User;
         //User.signUp('Don1', '1234')

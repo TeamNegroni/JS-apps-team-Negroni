@@ -260,8 +260,8 @@
     };
 }());
 
-var MyIssueNote = module.getIssueNote('MyIssue', 'blqblq', 'golem problem');
-console.log(MyIssueNote);
+//var MyIssueNote = module.getIssueNote('MyIssue', 'blqblq', 'golem problem');
+//console.log(MyIssueNote);
 var MyMeetingNote = module.getMeetingNote('MyMeeting', 'blqblq', 'sofia', '12:30');
 console.log(MyMeetingNote);
 console.log(MyMeetingNote.id);

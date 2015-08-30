@@ -13,9 +13,10 @@
     function generateNoteDiv() {
         var noteDiv = $('<div/>').attr('id', 'note');
         var noteTitle = $('<input/>');
-        noteTitle.attr('id', 'note-title');
+        noteTitle.attr('class', 'note-title');
         noteTitle.attr('placeholder', 'Title');
-        var noteContent = $('<textarea/>').attr('rows', '3').attr('cols', '22').attr('id', 'note-content').attr('placeholder', 'Content');
+        var noteContent = $('<textarea/>').attr('rows', '3').attr('cols', '22').attr('class', 'note-content').attr('placeholder', 'Content');
+
 
         noteDiv.append(noteTitle);
         noteDiv.append(noteContent);
@@ -105,18 +106,64 @@
     $inputTypeIssueNote.on('click', function () {
         var $newPiece = $('<li/>');
         var noteBody = generateNoteDiv();
-        var issueSpecs = $('<div/>').html('<div class="specific"><form class="form-inline"><div class="form-group"><label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label><div class="input-group"><div class="input-group-addon">Issue</div><input type="text" class="form-control" placeholder="Description"></div></div></form><button type="submit" class="btn btn-primary">Add</button></div>');
+
+        // Emo: Stopped for now because it makes the traversing over the DOM hard.
+        //var issueSpecs = $('<div/>').html('<div class="specific"><form class="form-inline"><div class="form-group">' +
+        //    '<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>' +
+        //    '<div class="input-group"><div class="input-group-addon">Issue</div>' +
+        //    '<input type="text" class="form-control" placeholder="Description"></div></div></form>' +
+        //    '<button type="submit" class="btn btn-primary">Add</button></div>');
         var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
         var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
 
-        noteBody.append(issueSpecs);
+
+        var issueSpecs = $('<div/>').html('<div class="input-group-addon">Issue</div>' +
+        '<input type="text" class="form-control note-issue" placeholder="Description">')
+
+         noteBody.append(issueSpecs);
 
         $iconRemove.on('click', function () {
             $(this).parent().fadeOut(300, function () { $(this).remove(); });;
         });
 
-        $iconSave.on('click', function () {
-            //implement note creation
+        $iconSave.on('click', function (event) {
+            var $this = $(this);
+            var $previous = $this.prev();
+            var $title = $previous.find('.note-title');
+            var $content = $previous.find('.note-content');
+            var $issue = $previous.find('.note-issue');
+            $previous.find('.note-title').remove();
+            $previous.find('.note-content').remove();
+            $previous.find('.note-issue').remove();
+            ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
+            ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
+            ($('<div/>')).addClass('note-issue-text').html('Issue:' + $issue.val()).insertBefore($this);
+            var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
+
+
+            var user = Parse.User.current();
+            var IssueNote = Parse.Object.extend("IssueNote")
+            var storedNote = new IssueNote({
+                idNumber: MyIssueNote.id,
+                title: MyIssueNote.title,
+                content: MyIssueNote.content,
+                issue: MyIssueNote.issue,
+                user: user
+                });
+
+            storedNote.save(null, {
+                success:function(storedNote){
+                    console.log("successfully saved")
+                },
+                error:function(storedNote,error){
+                    alert("Error: " + error.code + " " + error.message);
+                }
+            });
+
+
+            //console.log(MyIssueNote.title);
+            //console.log(MyIssueNote.content);
+            //console.log(MyIssueNote.issue);
         })
 
         $newPiece.addClass('gridPiece');
