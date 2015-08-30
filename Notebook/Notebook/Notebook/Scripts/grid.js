@@ -60,7 +60,7 @@ function generateIssueNoteExternal() {
         });
     })
 
-    $newPiece.addClass('gridPiece').addClass('external');
+    $newPiece.addClass('gridPiece').addClass('external-issue');
     $newPiece.text(index);
     index += 1;
 
@@ -81,7 +81,7 @@ function generateIssueNoteExternal() {
 }
 
 function generatePreviouslyCreatedIssues(existingIssueNote) {
-    var $parent = $('.external');
+    var $parent = $('.external-issue');
     ($('<div/>')).addClass('note-title-text').html('Title:' + existingIssueNote.get('title')).appendTo($parent);
     ($('<div/>')).addClass('note-content-text').html('Content:' + existingIssueNote.get('content')).appendTo($parent);
     ($('<div/>')).addClass('note-issue-text').html('Issue:' + existingIssueNote.get('issue')).appendTo($parent);
