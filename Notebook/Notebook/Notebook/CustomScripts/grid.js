@@ -174,6 +174,75 @@ function generateMeetingNoteExternal() {
     $newPiece.show(500);
 }
 
+function generateBankNoteExternal() {
+    var $newPiece = $('<li/>');
+    var noteBody = generateNoteDiv(index);
+    var noteClassName = '.note' + index;
+    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
+    var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
+    var bankSpecs = $('<div/>').html('<div class="input-group-addon">Amount in $</div>' +
+                   '<input type="text" class="form-control bank-note-amount" id="exampleInputAmount" placeholder="Amount">');
+
+    noteBody.append(bankSpecs);
+
+    $iconRemove.on('click', function () {
+        $(this).parent().fadeOut(300, function () {
+            $(this).remove();
+        });
+    });
+
+    $iconSave.on('click', function (event) {
+        var $this = $(this);
+        var $note = $(noteClassName);
+        var $title = $note.find('.note-title');
+        var $content = $note.find('.note-content');
+        var $amount = $note.find('.bank-note-amount');
+
+        ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
+        ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
+        ($('<div/>')).addClass('bank-note-amount-text').html('Amount:' + $amount.val()).insertBefore($this);
+
+        var MyBankNote = module.getBankNote($title.val(), $content.val(), $place.val(), $amount.val());
+        var user = Parse.User.current();
+        var BankNote = Parse.Object.extend("BankNote");
+        var storedNote = new BankNote({
+            idNumber: MyBankNote.id,
+            title: MyBankNote.title,
+            content: MyBankNote.content,
+            amount: MyBankNote.amount,
+            user: user
+        });
+
+        storedNote.save(null, {
+            success: function (storedNote) {
+                console.log("successfully saved")
+            },
+            error: function (storedNote, error) {
+                alert("Error: " + error.code + " " + error.message);
+            }
+        });
+    })
+
+    $newPiece.addClass('gridPiece').addClass('external-bank' + index);
+    $newPiece.text(index);
+    index += 1;
+
+    $newPiece.resizable({
+        grid: [362, 362], // value to be edited
+        autoHide: true,
+        animate: true,
+        helper: "resizable-helperPiece",
+        animateEasing: "easeInOutQuint"
+    });
+
+    $newPiece.append($iconRemove);
+    $newPiece.append(noteBody);
+    $newPiece.append($iconSave);
+    $newPiece.hide();
+    $newPiece.insertBefore('#gridAdder');
+    $newPiece.show(500);
+}
+
 function generatePreviouslyCreatedIssues(existingIssueNote, count) {
     var $parent = $('.external-issue' + count);
     ($('<div/>')).addClass('note-title-text').html('Title:' + existingIssueNote.get('title')).appendTo($parent);
@@ -183,10 +252,17 @@ function generatePreviouslyCreatedIssues(existingIssueNote, count) {
 
 function generatePreviouslyCreatedMeetings(existingMeetingNote, count) {
     var $parent = $('.external-meeting' + count);
-    ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($parent);
-    ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($parent);
-    ($('<div/>')).addClass('meeting-place-text').html('Place:' + $place.val()).insertBefore($parent);
-    ($('<div/>')).addClass('meeting-date-text').html('Date:' + $date.val()).insertBefore($parent);
+    ($('<div/>')).addClass('note-title-text').html('Title:' + existingMeetingNote.get('title')).insertBefore($parent);
+    ($('<div/>')).addClass('note-content-text').html('Content:' + existingMeetingNote.get('content')).insertBefore($parent);
+    ($('<div/>')).addClass('meeting-place-text').html('Place:' + existingMeetingNote.get('place')).insertBefore($parent);
+    ($('<div/>')).addClass('meeting-date-text').html('Date:' + existingMeetingNote.get('date')).insertBefore($parent);
+}
+
+function generatePreviouslyCreatedBanks(existingBankNote, count) {
+    var $parent = $('.external-bank' + count);
+    ($('<div/>')).addClass('note-title-text').html('Title:' + existingBankNote.get('title')).insertBefore($parent);
+    ($('<div/>')).addClass('note-content-text').html('Content:' + existingBankNote.get('content')).insertBefore($parent);
+    ($('<div/>')).addClass('bank-note-amount-text').html('Amount:' + existingBankNote.get('amount')).insertBefore($parent);
 }
  
 function generateTextArea() {
