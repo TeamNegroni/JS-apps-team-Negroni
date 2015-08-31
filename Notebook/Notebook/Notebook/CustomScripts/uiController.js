@@ -74,5 +74,21 @@ function activateInputAttributes() {
     }
 }
 
+function displayData(){
+    if(sessionStorage.getItem('sessionUser') === null){
+        $('#login-wrapper').css({
+            'display':'',
+            'margin': '10em 30em'
+        });
+        $('#ui-wrapper').css('display', 'none');
+    }
+    else{
+        $('#login-wrapper').css('display', 'none');
+        $('#ui-wrapper').css('display', 'block');
+    }
+}
+
+displayData();
+
 document.onmouseup = activateInputAttributes;
 document.onkeyup = activateInputAttributes;
