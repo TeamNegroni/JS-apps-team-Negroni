@@ -70,6 +70,10 @@
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\jquery-ui.structure.css" />
     <Content Include="Content\jquery-ui.structure.min.css" />
+    <Content Include="CustomScripts\AuthController.js" />
+    <Content Include="CustomScripts\grid.js" />
+    <Content Include="CustomScripts\Notes.js" />
+    <Content Include="CustomScripts\uiController.js" />
     <Content Include="Scripts\Notes.js" />
     <Content Include="packages.config" />
     <Content Include="Scripts\grid.js" />
