@@ -84,25 +84,38 @@ $signInButton.on('click', function(ev) {
                 $container.prepend($logOut);
                 $container.prepend($nameTitle);
                 var IssueNote = Parse.Object.extend("IssueNote");
-                var query = new Parse.Query(IssueNote);
-                query.equalTo("user", Parse.User.current());
-                query.find({
-                    success: function(results) {
-                        alert("Successfully retrieved " + results.length + " objects.");
-                        for (var i = 1; i <= results.length; i++) {
-                            var object = results[i - 1];
-                            generateIssueNoteExternal();
-                            generatePreviouslyCreatedIssues(object, i);
-                            // alert(object.get('idNumber') +
-                            //         ' ' + object.get('title') +
-                            //         ' ' + object.get('content') +
-                            //         ' ' + object.get('issue'));
+                var issueQuery = new Parse.Query(IssueNote);
+                queryObjects(issueQuery);
+
+                var MeetingNote = Parse.Object.extend("MeetingNote");
+                var meetingQuery = new Parse.Query(MeetingNote);
+                queryObjects(meetingQuery);
+
+                // var BankNote = Parse.Object.extend("BankNote");
+                // var bankQuery = new Parse.Query(BankNote);
+
+                // var compoundQuery = Parse.Query.or(issueQuery, meetingQuery);
+                // compoundQuery.equalTo("user", Parse.User.current());
+                function queryObjects(currentQuery) {
+                    currentQuery.equalTo("user", Parse.User.current());
+                    currentQuery.find({
+                        success: function (results) {
+                            alert("Successfully retrieved " + results.length + " objects.");
+                            for (var i = 1; i <= results.length; i++) {
+                                var object = results[i - 1];
+                                generateIssueNoteExternal();
+                                generatePreviouslyCreatedIssues(object, i);
+                                // alert(object.get('idNumber') +
+                                //         ' ' + object.get('title') +
+                                //         ' ' + object.get('content') +
+                                //         ' ' + object.get('issue'));
+                            }
+                        },
+                        error: function (error) {
+                            alert("Error: " + error.code + " " + error.message);
                         }
-                    },
-                    error: function(error) {
-                        alert("Error: " + error.code + " " + error.message);
-                    }
-                });
+                    });
+                }
 
             },
             error: function(user, error) {
