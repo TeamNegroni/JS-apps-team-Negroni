@@ -100,11 +100,93 @@ function generateIssueNoteExternal() {
     $newPiece.show(500);
 }
 
+function generateMeetingNoteExternal() {
+    var $newPiece = $('<li/>');
+    var noteBody = generateNoteDiv(index);
+    var noteClassName = '.note' + index;
+    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
+    var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
+    var meetingSpecs = $('<div/>').html('<div class="input-group-addon">Place</div>' +
+                         '<input type="text" class="form-control meeting-place" placeholder="Place">' +
+                         '<div class="input-group-addon">Date</div>' +
+                         '<input type="text" class="form-control meeting-date" id="datepicker" placeholder="">');
+
+    noteBody.append(meetingSpecs);
+
+    $iconRemove.on('click', function () {
+        $(this).parent().fadeOut(300, function () {
+            $(this).remove();
+        });
+    });
+
+    $iconSave.on('click', function (event) {
+        var $this = $(this);
+        var $note = $(noteClassName);
+        var $title = $note.find('.note-title');
+        var $content = $note.find('.note-content');
+        var $place = $note.find('.meeting-place');
+        var $date = $note.find('.meeting-date');
+
+        ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
+        ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
+        ($('<div/>')).addClass('meeting-place-text').html('Place:' + $place.val()).insertBefore($this);
+        ($('<div/>')).addClass('meeting-date-text').html('Date:' + $date.val()).insertBefore($this);
+
+        var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $date.val());
+        var user = Parse.User.current();
+        var MeetingNote = Parse.Object.extend("MeetingNote");
+        var storedNote = new MeetingNote({
+            idNumber: MyMeetingNote.id,
+            title: MyMeetingNote.title,
+            content: MyMeetingNote.content,
+            place: MyMeetingNote.place,
+            date: MyMeetingNote.date,
+            user: user
+        });
+
+        storedNote.save(null, {
+            success: function (storedNote) {
+                console.log("successfully saved")
+            },
+            error: function (storedNote, error) {
+                alert("Error: " + error.code + " " + error.message);
+            }
+        });
+    })
+
+    $newPiece.addClass('gridPiece').addClass('external-meeting' + index);
+    $newPiece.text(index);
+    index += 1;
+
+    $newPiece.resizable({
+        grid: [362, 362], // value to be edited
+        autoHide: true,
+        animate: true,
+        helper: "resizable-helperPiece",
+        animateEasing: "easeInOutQuint"
+    });
+
+    $newPiece.append($iconRemove);
+    $newPiece.append(noteBody);
+    $newPiece.append($iconSave);
+    $newPiece.hide();
+    $newPiece.insertBefore('#gridAdder');
+    $newPiece.show(500);
+}
+
 function generatePreviouslyCreatedIssues(existingIssueNote, count) {
     var $parent = $('.external-issue' + count);
     ($('<div/>')).addClass('note-title-text').html('Title:' + existingIssueNote.get('title')).appendTo($parent);
     ($('<div/>')).addClass('note-content-text').html('Content:' + existingIssueNote.get('content')).appendTo($parent);
     ($('<div/>')).addClass('note-issue-text').html('Issue:' + existingIssueNote.get('issue')).appendTo($parent);
+}
+
+function generatePreviouslyCreatedMeetings(existingMeetingNote, count) {
+    var $parent = $('.external-meeting' + count);
+    ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($parent);
+    ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($parent);
+    ($('<div/>')).addClass('meeting-place-text').html('Place:' + $place.val()).insertBefore($parent);
+    ($('<div/>')).addClass('meeting-date-text').html('Date:' + $date.val()).insertBefore($parent);
 }
  
 function generateTextArea() {
