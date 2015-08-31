@@ -15,7 +15,8 @@ var $signInButton = $('.form-sign-in-button');
 var $container = $(".container");
 
 var $nameTitle = $('<div/>');
-var $logOut = $('<div/>').html('Log Out');
+var $logoutButton = $('<button />').addClass('btn btn-lg btn-primary btn-block form-sign-in-button').html('Log Out');
+var $logOut = $('<div/>').css({'width': '200px', 'margin-top': '10px'}).append($logoutButton);
 var $invalidPassword = $('<div/>').html('Invalid password');
 
 var $iconSave = $('span.glyphicon.glyphicon-ok')
@@ -116,7 +117,7 @@ $signInButton.on('click', function(ev) {
 $logOut.on('click', function(ev) {
     $logOut.detach();
     $nameTitle.detach();
-    var $formSignin = $('.form-sign-in');
+    //var $formSignin = $('.form-sign-in');
     Parse.User.logOut();
     sessionStorage.clear();
     displayData();
