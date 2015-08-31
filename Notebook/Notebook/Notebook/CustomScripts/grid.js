@@ -280,14 +280,15 @@ $inputTypeMeetingNote.on('click', function () {
         ($('<div/>')).addClass('meeting-place-text').html('Place:' + $place.val()).insertBefore($this);
         ($('<div/>')).addClass('meeting-date-text').html('Date:' + $date.val()).insertBefore($this);
 
-        var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
+        var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $date.val());
         var user = Parse.User.current();
-        var IssueNote = Parse.Object.extend("IssueNote")
-        var storedNote = new IssueNote({
-            idNumber: MyIssueNote.id,
-            title: MyIssueNote.title,
-            content: MyIssueNote.content,
-            issue: MyIssueNote.issue,
+        var MeetingNote = Parse.Object.extend("MeetingNote")
+        var storedNote = new MeetingNote({
+            idNumber: MyMeetingNote.id,
+            title: MyMeetingNote.title,
+            content: MyMeetingNote.content,
+            place: MyMeetingNote.place,
+            date: MyMeetingNote.date,
             user: user
         });
 
