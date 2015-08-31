@@ -34,8 +34,8 @@
             <form class="form-sign-up" id="id-form-sign-up">
                 <h1 class="form-sign-up-heading" >Please Sign Up</h1>
                 <input type="text" class="form-control form-sign-up-username" name="username" placeholder="Account name" required="" autofocus="" />
-                <input type="password" class="form-control password1" name="password" placeholder="Password" required="" />
-                <input type="password" class="form-control password2" name="password" placeholder="Password" required="" />
+                <input type="password" class="form-control passwordInitial" name="password" placeholder="Password" required="" />
+                <input type="password" class="form-control passwordConfirmed" name="password" placeholder="Password" required="" />
                 <button class="btn btn-lg btn-primary btn-block btn-sign-up" type="submit">Register</button>
                 <button class="btn btn-lg btn-primary btn-block btn-go-back-to-sign-in" type="submit">I am registered. Go Back To Log-In</button>
             </form>
@@ -140,8 +140,8 @@
         var $signUpFieldEmail = $('.form-sign-up .email');
         var $signUpButton = $('.form-sign-up .btn-sign-up');
         var $signUpBackToSignInButton = $('.form-sign-up .btn-go-back-to-sign-in');
-        var $signUpFieldPassword1 = $('.form-sign-up .password1');
-        var $signUpFieldPassword2 = $('.form-sign-up .password2');
+        var $signUpFieldPasswordInitial = $('.form-sign-up .passwordInitial');
+        var $signUpFieldPasswordConfirmed = $('.form-sign-up .passwordConfirmed');
         var $register = $('.register');
         var $formSignUp = $('#id-form-sign-up');
         var $textSignUp = $('.text-center .sign-up');
@@ -154,6 +154,7 @@
 
         var $nameTitle = $('<div/>');
         var $logOut = $('<div/>').html('Log Out');
+        var $invalidPassword = $('<div/>').html('Invalid password');
 
         var $iconSave = $('span.glyphicon.glyphicon-ok')
 
@@ -171,33 +172,43 @@
             var loggedInUser = Parse.User.current();
             Parse.User.logOut();
             console.log($signUpFieldUsername.val());
-            console.log($signUpFieldPassword1.val());
-            //User.signUp($signUpFieldUsername.val(),$signUpFieldPassword1.val()) ;
-            //console.log('user registered');
-
+            console.log($signUpFieldPasswordInitial.val());
+            //User.signUp($signUpFieldUsername.val(),$signUpFieldPasswordInitial.val()) ;
             var user = new Parse.User();
-            user.set("username", $signUpFieldUsername.val());
-            user.set("password", $signUpFieldPassword1.val());
-            //user.set("email", $signUpFieldEmail.val());
-            user.signUp(null, {
-                success: function(user) {
-                    $nameTitle.html('Logged in as ' + $signUpFieldUsername.val());
-                    $formSignUp.css('display', 'none');
-                    $register.css('display','none');
-                    $textSignUp.css('display', 'none');
-                    console.log($nameTitle.html());
-                    $container.prepend($logOut);
-                    $container.prepend($nameTitle);
-                },
-                error: function(user, error) {
-                    alert("Error: " + error.code + " " + error.message);
-                }
-            });
+            var init = $signUpFieldPasswordInitial.val();
+            var confirmed = $signUpFieldPasswordConfirmed.val();
+            if (init == confirmed) {
+                user.set("username", $signUpFieldUsername.val());
+                user.set("password", $signUpFieldPasswordInitial.val());
+                //user.set("email", $signUpFieldEmail.val());
+                user.signUp(null, {
+                    success: function (user) {
+                        $nameTitle.html('Logged in as ' + $signUpFieldUsername.val());
+                        $formSignUp.css('display', 'none');
+                        $register.css('display', 'none');
+                        $textSignUp.css('display', 'none');
+                        $invalidPassword.detach();
+                        console.log($nameTitle.html());
+                        $container.prepend($logOut);
+                        $container.prepend($nameTitle);
+                    },
+                    error: function (user, error) {
+                        alert("Error: " + error.code + " " + error.message);
+                    }
+                });
+            } else {
+                $container.prepend($invalidPassword);
+                $signUpFieldPasswordInitial.val('');
+                $signUpFieldPasswordConfirmed.val('');
+                $signUpFieldPasswordInitial.focus();
+            }
         });
 
         $signInButton.on('click', function(ev) {
             event.preventDefault();
             var $this = $(this);
+
+
             var $formSignin = $('.form-sign-in');
             var loggedInUser = Parse.User.current();
             Parse.User.logOut();
@@ -255,6 +266,7 @@
 
         $signUpBackToSignInButton.on('click', function(ev) {
             var $formSignin = $('.form-sign-in');
+            $invalidPassword.detach();
             $formSignUp.css('display', 'none');
             $register.css('display','none');
             $textSignUp.css('display', 'none');
