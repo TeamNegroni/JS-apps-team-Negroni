@@ -202,3 +202,19 @@ hr {
 a {
     cursor:pointer;
 }
+
+/*======= Log out div styles ==========*/
+
+#logOut{
+    width: 200px;
+    margin-top: 10px;
+}
+
+#nameTitle{
+    text-align: center;
+    font-family: "Verdana";
+}
+
+#logOutButton{
+    margin-top: 10px;
+}

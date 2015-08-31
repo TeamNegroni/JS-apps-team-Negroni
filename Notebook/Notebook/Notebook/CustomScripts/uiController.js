@@ -75,16 +75,22 @@ function activateInputAttributes() {
 }
 
 function displayData(){
+    var $nameTitle = $('#nameTitle');
+    $logOut = $('#logOut');
+
     if(sessionStorage.getItem('sessionUser') === null){
         $('#login-wrapper').css({
             'display':'',
             'margin': '10em 30em'
         });
         $('#ui-wrapper').css('display', 'none');
+        $logOut.css('display', 'none');
     }
     else{
         $('#login-wrapper').css('display', 'none');
         $('#ui-wrapper').css('display', 'block');
+        $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));
+        $logOut.css('display', 'block');
     }
 }
 

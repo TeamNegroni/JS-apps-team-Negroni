@@ -10,13 +10,11 @@ var $textSignUp = $('.text-center .sign-up');
 
 var $signInFieldUsername = $('.form-sign-in .form-sign-in-username');
 var $signInFieldPassword = $('.form-sign-in .form-sign-in-password');
-var $signInButton = $('.form-sign-in-button');
+var $signInButton = $('#login-wrapper .form-sign-in-button');
 
 var $container = $(".container");
+var $logOut = $('#logOutButton');
 
-var $nameTitle = $('<div/>');
-var $logoutButton = $('<button />').addClass('btn btn-lg btn-primary btn-block form-sign-in-button').html('Log Out');
-var $logOut = $('<div/>').css({'width': '200px', 'margin-top': '10px'}).append($logoutButton);
 var $invalidPassword = $('<div/>').html('Invalid password');
 
 var $iconSave = $('span.glyphicon.glyphicon-ok')
@@ -47,10 +45,10 @@ $signUpButton.on('click', function(event) {
         user.signUp(null, {
             success: function (user) {
                 saveCurrentUserSession($signUpFieldUsername.val());
-                $nameTitle.html('Logged in as ' + $signUpFieldUsername.val());
+                //$nameTitle.html('Logged in as ' + $signUpFieldUsername.val());
                 $invalidPassword.detach();
-                $container.prepend($logOut);
-                $container.prepend($nameTitle);
+                //$container.prepend($logOut);
+                //$container.prepend($nameTitle);
                 displayData();
             },
             error: function (user, error) {
@@ -69,24 +67,19 @@ $signInButton.on('click', function(ev) {
     event.preventDefault();
     var $this = $(this);
 
-
     var $formSignin = $('.form-sign-in');
     var loggedInUser = Parse.User.current();
     Parse.User.logOut();
-    console.log($logOut.html());
+
     loggedInUser =  Parse.User.current();
     if(!loggedInUser){
         Parse.User.logIn($signInFieldUsername.val(), $signInFieldPassword.val(), {
             success: function(user) {
                 saveCurrentUserSession($signInFieldUsername.val());
                 displayData();
-                $nameTitle.html('Logged in as ' + $signInFieldUsername.val());
-                $container.prepend($logOut);
-                $container.prepend($nameTitle);
                 var IssueNote = Parse.Object.extend("IssueNote");
                 var issueQuery = new Parse.Query(IssueNote);
                 queryObjects(issueQuery);
-
                 var MeetingNote = Parse.Object.extend("MeetingNote");
                 var meetingQuery = new Parse.Query(MeetingNote);
                 queryObjects(meetingQuery);
@@ -112,7 +105,7 @@ $signInButton.on('click', function(ev) {
                             }
                         },
                         error: function (error) {
-                            alert("Error: " + error.code + " " + error.message);
+                            alert("Error hnq: " + error.code + " " + error.message);
                         }
                     });
                 }
@@ -128,9 +121,6 @@ $signInButton.on('click', function(ev) {
 });
 
 $logOut.on('click', function(ev) {
-    $logOut.detach();
-    $nameTitle.detach();
-    //var $formSignin = $('.form-sign-in');
     Parse.User.logOut();
     sessionStorage.clear();
     displayData();
