@@ -198,6 +198,7 @@ $inputTypeIssueNote.on('click', function () {
      });
 
      $iconSave.on('click', function (event) {
+         var $this = $(this);
          var $note = $(noteClassName);
          var $title = $note.find('.note-title');
          var $content = $note.find('.note-content');
