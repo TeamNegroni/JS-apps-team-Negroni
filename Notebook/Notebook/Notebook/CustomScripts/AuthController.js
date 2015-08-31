@@ -77,6 +77,7 @@ $signInButton.on('click', function(ev) {
             success: function(user) {
                 saveCurrentUserSession($signInFieldUsername.val());
                 displayData();
+                var counter = 1;
                 var IssueNote = Parse.Object.extend("IssueNote");
                 var issueQuery = new Parse.Query(IssueNote);
                 queryObjects(issueQuery);
@@ -94,14 +95,17 @@ $signInButton.on('click', function(ev) {
                     currentQuery.find({
                         success: function (results) {
                             alert("Successfully retrieved " + results.length + " objects.");
-                            for (var i = 1; i <= results.length; i++) {
+                            for (var i = 1; i <= results.length; counter++, i++) {
                                 var object = results[i - 1];
-                                generateIssueNoteExternal();
-                                generatePreviouslyCreatedIssues(object, i);
-                                // alert(object.get('idNumber') +
-                                //         ' ' + object.get('title') +
-                                //         ' ' + object.get('content') +
-                                //         ' ' + object.get('issue'));
+                                var issue = results[i - 1].get('issue')
+                                var place = results[i - 1].get('place')
+                                if (issue != undefined) {
+                                    generateIssueNoteExternal();
+                                    generatePreviouslyCreatedIssues(object, counter);
+                                } else if (place != undefined){
+                                    generateMeetingNoteExternal();
+                                    generatePreviouslyCreatedMeetings(object, counter);
+                                }
                             }
                         },
                         error: function (error) {

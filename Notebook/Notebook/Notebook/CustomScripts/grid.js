@@ -97,6 +97,7 @@ function generateIssueNoteExternal() {
     $newPiece.append($iconSave);
     $newPiece.hide();
     $newPiece.insertBefore('#gridAdder');
+    console.log('issue  ' + $('#gridAdder').parent().html());
     $newPiece.show(500);
 }
 
@@ -166,11 +167,13 @@ function generateMeetingNoteExternal() {
         animateEasing: "easeInOutQuint"
     });
 
+
     $newPiece.append($iconRemove);
     $newPiece.append(noteBody);
     $newPiece.append($iconSave);
     $newPiece.hide();
     $newPiece.insertBefore('#gridAdder');
+    console.log('meet  ' + $('#gridAdder').parent().html());
     $newPiece.show(500);
 }
 
@@ -245,6 +248,8 @@ function generateBankNoteExternal() {
 
 function generatePreviouslyCreatedIssues(existingIssueNote, count) {
     var $parent = $('.external-issue' + count);
+    //console.log('my issue' + $parent.html());
+    //console.log($('body').html());
     ($('<div/>')).addClass('note-title-text').html('Title:' + existingIssueNote.get('title')).appendTo($parent);
     ($('<div/>')).addClass('note-content-text').html('Content:' + existingIssueNote.get('content')).appendTo($parent);
     ($('<div/>')).addClass('note-issue-text').html('Issue:' + existingIssueNote.get('issue')).appendTo($parent);
@@ -252,10 +257,12 @@ function generatePreviouslyCreatedIssues(existingIssueNote, count) {
 
 function generatePreviouslyCreatedMeetings(existingMeetingNote, count) {
     var $parent = $('.external-meeting' + count);
-    ($('<div/>')).addClass('note-title-text').html('Title:' + existingMeetingNote.get('title')).insertBefore($parent);
-    ($('<div/>')).addClass('note-content-text').html('Content:' + existingMeetingNote.get('content')).insertBefore($parent);
-    ($('<div/>')).addClass('meeting-place-text').html('Place:' + existingMeetingNote.get('place')).insertBefore($parent);
-    ($('<div/>')).addClass('meeting-date-text').html('Date:' + existingMeetingNote.get('date')).insertBefore($parent);
+    //console.log(existingMeetingNote.get('title'));
+    //console.log('my meet' + $parent.html());
+    ($('<div/>')).addClass('note-title-text').html('Title:' + existingMeetingNote.get('title')).appendTo($parent);
+    ($('<div/>')).addClass('note-content-text').html('Content:' + existingMeetingNote.get('content')).appendTo($parent);
+    ($('<div/>')).addClass('meeting-place-text').html('Place:' + existingMeetingNote.get('place')).appendTo($parent);
+    ($('<div/>')).addClass('meeting-date-text').html('Date:' + existingMeetingNote.get('date')).appendTo($parent);
 }
 
 function generatePreviouslyCreatedBanks(existingBankNote, count) {
