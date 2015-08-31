@@ -229,10 +229,10 @@
                         query.find({
                             success: function(results) {
                                 alert("Successfully retrieved " + results.length + " objects.");
-                                generateIssueNoteExternal();
-                                for (var i = 0; i < results.length; i++) {
-                                    var object = results[i];
-                                    generatePreviouslyCreatedIssues(object);
+                                for (var i = 1; i <= results.length; i++) {
+                                    var object = results[i - 1];
+                                    generateIssueNoteExternal();
+                                    generatePreviouslyCreatedIssues(object, i);
                                    // alert(object.get('idNumber') +
                                    //         ' ' + object.get('title') +
                                    //         ' ' + object.get('content') +
