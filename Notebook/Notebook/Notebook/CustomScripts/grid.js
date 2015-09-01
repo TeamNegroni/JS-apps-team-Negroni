@@ -205,7 +205,7 @@ function generateBankNoteExternal() {
         ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
         ($('<div/>')).addClass('bank-note-amount-text').html('Amount:' + $amount.val()).insertBefore($this);
 
-        var MyBankNote = module.getBankNote($title.val(), $content.val(), $place.val(), $amount.val());
+        var MyBankNote = module.getBankNote($title.val(), $content.val(), $amount.val());
         var user = Parse.User.current();
         var BankNote = Parse.Object.extend("BankNote");
         var storedNote = new BankNote({
@@ -267,9 +267,9 @@ function generatePreviouslyCreatedMeetings(existingMeetingNote, count) {
 
 function generatePreviouslyCreatedBanks(existingBankNote, count) {
     var $parent = $('.external-bank' + count);
-    ($('<div/>')).addClass('note-title-text').html('Title:' + existingBankNote.get('title')).insertBefore($parent);
-    ($('<div/>')).addClass('note-content-text').html('Content:' + existingBankNote.get('content')).insertBefore($parent);
-    ($('<div/>')).addClass('bank-note-amount-text').html('Amount:' + existingBankNote.get('amount')).insertBefore($parent);
+    ($('<div/>')).addClass('note-title-text').html('Title:' + existingBankNote.get('title')).appendTo($parent);
+    ($('<div/>')).addClass('note-content-text').html('Content:' + existingBankNote.get('content')).appendTo($parent);
+    ($('<div/>')).addClass('bank-note-amount-text').html('Amount:' + existingBankNote.get('amount')).appendTo($parent);
 }
  
 function generateTextArea() {
@@ -516,7 +516,7 @@ $inputTypeBankNote.on('click', function () {
         ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
         ($('<div/>')).addClass('bank-note-amount-text').html('Amount:' + $amount.val()).insertBefore($this);
 
-        var MyBankNote = module.getBankNote($title.val(), $content.val(), $place.val(), $amount.val());
+        var MyBankNote = module.getBankNote($title.val(), $content.val(), $amount.val());
         var user = Parse.User.current();
         var BankNote = Parse.Object.extend("BankNote");
         var storedNote = new BankNote({

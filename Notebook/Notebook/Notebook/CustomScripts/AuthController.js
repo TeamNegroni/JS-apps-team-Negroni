@@ -85,8 +85,9 @@ $signInButton.on('click', function(ev) {
                 var meetingQuery = new Parse.Query(MeetingNote);
                 queryObjects(meetingQuery);
 
-                // var BankNote = Parse.Object.extend("BankNote");
-                // var bankQuery = new Parse.Query(BankNote);
+                var BankNote = Parse.Object.extend("BankNote");
+                var bankQuery = new Parse.Query(BankNote);
+                queryObjects(bankQuery);
 
                 // var compoundQuery = Parse.Query.or(issueQuery, meetingQuery);
                 // compoundQuery.equalTo("user", Parse.User.current());
@@ -97,14 +98,18 @@ $signInButton.on('click', function(ev) {
                             alert("Successfully retrieved " + results.length + " objects.");
                             for (var i = 1; i <= results.length; counter++, i++) {
                                 var object = results[i - 1];
-                                var issue = results[i - 1].get('issue')
-                                var place = results[i - 1].get('place')
+                                var issue = results[i - 1].get('issue');
+                                var place = results[i - 1].get('place');
+                                var amount = results[i - 1].get('amount');
                                 if (issue != undefined) {
                                     generateIssueNoteExternal();
                                     generatePreviouslyCreatedIssues(object, counter);
                                 } else if (place != undefined){
                                     generateMeetingNoteExternal();
                                     generatePreviouslyCreatedMeetings(object, counter);
+                                }else if (amount != undefined){
+                                    generateBankNoteExternal();
+                                    generatePreviouslyCreatedBanks(object, counter);
                                 }
                             }
                         },

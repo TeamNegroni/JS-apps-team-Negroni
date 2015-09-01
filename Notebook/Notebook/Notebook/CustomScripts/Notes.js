@@ -151,20 +151,20 @@
         var BankNote = Object.create(parent);
         Object.defineProperties(BankNote, {
             init: {
-                value: function (title, content, money) {
+                value: function (title, content, amount) {
                     parent.init.call(this, title, content);
-                    this.Money = money;
+                    this.amount = amount;
                     return this;
                 }
             },
-            money: {
+            amount: {
                 get: function () {
-                    return this._money
+                    return this._amount
                 },
                 set: function (value) {
                     validateIsUndefined(value);
-                    validateIsNumber(value);
-                    this._money = value;
+                    // validateIsNumber(value);
+                    this._amount = value;
                 }
             }
         });
