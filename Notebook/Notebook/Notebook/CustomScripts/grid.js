@@ -97,7 +97,6 @@ function generateIssueNoteExternal() {
     $newPiece.append($iconSave);
     $newPiece.hide();
     $newPiece.insertBefore('#gridAdder');
-    console.log('issue  ' + $('#gridAdder').parent().html());
     $newPiece.show(500);
 }
 
@@ -173,7 +172,6 @@ function generateMeetingNoteExternal() {
     $newPiece.append($iconSave);
     $newPiece.hide();
     $newPiece.insertBefore('#gridAdder');
-    console.log('meet  ' + $('#gridAdder').parent().html());
     $newPiece.show(500);
 }
 
@@ -278,7 +276,7 @@ function generateTextArea() {
     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
 
     $iconRemove.on('click', function () {
-        $(this).parent().fadeOut(300, function () { $(this).remove(); });;
+        $(this).parent().fadeOut(300, function () { $(this).remove(); });
     });
 
     $newPiece.addClass('gridPiece');
@@ -384,6 +382,9 @@ $inputTypeIssueNote.on('click', function () {
              user: user
              });
 
+         user.addUnique("dataStored", storedNote);
+         user.save();
+         // console.log(user.get("dataStored"));
          storedNote.save(null, {
              success:function(storedNote){
                  console.log("successfully saved")
@@ -458,6 +459,9 @@ $inputTypeMeetingNote.on('click', function () {
             user: user
         });
 
+        user.addUnique("dataStored", storedNote);
+        user.save();
+
         storedNote.save(null, {
             success: function (storedNote) {
                 console.log("successfully saved")
@@ -526,6 +530,9 @@ $inputTypeBankNote.on('click', function () {
             amount: MyBankNote.amount,
             user: user
         });
+
+        user.addUnique("dataStored", storedNote);
+        user.save();
 
         storedNote.save(null, {
             success: function (storedNote) {
