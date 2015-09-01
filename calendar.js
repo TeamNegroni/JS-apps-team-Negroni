@@ -41,8 +41,11 @@
                 $calendar.animate({
                     opacity: 0
                 }, 500);
-                updateTable(todaysDate);
-                updateMonthAndYearLabel();
+                date = new Date(todaysDate.getFullYear(),todaysDate.getMonth(),todaysDate.getDate());
+                setTimeout(function() {
+                    updateTable(date);
+                    updateMonthAndYearLabel();
+                },600);
             } else {
                 var goingOnMonth,
                     goingOnYear;
@@ -145,6 +148,15 @@
         $currentDateLink.html('Today');
         $currentDateLink.on('click', function () {
             console.log(todaysDate);
+            //$calendar.animate({ COMMENTED FOR TEST PURPOSES
+            //    opacity: 0
+            //}, 500);
+            date = new Date(todaysDate.getFullYear(),todaysDate.getMonth(),todaysDate.getDate());
+            // setTimeout(function() { COMMENTED FOR TEST PURPOSES
+                updateTable(date);
+                updateMonthAndYearLabel();
+            // },600); COMMENTED FOR TEST PURPOSES
+
             // !!! Add connection to the server about the todaysDate info, use todaysDate variable,
             // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
         });
