@@ -1,0 +1,26 @@
+#note {
+	margin: 10px;
+	padding: 20px;
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+}
+#note-title {
+	margin:0;
+	display: block;
+}
+#note-content {
+	margin:10px 0px 10px 0px;
+	display: block;
+}
+.form-inline {
+	margin:10px 0px 10px 0px;
+}
+#map {
+    width: 255px;
+    height: 200px;
+}
+.addToNote {
+	display: block;
+}
+

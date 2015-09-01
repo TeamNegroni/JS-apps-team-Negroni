@@ -1,0 +1,229 @@
+﻿/*Login div preset styles*/
+.container{
+    margin:0;
+    padding:0;
+}
+.form-signin {
+    max-width: 280px;
+    margin: 60px auto 10px;
+
+.form-signin-heading {
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0px 1px 2px #111;
+    color: #fff;
+	  margin-bottom: 20px;
+	}
+.checkbox {
+	  font-weight: normal;
+	}
+.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: 100%;
+      width: 100%;
+	  padding: 10px;
+	}
+input[type="text"] {
+	  margin-bottom: -1px;
+      border-top: 1px solid #000;
+      border-right: 1px solid #000;
+      border-left: 1px solid #000;
+	  border-radius: 6px 6px 0px 0px;
+	}
+input[type="password"] {
+    z-index: 2;
+	margin-bottom: 20px;
+    border-top: none;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+    border-radius: 0px 0px 6px 6px;	  
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0px 1px 0px 0px rgba(255,255,255,0.5);  
+	}
+.btn {
+    font-weight: bold;
+    text-shadow: 0px -1px 0px rgba(0,0,0,0.2);
+  }
+}
+p.sign-up {
+  text-shadow: 0px 1px 2px #222;
+  color: #fff;
+  font-size: 12px;
+}
+
+/*Row's elements bootstrap preset styles*/
+h4 {
+  margin-top: 25px;
+}
+
+.row {
+  margin-bottom: 20px;
+}
+
+.row .row {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+[class*="col-"] {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #eee;
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid #ddd;
+  border: 1px solid rgba(86,61,124,.2);
+}
+
+hr {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/*Wrappers' custom styles*/
+#ui-wrapper {
+    display: block;
+    margin-top: 100px;
+    margin-left:100px;
+}
+#login-wrapper {
+    display: inline-block;
+}
+#calendar-wrapper {
+    display: none;
+}
+#input-wrapper {
+    width: 1110px;
+    height: 500px;
+    padding: 0;
+    overflow-y: auto;
+}
+#current-date {
+    display: block;
+}
+#date-picker {
+    display: none;
+}
+
+/*Grid components styles*/
+
+#grid {
+    display: inline-block;
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    width: 100%;
+}
+
+#grid .gridPiece {
+    float: left;
+    border: 1px solid black;
+    height: 350px;
+    width: 350px;
+    margin: 5px;
+}
+
+.sortable-placeholderPiece {
+    margin: 5px; /* depends on .grindPiece */
+    float: left;
+    border: 1px red solid;
+}
+
+.resizable-helperPiece {
+    border: 3px dotted gray;
+    margin: -3px;
+}
+
+#grid #gridAdder {
+    text-align: center;
+}
+
+#adder-sign {
+    font-size: 32px;
+}
+
+/*Input attributes status*/
+.input-attribute {
+    disabled: true;
+}
+
+/*Input types*/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#id-form-sign-up{
+    display:none;
+}
+
+#input-type-wrapper {
+    display:none;
+}
+
+.glyphicon-remove {
+    float:right;
+}
+
+.glyphicon-ok {
+    float: left;
+    margin-left: 10px;
+}
+
+/*Notes css*/
+.note {
+	margin: 10px;
+	padding: 20px;
+	width: 300px;
+	height: 250px;
+}
+
+.note-title {
+	margin:0;
+	display: block;
+}
+
+.note-content {
+	margin:10px 0px 10px 0px;
+	display: block;
+}
+
+.form-inline {
+	margin:10px 0px 10px 0px;
+}
+
+a {
+    cursor:pointer;
+}
+
+/*Log out div styles*/
+
+#logOut{
+    width: 200px;
+    margin-top: 10px;
+}
+
+#nameTitle{
+    text-align: center;
+    font-family: "Verdana";
+}
+
+#logOutButton{
+    margin-top: 10px;
+}
