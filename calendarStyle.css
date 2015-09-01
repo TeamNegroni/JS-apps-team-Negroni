@@ -1,25 +1,30 @@
+body {
+    background-color: #808080; 
+} /*TESTING PURPOSES*/
+
 #calendar {
-    display: none;
     position: absolute;
-    top: 32px;
-    border: 1px solid black;
+    top: 0;
     left: 0;
-    width: 250px;
-    height: 400px;
+    text-align: center;
+}
+
+#calendar #calendar-toggleButton {
+    float: left;
 }
 
 #calendar .controls {
-    background-color: green;
+    text-align: center;
+    background-color: #2780e3;
     color: white;
     padding: 5px;
 }
 
 #calendar .current-date {
-    background-color: green;
+    background-color: #2780e3;
     color: white;
     padding: 12px;
     text-align: center;
-    position: absolute;
     bottom: 0;
     width: calc(100% - 24px);
 }
@@ -30,7 +35,7 @@
     text-align: center;
 }
 
-#calendar .controls .btn {
+/*#calendar .controls .btn { BECAUSE USING BOOTSTRAP
     border: none;
     width: 30px;
     height: 30px;
@@ -42,14 +47,11 @@
 #calendar .controls .btn:hover {
     background-color: #33CC33;
     cursor: pointer;
-}
+}*/
 
 #calendar .daysTable {
+    empty-cells: show;
     margin: 0 auto;
-    margin-top: 5px;
-    position: relative;
-    top: 50%;
-    margin-top: -150px;
     border-spacing: 1px;
     border-collapse: separate;
 }
@@ -58,17 +60,21 @@
     border: 1px solid black;
     padding: 5px;
     text-align: center;
-    height: 20px;
-    width: 20px;
+    height: 100px;
+    width: 200px;
 }
 
 #calendar .daysTable td.another-month {
     color: lightgray;
 }
 
+#calendar .daysTable td.another-month:hover {
+    background-color: #808080;
+}
+
 #calendar .daysTable td.current-month:hover {
     cursor: pointer;
-    background-color: #33CC33;
+    background-color: #2780e3;
     color: white;
 }
 

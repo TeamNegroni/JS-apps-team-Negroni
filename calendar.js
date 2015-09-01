@@ -1,23 +1,7 @@
 (function (todaysDate) {
-    var $toggleButton = $('#calendar-toggleButton'),
         $calendar = $('#calendar');
 
     buildCalendar(todaysDate,$calendar);
-    $calendar.hide();
-
-    var toggleButtonContent = 'View Calendar';
-    $toggleButton.html(toggleButtonContent);
-
-    $toggleButton.on('click', function () {
-        if (toggleButtonContent === 'View Calendar') {
-            toggleButtonContent = 'Back';
-        } else {
-            toggleButtonContent = 'View Calendar';
-        }
-        $toggleButton.html(toggleButtonContent);
-
-        $calendar.toggle(100);
-    });
 
     function buildCalendar(todaysDate,$wrapper) {
         var MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -45,12 +29,20 @@
         // TODO: moving between months when pressing arrows
         $controls.addClass('controls');
         $button.addClass('btn');
+        $button.addClass('btn-default');
         $currentMonthAndYear.addClass('current-month-and-year');
         updateMonthAndYearLabel();
+        $controls.append($button.clone().html('Hide Calendar').addClass('btn-block').attr('id','calendar-toggleButton'));
         $controls.append($button.clone().html('<'));
         $controls.append($currentMonthAndYear);
         $controls.append($button.clone().html('>'));
         $controls.on('click', 'button', function () {
+            var $this = $(this);
+            if($this.attr('id') === 'calendar-toggleButton') {
+                $calendar.animate({
+                    opacity: 0
+                },500);
+            } else {
             var goingOnMonth,
                 goingOnYear;
 
@@ -72,9 +64,44 @@
                 }
             }
             date = new Date(goingOnYear,goingOnMonth,1);
-
+            //$daysTable.hide(300); ANIMATION TO BE ADDED
             updateTable(date);
+            //animateTable();
             updateMonthAndYearLabel();
+            }
+        });
+
+function animateTable() {
+    var children = $daysTable.children(),
+    len = children.length,
+    i;
+    for(i = 0; i<len; i+=1) {
+        var childs = children[i].children();
+        while(childs) {
+
+        }
+    }
+    /* .forEach(function(child) {
+        setTimeout(function() {
+            $(child).show();
+        },100)
+        console.log(child);
+    });
+*/
+}
+
+        $controls.on('mouseover','button',function() {
+            var $this = $(this);
+            $this.animate({
+                backgroundColor: '#2780e3'
+            },300);
+        });
+
+                $controls.on('mouseout','button',function() {
+            var $this = $(this);
+            $this.animate({
+                backgroundColor: '#ffffff'
+            },300)
         });
 
         // setting up the table with days
@@ -82,22 +109,33 @@
         $daysTable.addClass('daysTable');
         updateTable(date);
         $daysTable.on('click', 'td', function (e) {
-            var $clickedDay = $(e.target);
+            var $clickedDay = $(e.target),
+                clickedDay = +$clickedDay.html(),
+                goToMonth;
             if ($clickedDay.hasClass('current-month')) {
-                date = new Date(date.getFullYear(), date.getMonth(), +$clickedDay.html());
+                date = new Date(date.getFullYear(), date.getMonth(), clickedDay);
                 console.log(date);
                 // !!! Add connection to the server about the date info, use date variable,
                 // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
             } else {
                 // TODO: Transition between months must be added
+                if(clickedDay >= 15) {
+                    goToMonth = date.getMonth() - 1;
+                } else {
+                    goToMonth = date.getMonth() + 1;
+                }
+                date = new Date(date.getFullYear(),goToMonth,1);
+                updateTable(date);
                 updateMonthAndYearLabel();
-                console.log('Ne');
             }
 
         });
 
         // setting up the lowest(current day) part
         $currentDateLink
+        .addClass('btn')
+        .addClass('btn-block')
+        .addClass('btn-default')
             .addClass('current-date-link')
             .addClass('current-date');
         $currentDateLink.html('Today');
