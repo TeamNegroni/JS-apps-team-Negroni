@@ -26,7 +26,6 @@
         var $currentDateLink = $('<button/>');
 
         // setting up controls part
-        // TODO: moving between months when pressing arrows
         $controls.addClass('controls');
         $button.addClass('btn');
         $button.addClass('btn-default');
@@ -56,8 +55,7 @@
                         goingOnMonth = date.getMonth() - 1;
                         goingOnYear = date.getFullYear();
                     }
-                    animateTable('right');
-                    animateTable('left');
+                    animateTable('left')
                 } else {
                     if (date.getMonth() === 11) {
                         goingOnMonth = 0;
@@ -66,19 +64,13 @@
                         goingOnMonth = date.getMonth() + 1;
                         goingOnYear = date.getFullYear();
                     }
-                    animateTable('left');
-                    animateTable('right');
+                    animateTable('right')
                 }
                 date = new Date(goingOnYear, goingOnMonth, 1);
                 updateTable(date);
                 updateMonthAndYearLabel();
             }
         });
-
-        function animateTable(side) {
-            $daysTable.css('float', side);
-            $daysTable.toggle(100);
-        }
 
         $controls.on('mouseover', 'button', function () {
             var $this = $(this);
@@ -108,12 +100,14 @@
                 // !!! Add connection to the server about the date info, use date variable,
                 // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
             } else {
-                // TODO: Transition between months must be added
                 if (clickedDay >= 15) {
                     goToMonth = date.getMonth() - 1;
+                    animateTable('left')
                 } else {
                     goToMonth = date.getMonth() + 1;
+                    animateTable('right');
                 }
+
                 date = new Date(date.getFullYear(), goToMonth, 1);
                 updateTable(date);
                 updateMonthAndYearLabel();
@@ -160,6 +154,21 @@
         $wrapper.append($controls);
         $wrapper.append($daysTable);
         $wrapper.append($currentDateLink);
+
+        function animateTable(side) {
+            if(side === 'left') {
+                animate('right');
+                animate('left');
+            } else {
+                animate('left');
+                animate('right');
+            }
+
+            function animate(side) {
+                $daysTable.css('float', side);
+                $daysTable.toggle(100);
+            }
+        }
 
         function updateMonthAndYearLabel() {
             $currentMonthAndYear.html(date.getMonthName() + ' ' + date.getFullYear());
@@ -256,118 +265,5 @@
 
             return daysTableTemplate;
         }
-
-        (function ($) {
-            var sR = {
-                defaults: {
-                    slideSpeed: 400,
-                    easing: false,
-                    callback: false
-                },
-                thisCallArgs: {
-                    slideSpeed: 400,
-                    easing: false,
-                    callback: false
-                },
-                methods: {
-                    up: function (arg1, arg2, arg3) {
-                        if (typeof arg1 == 'object') {
-                            for (p in arg1) {
-                                sR.thisCallArgs.eval(p) = arg1[p];
-                            }
-                        } else if (typeof arg1 != 'undefined' && (typeof arg1 == 'number' || arg1 == 'slow' || arg1 == 'fast')) {
-                            sR.thisCallArgs.slideSpeed = arg1;
-                        } else {
-                            sR.thisCallArgs.slideSpeed = sR.defaults.slideSpeed;
-                        }
-
-                        if (typeof arg2 == 'string') {
-                            sR.thisCallArgs.easing = arg2;
-                        } else if (typeof arg2 == 'function') {
-                            sR.thisCallArgs.callback = arg2;
-                        } else if (typeof arg2 == 'undefined') {
-                            sR.thisCallArgs.easing = sR.defaults.easing;
-                        }
-                        if (typeof arg3 == 'function') {
-                            sR.thisCallArgs.callback = arg3;
-                        } else if (typeof arg3 == 'undefined' && typeof arg2 != 'function') {
-                            sR.thisCallArgs.callback = sR.defaults.callback;
-                        }
-                        var $cells = $(this).find('td');
-                        $cells.wrapInner('<div class="slideRowUp" />');
-                        var currentPadding = $cells.css('padding');
-                        $cellContentWrappers = $(this).find('.slideRowUp');
-                        $cellContentWrappers.slideUp(sR.thisCallArgs.slideSpeed, sR.thisCallArgs.easing).parent().animate({
-                            paddingTop: '0px',
-                            paddingBottom: '0px'
-                        }, {
-                            complete: function () {
-                                $(this).children('.slideRowUp').replaceWith($(this).children('.slideRowUp').contents());
-                                $(this).parent().css({'display': 'none'});
-                                $(this).css({'padding': currentPadding});
-                            }
-                        });
-                        var wait = setInterval(function () {
-                            if ($cellContentWrappers.is(':animated') === false) {
-                                clearInterval(wait);
-                                if (typeof sR.thisCallArgs.callback == 'function') {
-                                    sR.thisCallArgs.callback.call(this);
-                                }
-                            }
-                        }, 100);
-                        return $(this);
-                    },
-                    down: function (arg1, arg2, arg3) {
-                        if (typeof arg1 == 'object') {
-                            for (p in arg1) {
-                                sR.thisCallArgs.eval(p) = arg1[p];
-                            }
-                        } else if (typeof arg1 != 'undefined' && (typeof arg1 == 'number' || arg1 == 'slow' || arg1 == 'fast')) {
-                            sR.thisCallArgs.slideSpeed = arg1;
-                        } else {
-                            sR.thisCallArgs.slideSpeed = sR.defaults.slideSpeed;
-                        }
-
-                        if (typeof arg2 == 'string') {
-                            sR.thisCallArgs.easing = arg2;
-                        } else if (typeof arg2 == 'function') {
-                            sR.thisCallArgs.callback = arg2;
-                        } else if (typeof arg2 == 'undefined') {
-                            sR.thisCallArgs.easing = sR.defaults.easing;
-                        }
-                        if (typeof arg3 == 'function') {
-                            sR.thisCallArgs.callback = arg3;
-                        } else if (typeof arg3 == 'undefined' && typeof arg2 != 'function') {
-                            sR.thisCallArgs.callback = sR.defaults.callback;
-                        }
-                        var $cells = $(this).find('td');
-                        $cells.wrapInner('<div class="slideRowDown" style="display:none;" />');
-                        $cellContentWrappers = $cells.find('.slideRowDown');
-                        $(this).show();
-                        $cellContentWrappers.slideDown(sR.thisCallArgs.slideSpeed, sR.thisCallArgs.easing, function () {
-                            $(this).replaceWith($(this).contents());
-                        });
-
-                        var wait = setInterval(function () {
-                            if ($cellContentWrappers.is(':animated') === false) {
-                                clearInterval(wait);
-                                if (typeof sR.thisCallArgs.callback == 'function') {
-                                    sR.thisCallArgs.callback.call(this);
-                                }
-                            }
-                        }, 100);
-                        return $(this);
-                    }
-                }
-            };
-
-            $.fn.slideRow = function (method, arg1, arg2, arg3) {
-                if (typeof method != 'undefined') {
-                    if (sR.methods[method]) {
-                        return sR.methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-                    }
-                }
-            };
-        })(jQuery);
     }
 }());
