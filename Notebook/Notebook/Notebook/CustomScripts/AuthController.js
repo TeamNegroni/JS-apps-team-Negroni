@@ -41,6 +41,7 @@ $signUpButton.on('click', function(event) {
     if (init == confirmed) {
         user.set("username", $signUpFieldUsername.val());
         user.set("password", $signUpFieldPasswordInitial.val());
+        user.set("dataStored", []);
         //user.set("email", $signUpFieldEmail.val());
         user.signUp(null, {
             success: function (user) {
@@ -78,45 +79,50 @@ $signInButton.on('click', function(ev) {
                 saveCurrentUserSession($signInFieldUsername.val());
                 displayData();
                 var counter = 1;
-                var IssueNote = Parse.Object.extend("IssueNote");
-                var issueQuery = new Parse.Query(IssueNote);
-                queryObjects(issueQuery);
-                var MeetingNote = Parse.Object.extend("MeetingNote");
-                var meetingQuery = new Parse.Query(MeetingNote);
-                queryObjects(meetingQuery);
+                var queryCollection = user.get('dataStored');
+                console.log(queryCollection[1]);
+                //var query = new Parse.Query(queryCollection);
+                //queryObjects(query);
 
-                var BankNote = Parse.Object.extend("BankNote");
-                var bankQuery = new Parse.Query(BankNote);
-                queryObjects(bankQuery);
-
+               // var IssueNote = Parse.Object.extend("IssueNote");
+               // var issueQuery = new Parse.Query(IssueNote);
+               // queryObjects(issueQuery);
+               // var MeetingNote = Parse.Object.extend("MeetingNote");
+               // var meetingQuery = new Parse.Query(MeetingNote);
+               // queryObjects(meetingQuery);
+               //
+               // var BankNote = Parse.Object.extend("BankNote");
+               // var bankQuery = new Parse.Query(BankNote);
+               // queryObjects(bankQuery);
+               
                 // var compoundQuery = Parse.Query.or(issueQuery, meetingQuery);
                 // compoundQuery.equalTo("user", Parse.User.current());
                 function queryObjects(currentQuery) {
-                    currentQuery.equalTo("user", Parse.User.current());
-                    currentQuery.find({
-                        success: function (results) {
-                            alert("Successfully retrieved " + results.length + " objects.");
-                            for (var i = 1; i <= results.length; counter++, i++) {
-                                var object = results[i - 1];
-                                var issue = results[i - 1].get('issue');
-                                var place = results[i - 1].get('place');
-                                var amount = results[i - 1].get('amount');
-                                if (issue != undefined) {
-                                    generateIssueNoteExternal();
-                                    generatePreviouslyCreatedIssues(object, counter);
-                                } else if (place != undefined){
-                                    generateMeetingNoteExternal();
-                                    generatePreviouslyCreatedMeetings(object, counter);
-                                }else if (amount != undefined){
-                                    generateBankNoteExternal();
-                                    generatePreviouslyCreatedBanks(object, counter);
-                                }
-                            }
-                        },
-                        error: function (error) {
-                            alert("Error hnq: " + error.code + " " + error.message);
-                        }
-                    });
+                    //currentQuery.equalTo("user", Parse.User.current());
+                    //currentQuery.find({
+                    //success: function (results) {
+                    //    alert("Successfully retrieved " + results.length + " objects.");
+                    //    for (var i = 1; i <= results.length; counter++, i++) {
+                    //        var object = results[i - 1];
+                    //        var issue = results[i - 1].get('issue');
+                    //        var place = results[i - 1].get('place');
+                    //        var amount = results[i - 1].get('amount');
+                    //        if (issue != undefined) {
+                    //            generateIssueNoteExternal();
+                    //            generatePreviouslyCreatedIssues(object, counter);
+                    //        } else if (place != undefined){
+                    //            generateMeetingNoteExternal();
+                    //            generatePreviouslyCreatedMeetings(object, counter);
+                    //        }else if (amount != undefined){
+                    //            generateBankNoteExternal();
+                    //            generatePreviouslyCreatedBanks(object, counter);
+                    //        }
+                    //    }
+                    //},
+                    //error: function (error) {
+                    //    alert("Error hnq: " + error.code + " " + error.message);
+                    //}
+                    //});
                 }
 
             },

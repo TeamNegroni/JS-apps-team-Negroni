@@ -70,6 +70,8 @@ function generateIssueNoteExternal() {
             user: user
         });
 
+        user.addUnique('dataStored', storedNote);
+
         storedNote.save(null, {
             success: function (storedNote) {
                 console.log("successfully saved")
@@ -145,6 +147,8 @@ function generateMeetingNoteExternal() {
             user: user
         });
 
+        user.addUnique('dataStored', storedNote);
+
         storedNote.save(null, {
             success: function (storedNote) {
                 console.log("successfully saved")
@@ -215,6 +219,8 @@ function generateBankNoteExternal() {
             amount: MyBankNote.amount,
             user: user
         });
+
+        user.addUnique('dataStored', storedNote);
 
         storedNote.save(null, {
             success: function (storedNote) {
@@ -376,17 +382,19 @@ $inputTypeIssueNote.on('click', function () {
          var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
          var user = Parse.User.current();
          var IssueNote = Parse.Object.extend("IssueNote");
-         var storedNote = new IssueNote({
+         var storedNote = new IssueNote( {
              idNumber: MyIssueNote.id,
              title: MyIssueNote.title,
              content: MyIssueNote.content,
              issue: MyIssueNote.issue,
              user: user
              });
+         ///!!!!!!! 
+         user.addUnique('dataStored', storedNote);
 
          storedNote.save(null, {
-             success:function(storedNote){
-                 console.log("successfully saved")
+             success: function (storedNote) {
+                 console.log("successfully saved");
              },
              error:function(storedNote,error){
                  alert("Error: " + error.code + " " + error.message);
@@ -458,6 +466,8 @@ $inputTypeMeetingNote.on('click', function () {
             user: user
         });
 
+        user.addUnique('dataStored', storedNote);
+
         storedNote.save(null, {
             success: function (storedNote) {
                 console.log("successfully saved")
@@ -526,6 +536,8 @@ $inputTypeBankNote.on('click', function () {
             amount: MyBankNote.amount,
             user: user
         });
+
+        user.addUnique('dataStored', storedNote);
 
         storedNote.save(null, {
             success: function (storedNote) {
