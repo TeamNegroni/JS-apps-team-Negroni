@@ -86,21 +86,24 @@ function displayData(){
         $('#blurrer').css({
             'display': '',
             'background-image': 'url("Images/backgroundLogin.png")',
-            'background-size': 'contain',
-            'background-size':'100%',
+            'background-size': '100%',
+            'background-repeat': 'no-repeat',
             //'background-color': 'gray',
             //hacks
             'width': windowWidth - 17,
-            'height': containerHeight,
+            'height': '705px',
             'position': 'absolute',
             'float':'left',
             'z-index': '999'
         });
 
-        //$('#ui-wrapper').css('display', 'none');
-        //$logOut.css('display', 'none');
+        $('#ui-wrapper').css('display', 'none');
+        $logOut.css('display', 'none');
     }
     else{
+        $('body').css({
+            'background-color': '#EDFFFF'
+        });
         $('#login-wrapper').css('display', 'none');
         $('#blurrer').css('display', 'none');
         $('#ui-wrapper').css('display', 'block');
