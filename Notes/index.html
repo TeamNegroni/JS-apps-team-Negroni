@@ -10,75 +10,46 @@
 	<script type="text/javascript" src="node_modules\jquery-ui\jquery-ui.js"></script>
 	<script type="text/javascript" src="node_modules\bootstrap\dist\js\bootstrap.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
-
-	<script>
-      function initialize() {
-        var mapCanvas = document.getElementById('map');
-        var mapOptions = {
-          center: new google.maps.LatLng(44.5403, -78.5463),
-          zoom: 8,
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(mapCanvas, mapOptions);
-      }
-      google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
 </head>
 <body>
-	<div id="note">
-		<input type="text"/ id="note-title">
-		<textarea rows="3" cols="22" id="note-content"></textarea>
-		<!--- OPTIONS -->
-		<!-- BANK NOTE -->
-		<div class="specific">
-			<form class="form-inline">
-				<div class="form-group">
-					<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-					<div class="input-group">
-						<div class="input-group-addon">Amount in $</div>
-						<input type="text" class="form-control" id="exampleInputAmount" placeholder="Amount">
-						<div class="input-group-addon">.00</div>
-					</div>
-				</div>
-			</form>		
-  			<button type="submit" class="btn btn-primary">Transfer cash</button>
+	<div id="issue-note">
+		<div class="title">
+			<h3><span class="label label-default">Title</span> title</h3>
 		</div>
-		<!-- ISSUE NOTE -->
-		<div class="specific">
-			<form class="form-inline">
-				<div class="form-group">
-					<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
-					<div class="input-group">
-						<div class="input-group-addon">Issue</div>
-						<input type="text" class="form-control" placeholder="Description">
-					</div>
-				</div>
-			</form>
-		<button type="submit" class="btn btn-primary">Add</button>
+		<div class="content">
+			<h3><span class="label label-default">Content</span> content</h3>
 		</div>
-		<!-- MEETING NOTE -->		
-		<div class="specific">
-			<form class="form-inline">
-				<div class="form-group">
-					<label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>				
-						<div id="map"></div>
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Place">
-					</div>
-					<div class="input-group">
-						<div class="input-group-addon">Date</div>
-						<input type="text" class="form-control" id="datepicker" placeholder="">
-					</div>
-				</div>
-			</form>
-			<button type="submit" class="btn btn-primary">Add</button>
-		</div>		
+		<div class="issue">
+			<h3><span class="label label-default">Issue</span> issue</h3>
+		</div>
+	</div>
+	
+
+	<div id="meeting-note">
+		<div class="title">
+			<h3><span class="label label-default">Title</span> title</h3>
+		</div>
+		<div class="content">
+			<h3><span class="label label-default">Content</span> content</h3>
+		</div>
+		<div class="place">
+			<h3><span class="label label-default">Place</span> place</h3>
+		</div>
+		<div class="date">
+			<h3><span class="label label-default">Date</span> date</h3>
+		</div>
 	</div>
 
-    <script>
-  		$(function() {
-   			$("#datepicker").datepicker();
- 		});
- 	</script>
+	<div id="bank-note">
+		<div class="title">
+			<h3><span class="label label-default">Title</span> title</h3>
+		</div>
+		<div class="content">
+			<h3><span class="label label-default">Content</span> content</h3>
+		</div>
+		<div class="amount">
+			<h3><span class="label label-default">Amount</span> amount</h3>
+		</div>
+	</div>
 </body>
 </html>

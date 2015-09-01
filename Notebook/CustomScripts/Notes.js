@@ -15,13 +15,13 @@
    
     function validateContentLength(value) {
         if (value.length > MAX_CONTENT_LENGTH) {
-            throw new Error("Not valid content length")
+            throw new Error("Not valid content length");
         }
     }
 
     function validateLength(value, text) {
         if (value.length < MIN_LENGTH || value.length > MAX_LENGTH) {
-            throw new Error("Not valid "+ text +" text length")
+            throw new Error("Not valid "+ text +" text length");
         }
     }
 
@@ -84,7 +84,7 @@
                     this._content = value;
                 }
             }          
-        })
+        });
         return Note;
     }());
 
@@ -136,7 +136,7 @@
             },
             hour: {
                 get: function () {
-                    return this._hour
+                    return this._hour;
                 },
                 set: function (value) {
                     this._hour = value;
@@ -145,7 +145,7 @@
           
         });
         return MeetingNote;
-    }(Note))
+    }(Note));
 
     var BankNote = (function(parent){
         var BankNote = Object.create(parent);
@@ -159,7 +159,7 @@
             },
             amount: {
                 get: function () {
-                    return this._amount
+                    return this._amount;
                 },
                 set: function (value) {
                     validateIsUndefined(value);
@@ -169,7 +169,7 @@
             }
         });
         return BankNote;
-    }(Note))
+    }(Note));
 
     var ShoppingListNote = (function (parent) {
         var ShoppingListNote = Object.create(parent);
@@ -202,13 +202,13 @@
                     }
 
                     if (isPresent === false) {
-                        throw new Error('No such product')
+                        throw new Error('No such product');
                     }
                 }
             },
-        })
+        });
         return ShoppingListNote;
-    }(Note))
+    }(Note));
 
     var Product = (function () {
         var id = 0;
@@ -236,7 +236,7 @@
                     this._name = value;
                 }
             },          
-        })
+        });
         return Product;
     }());
 

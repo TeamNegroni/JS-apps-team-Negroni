@@ -72,13 +72,13 @@ function generateIssueNoteExternal() {
 
         storedNote.save(null, {
             success: function (storedNote) {
-                console.log("successfully saved")
+                console.log("successfully saved");
             },
             error: function (storedNote, error) {
                 alert("Error: " + error.code + " " + error.message);
             }
         });
-    })
+    });
 
     $newPiece.addClass('gridPiece').addClass('external-issue' + index);
     $newPiece.text(index);
@@ -146,13 +146,13 @@ function generateMeetingNoteExternal() {
 
         storedNote.save(null, {
             success: function (storedNote) {
-                console.log("successfully saved")
+                console.log("successfully saved");
             },
             error: function (storedNote, error) {
                 alert("Error: " + error.code + " " + error.message);
             }
         });
-    })
+    });
 
     $newPiece.addClass('gridPiece').addClass('external-meeting' + index);
     $newPiece.text(index);
@@ -216,13 +216,13 @@ function generateBankNoteExternal() {
 
         storedNote.save(null, {
             success: function (storedNote) {
-                console.log("successfully saved")
+                console.log("successfully saved");
             },
             error: function (storedNote, error) {
                 alert("Error: " + error.code + " " + error.message);
             }
         });
-    })
+    });
 
     $newPiece.addClass('gridPiece').addClass('external-bank' + index);
     $newPiece.text(index);
@@ -307,7 +307,7 @@ function generateImageInput() {
     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
 
     $iconRemove.on('click', function () {
-        $(this).parent().fadeOut(300, function () { $(this).remove(); });;
+        $(this).parent().fadeOut(300, function () { $(this).remove(); });
     });
 
     $newPiece.addClass('gridPiece');
@@ -352,12 +352,12 @@ $inputTypeIssueNote.on('click', function () {
      var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
      var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
      var issueSpecs = $('<div/>').html('<div class="input-group-addon">Issue</div>' +
-     '<input type="text" class="form-control note-issue" placeholder="Description">')
+     '<input type="text" class="form-control note-issue" placeholder="Description">');
 
      noteBody.append(issueSpecs);
 
      $iconRemove.on('click', function () {
-         $(this).parent().fadeOut(300, function () { $(this).remove(); });;
+         $(this).parent().fadeOut(300, function () { $(this).remove(); });
      });
 
      $iconSave.on('click', function (event) {
@@ -387,13 +387,13 @@ $inputTypeIssueNote.on('click', function () {
          // console.log(user.get("dataStored"));
          storedNote.save(null, {
              success:function(storedNote){
-                 console.log("successfully saved")
+                 console.log("successfully saved");
              },
              error:function(storedNote,error){
                  alert("Error: " + error.code + " " + error.message);
              }
          });
-     })
+     });
 
      $newPiece.addClass('gridPiece');
      $newPiece.text(index);
@@ -431,7 +431,7 @@ $inputTypeMeetingNote.on('click', function () {
     noteBody.append(meetingSpecs);
 
     $iconRemove.on('click', function () {
-        $(this).parent().fadeOut(300, function () { $(this).remove(); });;
+        $(this).parent().fadeOut(300, function () { $(this).remove(); });
     });
 
     $iconSave.on('click', function (event) {
@@ -464,13 +464,13 @@ $inputTypeMeetingNote.on('click', function () {
 
         storedNote.save(null, {
             success: function (storedNote) {
-                console.log("successfully saved")
+                console.log("successfully saved");
             },
             error: function (storedNote, error) {
                 alert("Error: " + error.code + " " + error.message);
             }
         });
-    })
+    });
 
     $newPiece.addClass('gridPiece');
     $newPiece.text(index);
@@ -506,7 +506,7 @@ $inputTypeBankNote.on('click', function () {
     noteBody.append(bankSpecs);
 
     $iconRemove.on('click', function () {
-        $(this).parent().fadeOut(300, function () { $(this).remove(); });;
+        $(this).parent().fadeOut(300, function () { $(this).remove(); });
     });
 
     $iconSave.on('click', function (event) {
@@ -536,13 +536,13 @@ $inputTypeBankNote.on('click', function () {
 
         storedNote.save(null, {
             success: function (storedNote) {
-                console.log("successfully saved")
+                console.log("successfully saved");
             },
             error: function (storedNote, error) {
                 alert("Error: " + error.code + " " + error.message);
             }
         });
-    })
+    });
 
     $newPiece.addClass('gridPiece');
     $newPiece.text(index);
@@ -587,4 +587,3 @@ $(document).ready(function () {
     });
 });
 
-//TEST GITHUB
