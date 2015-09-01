@@ -1,12 +1,14 @@
-body {
-    background-color: #808080; 
+html, body {
+    background-color: black;
 } /*TESTING PURPOSES*/
 
 #calendar {
+    background-color: transparent;
     position: absolute;
     top: 0;
     left: 0;
     text-align: center;
+    width: 100%;
 }
 
 #calendar #calendar-toggleButton {
@@ -50,6 +52,7 @@ body {
 }*/
 
 #calendar .daysTable {
+    font-size: 40px;
     empty-cells: show;
     margin: 0 auto;
     border-spacing: 1px;
@@ -60,8 +63,8 @@ body {
     border: 1px solid black;
     padding: 5px;
     text-align: center;
-    height: 100px;
-    width: 200px;
+    height: 73px;
+    width: 300px;
 }
 
 #calendar .daysTable td.another-month {
@@ -69,12 +72,12 @@ body {
 }
 
 #calendar .daysTable td.another-month:hover {
-    background-color: #808080;
+    /*background-color: #808080; NOW DONE BY JAVASCRIPT - 137*/
 }
 
 #calendar .daysTable td.current-month:hover {
     cursor: pointer;
-    background-color: #2780e3;
+    /*background-color: #2780e3; NOW DONE BY JAVASCRIPT - 137 */
     color: white;
 }
 
@@ -83,6 +86,7 @@ body {
 }
 
 #calendar .current-date-link {
+    margin-left: 13px;
     color: white;
     text-decoration: none;
 }

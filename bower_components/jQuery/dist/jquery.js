@@ -712,7 +712,7 @@ var i,
 
 	// Used for iframes
 	// See setDocument()
-	// Removing the function $wrapper causes a "Permission Denied"
+	// Removing the function wrapper causes a "Permission Denied"
 	// error in IE
 	unloadHandler = function() {
 		setDocument();
@@ -5113,7 +5113,7 @@ jQuery.extend({
 					wrap = wrapMap[ tag ] || wrapMap._default;
 					tmp.innerHTML = wrap[ 1 ] + elem.replace( rxhtmlTag, "<$1></$2>" ) + wrap[ 2 ];
 
-					// Descend through $wrappers to the right content
+					// Descend through wrappers to the right content
 					j = wrap[ 0 ];
 					while ( j-- ) {
 						tmp = tmp.lastChild;
@@ -5132,7 +5132,7 @@ jQuery.extend({
 			}
 		}
 
-		// Remove $wrapper from fragment
+		// Remove wrapper from fragment
 		fragment.textContent = "";
 
 		i = 0;

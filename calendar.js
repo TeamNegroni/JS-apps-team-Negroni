@@ -1,9 +1,9 @@
 (function (todaysDate) {
-        $calendar = $('#calendar');
+    $calendar = $('#calendar');
 
-    buildCalendar(todaysDate,$calendar);
+    buildCalendar(todaysDate, $calendar);
 
-    function buildCalendar(todaysDate,$wrapper) {
+    function buildCalendar(todaysDate, $wrapper) {
         var MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         var WEEK_DAY_NAMES = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
@@ -32,76 +32,66 @@
         $button.addClass('btn-default');
         $currentMonthAndYear.addClass('current-month-and-year');
         updateMonthAndYearLabel();
-        $controls.append($button.clone().html('Hide Calendar').addClass('btn-block').attr('id','calendar-toggleButton'));
+        $controls.append($button.clone().html('Hide Calendar').addClass('btn-block').attr('id', 'calendar-toggleButton'));
         $controls.append($button.clone().html('<'));
         $controls.append($currentMonthAndYear);
         $controls.append($button.clone().html('>'));
         $controls.on('click', 'button', function () {
             var $this = $(this);
-            if($this.attr('id') === 'calendar-toggleButton') {
+            if ($this.attr('id') === 'calendar-toggleButton') {
                 $calendar.animate({
                     opacity: 0
-                },500);
+                }, 500);
+                updateTable(todaysDate);
+                updateMonthAndYearLabel();
             } else {
-            var goingOnMonth,
-                goingOnYear;
+                var goingOnMonth,
+                    goingOnYear;
 
-            if ($(this).html() === '&lt;') {
-                if(date.getMonth() === 0) {
-                    goingOnMonth = 11;
-                    goingOnYear = date.getFullYear() - 1;
+                if ($(this).html() === '&lt;') {
+                    if (date.getMonth() === 0) {
+                        goingOnMonth = 11;
+                        goingOnYear = date.getFullYear() - 1;
+                    } else {
+                        goingOnMonth = date.getMonth() - 1;
+                        goingOnYear = date.getFullYear();
+                    }
+                    animateTable('right');
+                    animateTable('left');
                 } else {
-                    goingOnMonth = date.getMonth() - 1;
-                    goingOnYear = date.getFullYear();
+                    if (date.getMonth() === 11) {
+                        goingOnMonth = 0;
+                        goingOnYear = date.getFullYear() + 1;
+                    } else {
+                        goingOnMonth = date.getMonth() + 1;
+                        goingOnYear = date.getFullYear();
+                    }
+                    animateTable('left');
+                    animateTable('right');
                 }
-            } else {
-                if(date.getMonth() === 11) {
-                    goingOnMonth = 0;
-                    goingOnYear = date.getFullYear() + 1;
-                } else {
-                    goingOnMonth = date.getMonth() + 1;
-                    goingOnYear = date.getFullYear();
-                }
-            }
-            date = new Date(goingOnYear,goingOnMonth,1);
-            //$daysTable.hide(300); ANIMATION TO BE ADDED
-            updateTable(date);
-            //animateTable();
-            updateMonthAndYearLabel();
+                date = new Date(goingOnYear, goingOnMonth, 1);
+                updateTable(date);
+                updateMonthAndYearLabel();
             }
         });
 
-function animateTable() {
-    var children = $daysTable.children(),
-    len = children.length,
-    i;
-    for(i = 0; i<len; i+=1) {
-        var childs = children[i].children();
-        while(childs) {
-
+        function animateTable(side) {
+            $daysTable.css('float', side);
+            $daysTable.toggle(100);
         }
-    }
-    /* .forEach(function(child) {
-        setTimeout(function() {
-            $(child).show();
-        },100)
-        console.log(child);
-    });
-*/
-}
 
-        $controls.on('mouseover','button',function() {
+        $controls.on('mouseover', 'button', function () {
             var $this = $(this);
             $this.animate({
                 backgroundColor: '#2780e3'
-            },300);
+            }, 100);
         });
 
-                $controls.on('mouseout','button',function() {
+        $controls.on('mouseout', 'button', function () {
             var $this = $(this);
             $this.animate({
                 backgroundColor: '#ffffff'
-            },300)
+            }, 100)
         });
 
         // setting up the table with days
@@ -119,23 +109,43 @@ function animateTable() {
                 // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
             } else {
                 // TODO: Transition between months must be added
-                if(clickedDay >= 15) {
+                if (clickedDay >= 15) {
                     goToMonth = date.getMonth() - 1;
                 } else {
                     goToMonth = date.getMonth() + 1;
                 }
-                date = new Date(date.getFullYear(),goToMonth,1);
+                date = new Date(date.getFullYear(), goToMonth, 1);
                 updateTable(date);
                 updateMonthAndYearLabel();
             }
 
         });
 
+        $daysTable.on('mouseover', 'td', function () {
+            var $this = $(this),
+                color;
+            if ($this.hasClass('current-month')) {
+                color = '#2780e3'; // BLUE
+            } else {
+                color = '#808080'; // GRAY
+            }
+            $this.animate({
+                backgroundColor: color
+            }, 100);
+        });
+
+        $daysTable.on('mouseout', 'td', function () {
+            var $this = $(this);
+            $this.animate({
+                backgroundColor: 'black'
+            }, 100);
+        });
+
         // setting up the lowest(current day) part
         $currentDateLink
-        .addClass('btn')
-        .addClass('btn-block')
-        .addClass('btn-default')
+            .addClass('btn')
+            .addClass('btn-block')
+            .addClass('btn-default')
             .addClass('current-date-link')
             .addClass('current-date');
         $currentDateLink.html('Today');
@@ -246,5 +256,118 @@ function animateTable() {
 
             return daysTableTemplate;
         }
+
+        (function ($) {
+            var sR = {
+                defaults: {
+                    slideSpeed: 400,
+                    easing: false,
+                    callback: false
+                },
+                thisCallArgs: {
+                    slideSpeed: 400,
+                    easing: false,
+                    callback: false
+                },
+                methods: {
+                    up: function (arg1, arg2, arg3) {
+                        if (typeof arg1 == 'object') {
+                            for (p in arg1) {
+                                sR.thisCallArgs.eval(p) = arg1[p];
+                            }
+                        } else if (typeof arg1 != 'undefined' && (typeof arg1 == 'number' || arg1 == 'slow' || arg1 == 'fast')) {
+                            sR.thisCallArgs.slideSpeed = arg1;
+                        } else {
+                            sR.thisCallArgs.slideSpeed = sR.defaults.slideSpeed;
+                        }
+
+                        if (typeof arg2 == 'string') {
+                            sR.thisCallArgs.easing = arg2;
+                        } else if (typeof arg2 == 'function') {
+                            sR.thisCallArgs.callback = arg2;
+                        } else if (typeof arg2 == 'undefined') {
+                            sR.thisCallArgs.easing = sR.defaults.easing;
+                        }
+                        if (typeof arg3 == 'function') {
+                            sR.thisCallArgs.callback = arg3;
+                        } else if (typeof arg3 == 'undefined' && typeof arg2 != 'function') {
+                            sR.thisCallArgs.callback = sR.defaults.callback;
+                        }
+                        var $cells = $(this).find('td');
+                        $cells.wrapInner('<div class="slideRowUp" />');
+                        var currentPadding = $cells.css('padding');
+                        $cellContentWrappers = $(this).find('.slideRowUp');
+                        $cellContentWrappers.slideUp(sR.thisCallArgs.slideSpeed, sR.thisCallArgs.easing).parent().animate({
+                            paddingTop: '0px',
+                            paddingBottom: '0px'
+                        }, {
+                            complete: function () {
+                                $(this).children('.slideRowUp').replaceWith($(this).children('.slideRowUp').contents());
+                                $(this).parent().css({'display': 'none'});
+                                $(this).css({'padding': currentPadding});
+                            }
+                        });
+                        var wait = setInterval(function () {
+                            if ($cellContentWrappers.is(':animated') === false) {
+                                clearInterval(wait);
+                                if (typeof sR.thisCallArgs.callback == 'function') {
+                                    sR.thisCallArgs.callback.call(this);
+                                }
+                            }
+                        }, 100);
+                        return $(this);
+                    },
+                    down: function (arg1, arg2, arg3) {
+                        if (typeof arg1 == 'object') {
+                            for (p in arg1) {
+                                sR.thisCallArgs.eval(p) = arg1[p];
+                            }
+                        } else if (typeof arg1 != 'undefined' && (typeof arg1 == 'number' || arg1 == 'slow' || arg1 == 'fast')) {
+                            sR.thisCallArgs.slideSpeed = arg1;
+                        } else {
+                            sR.thisCallArgs.slideSpeed = sR.defaults.slideSpeed;
+                        }
+
+                        if (typeof arg2 == 'string') {
+                            sR.thisCallArgs.easing = arg2;
+                        } else if (typeof arg2 == 'function') {
+                            sR.thisCallArgs.callback = arg2;
+                        } else if (typeof arg2 == 'undefined') {
+                            sR.thisCallArgs.easing = sR.defaults.easing;
+                        }
+                        if (typeof arg3 == 'function') {
+                            sR.thisCallArgs.callback = arg3;
+                        } else if (typeof arg3 == 'undefined' && typeof arg2 != 'function') {
+                            sR.thisCallArgs.callback = sR.defaults.callback;
+                        }
+                        var $cells = $(this).find('td');
+                        $cells.wrapInner('<div class="slideRowDown" style="display:none;" />');
+                        $cellContentWrappers = $cells.find('.slideRowDown');
+                        $(this).show();
+                        $cellContentWrappers.slideDown(sR.thisCallArgs.slideSpeed, sR.thisCallArgs.easing, function () {
+                            $(this).replaceWith($(this).contents());
+                        });
+
+                        var wait = setInterval(function () {
+                            if ($cellContentWrappers.is(':animated') === false) {
+                                clearInterval(wait);
+                                if (typeof sR.thisCallArgs.callback == 'function') {
+                                    sR.thisCallArgs.callback.call(this);
+                                }
+                            }
+                        }, 100);
+                        return $(this);
+                    }
+                }
+            };
+
+            $.fn.slideRow = function (method, arg1, arg2, arg3) {
+                if (typeof method != 'undefined') {
+                    if (sR.methods[method]) {
+                        return sR.methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
+                    }
+                }
+            };
+        })(jQuery);
     }
 }());

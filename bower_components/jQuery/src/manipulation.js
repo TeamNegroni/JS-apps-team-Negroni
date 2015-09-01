@@ -218,7 +218,7 @@ jQuery.extend({
 					wrap = wrapMap[ tag ] || wrapMap._default;
 					tmp.innerHTML = wrap[ 1 ] + elem.replace( rxhtmlTag, "<$1></$2>" ) + wrap[ 2 ];
 
-					// Descend through $wrappers to the right content
+					// Descend through wrappers to the right content
 					j = wrap[ 0 ];
 					while ( j-- ) {
 						tmp = tmp.lastChild;
@@ -237,7 +237,7 @@ jQuery.extend({
 			}
 		}
 
-		// Remove $wrapper from fragment
+		// Remove wrapper from fragment
 		fragment.textContent = "";
 
 		i = 0;
