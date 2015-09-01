@@ -47,10 +47,6 @@ function GetSelectedText() {
             selText = text.substring(document.activeElement.selectionStart,
                                       document.activeElement.selectionEnd);
         }
-       // else {
-       //     var selRange = window.getSelection();
-       //     selText = selRange.toString();
-       // }
     }
     else {
         if (document.selection.createRange) { // Internet Explorer

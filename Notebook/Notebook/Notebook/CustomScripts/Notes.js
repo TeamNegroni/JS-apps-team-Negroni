@@ -260,18 +260,3 @@
     };
 }());
 
-//var MyIssueNote = module.getIssueNote('MyIssue', 'blqblq', 'golem problem');
-//console.log(MyIssueNote);
-var MyMeetingNote = module.getMeetingNote('MyMeeting', 'blqblq', 'sofia', '12:30');
-console.log(MyMeetingNote);
-console.log(MyMeetingNote.id);
-var MyBankNote =  module.getBankNote('MyMeeting', 'blqblq', 12000);
-console.log(MyBankNote);
-var MyDomat = module.getProduct('domat');
-console.log(MyDomat);
-var MyShoppingList = module.getShoppingListNote('My shoppinglist', 'nema pari');
-MyShoppingList.addProductToShoppingList(MyDomat);
-console.log(MyShoppingList);
-MyShoppingList.removeProductFromShoppingList(MyDomat);
-console.log(MyShoppingList);
-
