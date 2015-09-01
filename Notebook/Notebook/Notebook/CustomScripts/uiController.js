@@ -7,6 +7,8 @@ var $draggablesShowBorder = $('#draggables-show-border');
 var $inputAttribute = $('.input-attribute');
 var $gridAdder = $('#gridAdder');
 var $editControllerCheckbox = $('#edit-controller');
+var windowWidth = window.innerWidth;
+var containerHeight = $('.container').height();
 
 //Controlling the date at the UI Pannel
 $currentDateController.attr('placeholder', currentDate.getDate() + "/"
@@ -77,13 +79,28 @@ function displayData(){
     if(sessionStorage.getItem('sessionUser') === null){
         $('#login-wrapper').css({
             'display':'',
-            'margin': '10em 30em'
+            'margin': '10em 40em',
+            'position': 'absolute',
+            'z-index': '1000'
         });
-        $('#ui-wrapper').css('display', 'none');
-        $logOut.css('display', 'none');
+        $('#blurrer').css({
+            'display':'',
+            'background-color': 'gray',
+            'opacity': '0.9',
+            //hacks
+            'width': windowWidth - 17,
+            'height': containerHeight,
+            'position': 'absolute',
+            'float':'left',
+            'z-index': '999'
+        });
+
+        //$('#ui-wrapper').css('display', 'none');
+        //$logOut.css('display', 'none');
     }
     else{
         $('#login-wrapper').css('display', 'none');
+        $('#blurrer').css('display', 'none');
         $('#ui-wrapper').css('display', 'block');
         $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));
         $logOut.css('display', 'block');

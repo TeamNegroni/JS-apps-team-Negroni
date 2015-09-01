@@ -1,4 +1,8 @@
 ﻿/*Login div preset styles*/
+.container{
+    margin:0;
+    padding:0;
+}
 .form-signin {
     max-width: 280px;
     margin: 60px auto 10px;
@@ -80,9 +84,9 @@ hr {
 #ui-wrapper {
     display: block;
     margin-top: 100px;
+    margin-left:100px;
 }
 #login-wrapper {
-
     display: inline-block;
 }
 #calendar-wrapper {
