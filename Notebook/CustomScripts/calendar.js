@@ -38,9 +38,12 @@
         $controls.on('click', 'button', function () {
             var $this = $(this);
             if ($this.attr('id') === 'calendar-toggleButton') {
-                $calendar.animate({
-                    opacity: 0
-                }, 500);
+               // $calendar.animate({
+                //    opacity: 0
+                //}, 500);
+                $calendar.hide(200);
+                $('#ui-wrapper').css('display', 'block');        
+                $('#logOut').css('display', 'block');
                 date = new Date(todaysDate.getFullYear(),todaysDate.getMonth(),todaysDate.getDate());
                 setTimeout(function() {
                     updateTable(date);
@@ -58,7 +61,7 @@
                         goingOnMonth = date.getMonth() - 1;
                         goingOnYear = date.getFullYear();
                     }
-                    animateTable('left')
+                    animateTable('left');
                 } else {
                     if (date.getMonth() === 11) {
                         goingOnMonth = 0;
@@ -67,7 +70,7 @@
                         goingOnMonth = date.getMonth() + 1;
                         goingOnYear = date.getFullYear();
                     }
-                    animateTable('right')
+                    animateTable('right');
                 }
                 date = new Date(goingOnYear, goingOnMonth, 1);
                 updateTable(date);
@@ -86,7 +89,7 @@
             var $this = $(this);
             $this.animate({
                 backgroundColor: '#ffffff'
-            }, 100)
+            }, 100);
         });
 
         // setting up the table with days
@@ -105,7 +108,7 @@
             } else {
                 if (clickedDay >= 15) {
                     goToMonth = date.getMonth() - 1;
-                    animateTable('left')
+                    animateTable('left');
                 } else {
                     goToMonth = date.getMonth() + 1;
                     animateTable('right');

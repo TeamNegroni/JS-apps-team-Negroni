@@ -9,12 +9,13 @@ var $gridAdder = $('#gridAdder');
 var $editControllerCheckbox = $('#edit-controller');
 var windowWidth = window.innerWidth;
 var containerHeight = $('.container').height();
+var $calendarWrapper = $('#calendra-wrapper');
 var $calendarViewer = $('.calendar-viewer');
 var $calendar = $('#calendar');
+var $calendarBlurrer = $('#calendar-blurrer');
 
 //Controlling the date at the UI Pannel
-$currentDateController.attr('placeholder', currentDate.getDate() + "/"
-    + currentDate.getMonth() + "/" + currentDate.getFullYear());
+$currentDateController.attr('placeholder', currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear());
 
 //Initiate datepicker
 $(function () {
@@ -116,7 +117,21 @@ function displayData(){
 
 //Control calendar-viewer
 $calendarViewer.on('click',function() {
+    $calendarWrapper.hide(200);    
+    $('#ui-wrapper').css('display', 'none');
+    $logOut.css('display', 'none');
     $calendar.show(500);
+    /*
+    $calendarBlurrer.css({
+        'display': 'block',
+        'width': '1315',
+        'height': '643',
+        'position':'absolute',
+        'top':0,
+        'left':0,
+        'background-color': 'gray',
+        'opacity': '0.5'
+    });*/
 });
 
 displayData();
