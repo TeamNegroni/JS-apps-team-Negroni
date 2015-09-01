@@ -227,3 +227,7 @@ a {
 #logOutButton{
     margin-top: 10px;
 }
+
+#calendar {
+  display: none;
+}

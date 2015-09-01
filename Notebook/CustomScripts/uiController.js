@@ -9,6 +9,8 @@ var $gridAdder = $('#gridAdder');
 var $editControllerCheckbox = $('#edit-controller');
 var windowWidth = window.innerWidth;
 var containerHeight = $('.container').height();
+var $calendarViewer = $('.calendar-viewer');
+var $calendar = $('#calendar');
 
 //Controlling the date at the UI Pannel
 $currentDateController.attr('placeholder', currentDate.getDate() + "/"
@@ -111,6 +113,11 @@ function displayData(){
         $logOut.css('display', 'block');
     }
 }
+
+//Control calendar-viewer
+$calendarViewer.on('click',function() {
+    $calendar.show(500);
+});
 
 displayData();
 
