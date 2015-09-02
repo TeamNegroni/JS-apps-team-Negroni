@@ -87,35 +87,6 @@ hr {
 }
 
 /*Wrappers' custom styles*/
-#login-wrapper {
-    display: none;
-    padding: 10%;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    position: absolute;
-}
-
-#ui-wrapper {
-    position: absolute;
-    display: none;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#input-wrapper {
-    display: none;
-    margin-top: 4px;
-    border-radius: 3px;
-    border: 2px solid darkgray;
-    background-color: rgba(255, 255, 255, 0.50);
-    width: 80%;
-    height: 450px;
-    padding: 0;
-    overflow-y: auto;
-}
-
 #current-date {
     display: block;
 }
@@ -235,10 +206,41 @@ a {
 }
 
 /*Log out div styles*/
+#login-wrapper {
+    display: none;
+    padding: 10%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+}
+
+#ui-wrapper {
+    position: absolute;
+    display: none;
+    padding: 0;
+    padding-left: 10%;
+    padding-top: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+#input-wrapper {
+    display: none;
+    margin-top: 4px;
+    border-radius: 3px;
+    border: 2px solid darkgray;
+    background-color: rgba(255, 255, 255, 0.50);
+    width: 90%;
+    height: 450px;
+    padding: 0;
+    overflow-y: auto;
+}
+
 #controls {
     padding: 0;
     padding-right: 1%;
-    width: 80%;
+    width: 90%;
     float: left;
     display: none;
     position: relative;
