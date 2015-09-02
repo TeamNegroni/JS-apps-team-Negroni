@@ -176,7 +176,13 @@
         $wrapper.append($currentDateLink);
 
         function closeCalendar() {
-            $calendar.hide(500);
+            $calendar.animate({
+                opacity: '0'
+            },500);
+            setTimeout(function() {
+                $calendar.css('display','none');
+            },510);
+
             $('#calendar-blurrer').css('display','none');
             blurBackground(5, 0);
             blurBackground(20, 0, '#ui-wrapper');

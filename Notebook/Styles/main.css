@@ -116,10 +116,11 @@ hr {
     margin: 5px; /* depends on .grindPiece */
     float: left;
     border: 1px red solid;
+    background-color: rgba(255,0,0,0.1)
 }
 
 .resizable-helperPiece {
-    border: 3px dotted gray;
+    border: 2px dotted rgb(246,246,246);
     margin: -3px;
 }
 

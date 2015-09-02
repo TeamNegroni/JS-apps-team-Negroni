@@ -15,13 +15,16 @@ var $uiWrapper = $('#ui-wrapper');
 
 //Control calendar-viewer
 $calendarViewButton.on('click', function () {
-    $uiWrapper.animate({
-        display: 'none'
-    }, 500);
     blurBackground(0, 5); // BLURRS THE BACKGROUND IMAGE
     blurBackground(0, 20, '#ui-wrapper');
     $('#calendar-blurrer').css('display', 'block');
-    $calendar.show(500);
+
+    $calendar.css('opacity','0');
+    $calendar.css('display','block');
+
+    $calendar.animate({
+        opacity: '1'
+    },500);
 });
 
 //Control selection menu
