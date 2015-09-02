@@ -81,18 +81,18 @@ $signInButton.on('click', function(ev) {
                 var counter = 0;
                 //console.log(user.get('username'));
                 var collection = user.get('dataStored');
-                console.log('here'+ collection[0])
                 for (var i = 1; i <= collection.length; i++){
-                    var IssueNote = Parse.Object.extend("IssueNote");
-                    var issueQuery = new Parse.Query(IssueNote);
+                    var Note = Parse.Object.extend("Note");
+                    var issueQuery = new Parse.Query(Note);
                     queryObjects(issueQuery, collection[i - 1].id);
-                    var MeetingNote = Parse.Object.extend("MeetingNote");
-                    var meetingQuery = new Parse.Query(MeetingNote);
-                    queryObjects(meetingQuery, collection[i - 1].id);
+
+                    //var MeetingNote = Parse.Object.extend("MeetingNote");
+                    //var meetingQuery = new Parse.Query(MeetingNote);
+                    //queryObjects(meetingQuery, collection[i - 1].id);
                     //
-                    var BankNote = Parse.Object.extend("BankNote");
-                    var bankQuery = new Parse.Query(BankNote);
-                    queryObjects(bankQuery, collection[i - 1].id);
+                    //var BankNote = Parse.Object.extend("BankNote");
+                    //var bankQuery = new Parse.Query(BankNote);
+                    //queryObjects(bankQuery, collection[i - 1].id);
                 }
 
                 // var compoundQuery = Parse.Query.or(issueQuery, meetingQuery);
@@ -107,13 +107,13 @@ $signInButton.on('click', function(ev) {
                             counter++;
                             console.log(counter);
                             if (issue != undefined) {
-                                generateIssueNoteExternal();
+                                generateIssueNoteExternal(queryId);
                                 generatePreviouslyCreatedIssues(note, counter);
                             } else if (place != undefined){
-                                generateMeetingNoteExternal();
+                                generateMeetingNoteExternal(queryId);
                                 generatePreviouslyCreatedMeetings(note, counter);
                             }else if (amount != undefined){
-                                generateBankNoteExternal();
+                                generateBankNoteExternal(queryId);
                                 generatePreviouslyCreatedBanks(note, counter);
                             }
                         },
@@ -168,6 +168,7 @@ $logOut.on('click', function(ev) {
     Parse.User.logOut();
     sessionStorage.clear();
     displayData();
+    window.location.reload(true);
 });
 
 $signUpBackToSignInButton.on('click', function(ev) {

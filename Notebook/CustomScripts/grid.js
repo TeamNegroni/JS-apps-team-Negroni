@@ -31,8 +31,9 @@ function generateNoteDiv(id) {
     return noteDiv;
 }
 
-function generateIssueNoteExternal() {
+function generateIssueNoteExternal(id) {
     var $newPiece = $('<li/>');
+    $newPiece.attr('data-id', id);
     var noteBody = generateNoteDiv(index);
     var noteClassName = '.note' + index;
     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
@@ -43,6 +44,7 @@ function generateIssueNoteExternal() {
     noteBody.append(issueSpecs);
 
     $iconRemove.on('click', function () {
+        deleteNote($newPiece);
         $(this).parent().fadeOut(300, function () {
             $(this).remove();
         });
@@ -61,8 +63,8 @@ function generateIssueNoteExternal() {
 
         var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
         var user = Parse.User.current();
-        var IssueNote = Parse.Object.extend("IssueNote");
-        var storedNote = new IssueNote({
+        var Note = Parse.Object.extend("Note");
+        var storedNote = new Note({
             idNumber: MyIssueNote.id,
             title: MyIssueNote.title,
             content: MyIssueNote.content,
@@ -73,6 +75,7 @@ function generateIssueNoteExternal() {
         storedNote.save(null, {
             success: function (storedNote) {
                 console.log("successfully saved");
+
             },
             error: function (storedNote, error) {
                 alert("Error: " + error.code + " " + error.message);
@@ -100,10 +103,11 @@ function generateIssueNoteExternal() {
     $newPiece.show(500);
 }
 
-function generateMeetingNoteExternal() {
+function generateMeetingNoteExternal(id) {
     var $newPiece = $('<li/>');
     var noteBody = generateNoteDiv(index);
     var noteClassName = '.note' + index;
+    $newPiece.attr('data-id', id);
     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
     var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
     var meetingSpecs = $('<div/>').html('<div class="input-group-addon">Place</div>' +
@@ -114,6 +118,7 @@ function generateMeetingNoteExternal() {
     noteBody.append(meetingSpecs);
 
     $iconRemove.on('click', function () {
+        deleteNote($newPiece)
         $(this).parent().fadeOut(300, function () {
             $(this).remove();
         });
@@ -134,8 +139,8 @@ function generateMeetingNoteExternal() {
 
         var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $date.val());
         var user = Parse.User.current();
-        var MeetingNote = Parse.Object.extend("MeetingNote");
-        var storedNote = new MeetingNote({
+        var Note = Parse.Object.extend("Note");
+        var storedNote = new Note({
             idNumber: MyMeetingNote.id,
             title: MyMeetingNote.title,
             content: MyMeetingNote.content,
@@ -175,10 +180,11 @@ function generateMeetingNoteExternal() {
     $newPiece.show(500);
 }
 
-function generateBankNoteExternal() {
+function generateBankNoteExternal(id) {
     var $newPiece = $('<li/>');
     var noteBody = generateNoteDiv(index);
     var noteClassName = '.note' + index;
+    $newPiece.attr('data-id', id);
     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
     var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
     var bankSpecs = $('<div/>').html('<div class="input-group-addon">Amount in $</div>' +
@@ -187,6 +193,7 @@ function generateBankNoteExternal() {
     noteBody.append(bankSpecs);
 
     $iconRemove.on('click', function () {
+        deleteNote($newPiece)
         $(this).parent().fadeOut(300, function () {
             $(this).remove();
         });
@@ -205,8 +212,8 @@ function generateBankNoteExternal() {
 
         var MyBankNote = module.getBankNote($title.val(), $content.val(), $amount.val());
         var user = Parse.User.current();
-        var BankNote = Parse.Object.extend("BankNote");
-        var storedNote = new BankNote({
+        var Note = Parse.Object.extend("Note");
+        var storedNote = new Note({
             idNumber: MyBankNote.id,
             title: MyBankNote.title,
             content: MyBankNote.content,
@@ -357,6 +364,7 @@ $inputTypeIssueNote.on('click', function () {
      noteBody.append(issueSpecs);
 
      $iconRemove.on('click', function () {
+         deleteNote($newPiece);
          $(this).parent().fadeOut(300, function () { $(this).remove(); });
      });
 
@@ -373,8 +381,8 @@ $inputTypeIssueNote.on('click', function () {
 
          var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
          var user = Parse.User.current();
-         var IssueNote = Parse.Object.extend("IssueNote");
-         var storedNote = new IssueNote({
+         var Note = Parse.Object.extend("Note");
+         var storedNote = new Note({
              idNumber: MyIssueNote.id,
              title: MyIssueNote.title,
              content: MyIssueNote.content,
@@ -387,6 +395,7 @@ $inputTypeIssueNote.on('click', function () {
          // console.log(user.get("dataStored"));
          storedNote.save(null, {
              success:function(storedNote){
+                 $newPiece.attr('data-id', storedNote.id);
                  console.log("successfully saved");
              },
              error:function(storedNote,error){
@@ -431,6 +440,7 @@ $inputTypeMeetingNote.on('click', function () {
     noteBody.append(meetingSpecs);
 
     $iconRemove.on('click', function () {
+        deleteNote($newPiece);
         $(this).parent().fadeOut(300, function () { $(this).remove(); });
     });
 
@@ -449,8 +459,8 @@ $inputTypeMeetingNote.on('click', function () {
 
         var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $date.val());
         var user = Parse.User.current();
-        var MeetingNote = Parse.Object.extend("MeetingNote");
-        var storedNote = new MeetingNote({
+        var Note = Parse.Object.extend("Note");
+        var storedNote = new Note({
             idNumber: MyMeetingNote.id,
             title: MyMeetingNote.title,
             content: MyMeetingNote.content,
@@ -464,6 +474,7 @@ $inputTypeMeetingNote.on('click', function () {
 
         storedNote.save(null, {
             success: function (storedNote) {
+                $newPiece.attr('data-id', storedNote.id);
                 console.log("successfully saved");
             },
             error: function (storedNote, error) {
@@ -506,6 +517,7 @@ $inputTypeBankNote.on('click', function () {
     noteBody.append(bankSpecs);
 
     $iconRemove.on('click', function () {
+        deleteNote($newPiece)
         $(this).parent().fadeOut(300, function () { $(this).remove(); });
     });
 
@@ -522,8 +534,8 @@ $inputTypeBankNote.on('click', function () {
 
         var MyBankNote = module.getBankNote($title.val(), $content.val(), $amount.val());
         var user = Parse.User.current();
-        var BankNote = Parse.Object.extend("BankNote");
-        var storedNote = new BankNote({
+        var Note = Parse.Object.extend("Note");
+        var storedNote = new Note({
             idNumber: MyBankNote.id,
             title: MyBankNote.title,
             content: MyBankNote.content,
@@ -536,6 +548,7 @@ $inputTypeBankNote.on('click', function () {
 
         storedNote.save(null, {
             success: function (storedNote) {
+                $newPiece.attr('data-id', storedNote.id);
                 console.log("successfully saved");
             },
             error: function (storedNote, error) {
@@ -586,4 +599,29 @@ $(document).ready(function () {
         }
     });
 });
+
+
+function deleteNote($newPiece) {
+    var currentUser = Parse.User.current();
+    var searchedId = $newPiece.attr('data-id');
+    var collection = currentUser.get('dataStored');
+    currentUser.unset('dataStored');
+    for (var i = 0; i < collection.length; i++) {
+        if (collection[i].id != searchedId) {
+            var Note = Parse.Object.extend("Note");
+            var query = new Parse.Query(Note);
+            query.get(collection[i].id, {
+                success: function (Note) {
+                    currentUser.addUnique("dataStored", Note);
+                    currentUser.save();
+                },
+                error: function (object, error) {
+                    console.log('error:' + error);
+                }
+            });
+        }
+    }
+
+
+}
 
