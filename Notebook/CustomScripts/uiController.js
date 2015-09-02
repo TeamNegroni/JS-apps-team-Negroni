@@ -103,7 +103,8 @@ $calendarViewer.on('click', function () {
     $logOut.animate({
         display: 'none'
     }, 500);
-    blurBackground(0,15);
+    // blurBackground(0,15); BLURRS THE BACKGROUND IMAGE
+    blurBackground(0,20,'#ui-wrapper');
     $calendar.show(500);
     /*
      $calendarBlurrer.css({
@@ -118,13 +119,15 @@ $calendarViewer.on('click', function () {
      });*/
 });
 
-function blurBackground(fromRadius,toRadius) {
+function blurBackground(fromRadius,toRadius,whatToBlur) {
+    debugger;
+    whatToBlur = whatToBlur || '#background-image';
     setTimeout(function () {
         $({blurRadius: fromRadius}).animate({blurRadius: toRadius}, {
-            duration: 700,
+            duration: 300,
             easing: 'swing', // CAN BE CHANGED
             step: function () {
-                $('#background-image').css({
+                $(whatToBlur).css({
                     "-webkit-filter": "blur(" + this.blurRadius + "px)",
                     "filter": "blur(" + this.blurRadius + "px)"
                 });

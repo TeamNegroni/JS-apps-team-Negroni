@@ -42,8 +42,9 @@
                 //    opacity: 0
                 //}, 500);
                 $calendar.hide(500);
-                blurBackground(15,0);
-                $('#ui-wrapper').css('display', 'block');        
+                // blurBackground(15,0); BACKGROUND
+                blurBackground(20,0,'#ui-wrapper');
+                $('#ui-wrapper').css('display', 'block');
                 $('#logOut').css('display', 'block');
                 date = new Date(todaysDate.getFullYear(),todaysDate.getMonth(),todaysDate.getDate());
                 setTimeout(function() {
