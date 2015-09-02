@@ -3,11 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="8e5da55d-29f0-4ded-b16e-822cee830c83" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/CustomScripts/calendar.js" afterPath="$PROJECT_DIR$/Notebook/CustomScripts/calendar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/Styles/calendarStyle.css" afterPath="$PROJECT_DIR$/Notebook/Styles/calendarStyle.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/index.html" afterPath="$PROJECT_DIR$/Notebook/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/Styles/main.css" afterPath="$PROJECT_DIR$/Notebook/Styles/main.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/CustomScripts/uiController.js" afterPath="$PROJECT_DIR$/Notebook/CustomScripts/uiController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="JS-apps-team-Negroni.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,10 +33,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendarStyle.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calendarStyle.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Notebook/Styles/calendarStyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.02977233">
+            <state vertical-scroll-proportion="0.0">
               <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
               <folding />
             </state>
@@ -68,11 +63,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calendar.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="calendar.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/calendar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="130" column="55" selection-start-line="130" selection-start-column="34" selection-end-line="130" selection-end-column="55" />
+            <state vertical-scroll-proportion="-0.35726795">
+              <caret line="159" column="34" selection-start-line="159" selection-start-column="34" selection-end-line="159" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -83,11 +78,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="105" column="41" selection-start-line="105" selection-start-column="41" selection-end-line="105" selection-end-column="41" />
-              <folding>
-                <element signature="n#!!block;n#generateMeetingNoteExternal#0" expanded="false" />
-                <element signature="n#!!block;n#generateBankNoteExternal#0" expanded="false" />
-                <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -129,8 +120,8 @@
         <option value="$PROJECT_DIR$/Notebook/Styles/main.css" />
         <option value="$PROJECT_DIR$/Notebook/index.html" />
         <option value="$PROJECT_DIR$/Notebook/CustomScripts/uiController.js" />
-        <option value="$PROJECT_DIR$/Notebook/CustomScripts/calendar.js" />
         <option value="$PROJECT_DIR$/Notebook/Styles/calendarStyle.css" />
+        <option value="$PROJECT_DIR$/Notebook/CustomScripts/calendar.js" />
       </list>
     </option>
   </component>
@@ -406,11 +397,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="41" selection-start-line="105" selection-start-column="41" selection-end-line="105" selection-end-column="41" />
-          <folding>
-            <element signature="n#!!block;n#generateMeetingNoteExternal#0" expanded="false" />
-            <element signature="n#!!block;n#generateBankNoteExternal#0" expanded="false" />
-            <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -468,11 +455,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#generateMeetingNoteExternal#0" expanded="false" />
-            <element signature="n#!!block;n#generateBankNoteExternal#0" expanded="false" />
-            <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -541,11 +524,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="41" selection-start-line="105" selection-start-column="41" selection-end-line="105" selection-end-column="41" />
-          <folding>
-            <element signature="n#!!block;n#generateMeetingNoteExternal#0" expanded="false" />
-            <element signature="n#!!block;n#generateBankNoteExternal#0" expanded="false" />
-            <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -583,18 +562,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/calendar.js">
+    <entry file="file://$PROJECT_DIR$/Notebook/Styles/calendarStyle.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="130" column="55" selection-start-line="130" selection-start-column="34" selection-end-line="130" selection-end-column="55" />
+          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Notebook/Styles/calendarStyle.css">
+    <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/calendar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.02977233">
-          <caret line="1" column="43" selection-start-line="1" selection-start-column="43" selection-end-line="1" selection-end-column="43" />
+        <state vertical-scroll-proportion="-0.35726795">
+          <caret line="159" column="34" selection-start-line="159" selection-start-column="34" selection-end-line="159" selection-end-column="34" />
           <folding />
         </state>
       </provider>
