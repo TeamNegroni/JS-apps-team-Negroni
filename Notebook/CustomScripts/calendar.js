@@ -92,10 +92,28 @@
                 goToMonth;
             if ($clickedDay.hasClass('current-month')) {
                 date = new Date(date.getFullYear(), date.getMonth(), clickedDay);
-                console.log(date);
+                //console.log(date);
                 // !!! Add connection to the server about the date info, use date variable,
                 // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
+
+                var parsedDate = date.toDateString();
+                console.log('calendar date '+parsedDate);
+                var shortDate = parsedDate.substring(4, 16);
+                console.log('short calendar date ' + shortDate);
+
                 closeCalendar();
+                $('.note').each( function(a) {a.remove()})
+                var loggedInUser =  Parse.User.current();
+                var collection = loggedInUser.get('dataStored');
+                for (var i = 1; i <= collection.length; i++){
+                    var Note = Parse.Object.extend("Note");
+                    var query = new Parse.Query(Note);
+                    var today = new Date();
+                    queryObjects(query, collection[i - 1].id, shortDate);
+                }
+
+
+
             } else {
                 if (clickedDay >= 15) {
                     goToMonth = date.getMonth() - 1;

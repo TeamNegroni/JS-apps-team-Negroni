@@ -18,6 +18,7 @@ var $logOut = $('#logOutButton');
 var $invalidPassword = $('<div/>').html('Invalid password');
 
 var $iconSave = $('span.glyphicon.glyphicon-ok')
+var counter = 0;
 
 $register.on('click', function(ev) {
     var $this = $(this);
@@ -78,51 +79,26 @@ $signInButton.on('click', function(ev) {
             success: function(user) {
                 saveCurrentUserSession($signInFieldUsername.val());
                 displayData();
-                var counter = 0;
+
                 //console.log(user.get('username'));
                 var collection = user.get('dataStored');
                 for (var i = 1; i <= collection.length; i++){
                     var Note = Parse.Object.extend("Note");
-                    var issueQuery = new Parse.Query(Note);
-                    queryObjects(issueQuery, collection[i - 1].id);
+                    var query = new Parse.Query(Note);
+                    var today = new Date()
+                    var todayParsed = today.toDateString();
+                    console.log('note calendar date '+todayParsed);
+                    var todayShort = todayParsed.substring(4, 16);
+                    console.log('note short calendar date '+todayShort);
+                    $('.note').each( function() {$(this).remove()})
+                    queryObjects(query, collection[i - 1].id, todayShort);
 
-                    //var MeetingNote = Parse.Object.extend("MeetingNote");
-                    //var meetingQuery = new Parse.Query(MeetingNote);
-                    //queryObjects(meetingQuery, collection[i - 1].id);
-                    //
-                    //var BankNote = Parse.Object.extend("BankNote");
-                    //var bankQuery = new Parse.Query(BankNote);
-                    //queryObjects(bankQuery, collection[i - 1].id);
                 }
 
                 // var compoundQuery = Parse.Query.or(issueQuery, meetingQuery);
                 // compoundQuery.equalTo("user", Parse.User.current());
 
-                function queryObjects(currentQuery, queryId) {
-                    currentQuery.get(queryId,{
-                        success: function (note) {
-                            var issue = note.get('issue');
-                            var place = note.get('place');
-                            var amount = note.get('amount');
-                            counter++;
-                            console.log(counter);
-                            if (issue != undefined) {
-                                generateIssueNoteExternal(queryId);
-                                generatePreviouslyCreatedIssues(note, counter);
-                            } else if (place != undefined){
-                                generateMeetingNoteExternal(queryId);
-                                generatePreviouslyCreatedMeetings(note, counter);
-                            }else if (amount != undefined){
-                                generateBankNoteExternal(queryId);
-                                generatePreviouslyCreatedBanks(note, counter);
-                            }
-                        },
-                        error: function (object, error) {
-                            // The object was not retrieved successfully.
-                            // error is a Parse.Error with an error code and message.
-                        }
-                    });
-                }
+
 
 
 
@@ -163,6 +139,40 @@ $signInButton.on('click', function(ev) {
         console.log(loggedInUser.get("username"));
     }
 });
+
+function queryObjects(currentQuery, queryId, day) {
+    currentQuery.get(queryId,{
+        success: function (note) {
+            var issue = note.get('issue');
+            var place = note.get('place');
+            var amount = note.get('amount');
+            counter++;
+
+            var noteDate = note.createdAt
+            var noteParsedCreatedDate = noteDate.toDateString();
+            console.log('note calendar date '+noteParsedCreatedDate);
+            var noteShortCreatedDate = noteParsedCreatedDate.substring(4, 16);
+            console.log('note short calendar date '+noteShortCreatedDate);
+            console.log(counter);
+            if (noteShortCreatedDate === day) {
+                if (issue != undefined) {
+                    generateIssueNoteExternal(queryId);
+                    generatePreviouslyCreatedIssues(note, counter);
+                } else if (place != undefined) {
+                    generateMeetingNoteExternal(queryId);
+                    generatePreviouslyCreatedMeetings(note, counter);
+                } else if (amount != undefined) {
+                    generateBankNoteExternal(queryId);
+                    generatePreviouslyCreatedBanks(note, counter);
+                }
+            }
+        },
+        error: function (object, error) {
+            // The object was not retrieved successfully.
+            // error is a Parse.Error with an error code and message.
+        }
+    });
+}
 
 $logOut.on('click', function(ev) {
     Parse.User.logOut();
