@@ -605,7 +605,8 @@ function deleteNote($newPiece) {
     var currentUser = Parse.User.current();
     var searchedId = $newPiece.attr('data-id');
     var collection = currentUser.get('dataStored');
-    currentUser.unset('dataStored');
+    currentUser.set("dataStored", []);
+    currentUser.save();
     for (var i = 0; i < collection.length; i++) {
         if (collection[i].id != searchedId) {
             var Note = Parse.Object.extend("Note");
@@ -621,7 +622,5 @@ function deleteNote($newPiece) {
             });
         }
     }
-
-
 }
 
