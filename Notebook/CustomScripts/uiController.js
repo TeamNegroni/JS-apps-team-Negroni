@@ -15,6 +15,7 @@ var $calendarViewer = $('.calendar-viewer');
 var $calendar = $('#calendar');
 var $calendarBlurrer = $('#calendar-blurrer');
 var $loginWrapper = $('#login-wrapper');
+var $logoutBtn = $('#logOutButton');
 
 //Controlling the date at the UI Pannel
 $currentDateController.attr('placeholder', currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear());
@@ -50,7 +51,6 @@ function GetSelectedText() {
     if (window.getSelection) {  // all browsers, except IE before version 9
         if (document.activeElement &&
             (document.activeElement.tagName.toLowerCase() == "textarea")) {
-            var text = document.activeElement.value;
             var text = document.activeElement.value;
             selText = text.substring(document.activeElement.selectionStart,
                 document.activeElement.selectionEnd);
@@ -90,7 +90,8 @@ function displayData() {
         $loginWrapper.css('display', 'none');
         $('#ui-wrapper').fadeIn(1500); // MIGHT NOT WORK PROPERLY, IF SO DO IT WITH $loginWrapper.fadeIn(500)
         $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));
-        $logOut.fadeIn(1000)
+        $logOut.fadeIn(1000);
+        $logoutBtn.fadeIn(1000);
     }
 }
 
@@ -120,7 +121,7 @@ $calendarViewer.on('click', function () {
 });
 
 function blurBackground(fromRadius,toRadius,whatToBlur) {
-    debugger;
+    //debugger;
     whatToBlur = whatToBlur || '#background-image';
     setTimeout(function () {
         $({blurRadius: fromRadius}).animate({blurRadius: toRadius}, {
