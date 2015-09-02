@@ -96,8 +96,8 @@ function generateIssueNoteExternal(id) {
     });
 
     $newPiece.append($iconRemove);
-    $newPiece.append(noteBody);
-    $newPiece.append($iconSave);
+    //$newPiece.append(noteBody);
+    //$newPiece.append($iconSave);
     $newPiece.hide();
     $newPiece.insertBefore('#gridAdder');
     $newPiece.show(500);
@@ -173,8 +173,8 @@ function generateMeetingNoteExternal(id) {
 
 
     $newPiece.append($iconRemove);
-    $newPiece.append(noteBody);
-    $newPiece.append($iconSave);
+    //$newPiece.append(noteBody);
+    //$newPiece.append($iconSave);
     $newPiece.hide();
     $newPiece.insertBefore('#gridAdder');
     $newPiece.show(500);
@@ -193,7 +193,7 @@ function generateBankNoteExternal(id) {
     noteBody.append(bankSpecs);
 
     $iconRemove.on('click', function () {
-        deleteNote($newPiece)
+        deleteNote($newPiece);
         $(this).parent().fadeOut(300, function () {
             $(this).remove();
         });
@@ -244,8 +244,8 @@ function generateBankNoteExternal(id) {
     });
 
     $newPiece.append($iconRemove);
-    $newPiece.append(noteBody);
-    $newPiece.append($iconSave);
+    //$newPiece.append(noteBody);
+    //$newPiece.append($iconSave);
     $newPiece.hide();
     $newPiece.insertBefore('#gridAdder');
     $newPiece.show(500);
@@ -375,6 +375,10 @@ $inputTypeIssueNote.on('click', function () {
          var $content = $note.find('.note-content');
          var $issue = $note.find('.note-issue');
 
+         noteBody.remove();
+         issueSpecs.remove();
+         $iconSave.hide();
+
          ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
          ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
          ($('<div/>')).addClass('note-issue-text').html('Issue:' + $issue.val()).insertBefore($this);
@@ -425,7 +429,7 @@ $inputTypeIssueNote.on('click', function () {
      $inputTypes.hide(200);
      $adderSign.show(200);
  });
-
+    
 $inputTypeMeetingNote.on('click', function () {
     var $newPiece = $('<li/>');
     var noteBody = generateNoteDiv(index);
@@ -451,6 +455,10 @@ $inputTypeMeetingNote.on('click', function () {
         var $content = $note.find('.note-content');
         var $place = $note.find('.meeting-place');
         var $date = $note.find('.meeting-date');
+
+        noteBody.remove();
+        meetingSpecs.remove();
+        $iconSave.hide();
 
         ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
         ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
@@ -517,7 +525,7 @@ $inputTypeBankNote.on('click', function () {
     noteBody.append(bankSpecs);
 
     $iconRemove.on('click', function () {
-        deleteNote($newPiece)
+        deleteNote($newPiece);
         $(this).parent().fadeOut(300, function () { $(this).remove(); });
     });
 
@@ -527,6 +535,10 @@ $inputTypeBankNote.on('click', function () {
         var $title = $note.find('.note-title');
         var $content = $note.find('.note-content');
         var $amount = $note.find('.bank-note-amount');
+
+        noteBody.remove();
+        bankSpecs.remove();
+        $iconSave.hide();
 
         ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
         ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
