@@ -9,9 +9,9 @@ var WINDOW_WIDTH = window.innerWidth;
 var WRAPPER_HEIGHT = $container.css('height');
 var $calendarViewButton = $('#calendar-view-button');
 var $calendar = $('#calendar');
-var $calendarBlurrer = $('#calendar-blurrer');
 var $loginWrapper = $('#login-wrapper');
 var $controls = $('#controls');
+var $uiWrapper = $('#ui-wrapper');
 
 //Control selection menu
 function GetSelectedText() {
@@ -50,6 +50,7 @@ function displayData() {
     var $nameTitle = $('#nameTitle');
 
     if (sessionStorage.getItem('sessionUser') === null) {
+        $uiWrapper.fadeOut(1000);
         $loginWrapper.fadeIn(1500);
         setTimeout(function () {
             blurBackground(0, 15)
@@ -57,7 +58,7 @@ function displayData() {
     }
     else {
         $loginWrapper.fadeOut(500);
-        $('#ui-wrapper').css('display', 'inline-block');
+        $uiWrapper.css('display', 'inline-block');
         //blurBackground(0,15);
         $controls.fadeIn(500);
         $('#input-wrapper').fadeIn(1700); // MIGHT NOT WORK PROPERLY, IF SO DO IT WITH $loginWrapper.fadeIn(500)
@@ -67,7 +68,7 @@ function displayData() {
 
 //Control calendar-viewer
 $calendarViewButton.on('click', function () {
-    $('#ui-wrapper').animate({
+    $uiWrapper.animate({
         display: 'none'
     }, 500);
     blurBackground(0, 5); // BLURRS THE BACKGROUND IMAGE

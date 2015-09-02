@@ -178,7 +178,6 @@ $logOut.on('click', function(ev) {
     Parse.User.logOut();
     sessionStorage.clear();
     displayData();
-    window.location.reload(true);
 });
 
 $signUpBackToSignInButton.on('click', function(ev) {

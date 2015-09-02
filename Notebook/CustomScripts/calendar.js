@@ -180,7 +180,7 @@
             $('#calendar-blurrer').css('display','none');
             blurBackground(5, 0);
             blurBackground(20, 0, '#ui-wrapper');
-            $('#ui-wrapper').css('display', 'block');
+            $uiWrapper.css('display', 'block');
             $('#logOut').css('display', 'block');
             date = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate());
             setTimeout(function () {
