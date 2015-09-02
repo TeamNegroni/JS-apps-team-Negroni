@@ -112,8 +112,8 @@ function generateMeetingNoteExternal(id) {
     var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
     var meetingSpecs = $('<div/>').html('<div class="input-group-addon">Place</div>' +
                          '<input type="text" class="form-control meeting-place" placeholder="Place">' +
-                         '<div class="input-group-addon">Date</div>' +
-                         '<input type="text" class="form-control meeting-date" id="datepicker" placeholder="">');
+                         '<div class="input-group-addon">Hour</div>' +
+                         '<input type="text" class="form-control meeting-hour" id="datepicker" placeholder="">');
 
     noteBody.append(meetingSpecs);
 
@@ -130,14 +130,14 @@ function generateMeetingNoteExternal(id) {
         var $title = $note.find('.note-title');
         var $content = $note.find('.note-content');
         var $place = $note.find('.meeting-place');
-        var $date = $note.find('.meeting-date');
+        var $hour = $note.find('.meeting-hour');
 
         ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
         ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
         ($('<div/>')).addClass('meeting-place-text').html('Place:' + $place.val()).insertBefore($this);
-        ($('<div/>')).addClass('meeting-date-text').html('Date:' + $date.val()).insertBefore($this);
+        ($('<div/>')).addClass('meeting-hour-text').html('Hour:' + $hour.val()).insertBefore($this);
 
-        var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $date.val());
+        var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $hour.val());
         var user = Parse.User.current();
         var Note = Parse.Object.extend("Note");
         var storedNote = new Note({
@@ -145,7 +145,7 @@ function generateMeetingNoteExternal(id) {
             title: MyMeetingNote.title,
             content: MyMeetingNote.content,
             place: MyMeetingNote.place,
-            date: MyMeetingNote.date,
+            hour: MyMeetingNote.hour,
             user: user
         });
 
@@ -267,7 +267,7 @@ function generatePreviouslyCreatedMeetings(existingMeetingNote, count) {
     ($('<div/>')).addClass('note-title-text').html('Title:' + existingMeetingNote.get('title')).appendTo($parent);
     ($('<div/>')).addClass('note-content-text').html('Content:' + existingMeetingNote.get('content')).appendTo($parent);
     ($('<div/>')).addClass('meeting-place-text').html('Place:' + existingMeetingNote.get('place')).appendTo($parent);
-    ($('<div/>')).addClass('meeting-date-text').html('Date:' + existingMeetingNote.get('date')).appendTo($parent);
+    ($('<div/>')).addClass('meeting-hour-text').html('Hour:' + existingMeetingNote.get('hour')).appendTo($parent);
 }
 
 function generatePreviouslyCreatedBanks(existingBankNote, count) {
@@ -438,8 +438,8 @@ $inputTypeMeetingNote.on('click', function () {
     var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
     var meetingSpecs = $('<div/>').html('<div class="input-group-addon">Place</div>' +
     '<input type="text" class="form-control meeting-place" placeholder="Place">' +
-    '<div class="input-group-addon">Date</div>' +
-    '<input type="text" class="form-control meeting-date" id="datepicker" placeholder="">');
+    '<div class="input-group-addon">Hour</div>' +
+    '<input type="text" class="form-control meeting-hour" id="datepicker" placeholder="">');
 
     noteBody.append(meetingSpecs);
 
@@ -454,7 +454,7 @@ $inputTypeMeetingNote.on('click', function () {
         var $title = $note.find('.note-title');
         var $content = $note.find('.note-content');
         var $place = $note.find('.meeting-place');
-        var $date = $note.find('.meeting-date');
+        var $hour = $note.find('.meeting-hour');
 
         noteBody.remove();
         meetingSpecs.remove();
@@ -463,9 +463,9 @@ $inputTypeMeetingNote.on('click', function () {
         ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
         ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
         ($('<div/>')).addClass('meeting-place-text').html('Place:' + $place.val()).insertBefore($this);
-        ($('<div/>')).addClass('meeting-date-text').html('Date:' + $date.val()).insertBefore($this);
+        ($('<div/>')).addClass('meeting-hour-text').html('Hour:' + $hour.val()).insertBefore($this);
 
-        var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $date.val());
+        var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $hour.val());
         var user = Parse.User.current();
         var Note = Parse.Object.extend("Note");
         var storedNote = new Note({
@@ -473,7 +473,7 @@ $inputTypeMeetingNote.on('click', function () {
             title: MyMeetingNote.title,
             content: MyMeetingNote.content,
             place: MyMeetingNote.place,
-            date: MyMeetingNote.date,
+            hour: MyMeetingNote.hour,
             user: user
         });
 
