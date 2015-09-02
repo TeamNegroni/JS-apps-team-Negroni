@@ -1,48 +1,17 @@
 ﻿var $container = $('#container');
-var $datePicker = $("#date-picker");
-var $currentDateController = $("#current-date");
 var currentDate = new Date();
 var $dateControllerCheckbox = $('#date-controller-checkbox');
 var $draggableComponents = $('.draggable-component');
 var $draggablesShowBorder = $('#draggables-show-border');
 var $inputAttribute = $('.input-attribute');
 var $gridAdder = $('#gridAdder');
-var $editControllerCheckbox = $('#edit-controller');
 var WINDOW_WIDTH = window.innerWidth;
 var WRAPPER_HEIGHT = $container.css('height');
-var $calendarViewer = $('.calendar-viewer');
+var $calendarViewButton = $('#calendar-view-button');
 var $calendar = $('#calendar');
 var $calendarBlurrer = $('#calendar-blurrer');
 var $loginWrapper = $('#login-wrapper');
 var $controls = $('#controls');
-
-//Controlling the date at the UI Pannel
-$currentDateController.attr('placeholder', currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear());
-
-//Initiate datepicker
-$(function () {
-    $datePicker.datepicker();
-});
-
-//Change UI date of the note options
-$dateControllerCheckbox.change(function () {
-    if ($(this).is(':checked')) {
-        $currentDateController.hide();
-        $datePicker.show();
-    } else {
-        $currentDateController.show();
-        $datePicker.hide();
-    }
-});
-
-//Change modes from VIEW to EDIT
-$editControllerCheckbox.change(function () {
-    if ($(this).is(':checked')) {
-        $gridAdder.hide(200);
-    } else {
-        $gridAdder.show(200);
-    }
-});
 
 //Control selection menu
 function GetSelectedText() {
@@ -79,33 +48,35 @@ function activateInputAttributes() {
 
 function displayData() {
     var $nameTitle = $('#nameTitle');
-    $controls = $('#controls');
 
     if (sessionStorage.getItem('sessionUser') === null) {
-        blurBackground(0,15);
         $loginWrapper.fadeIn(1500);
+        setTimeout(function () {
+            blurBackground(0, 15)
+        }, 600);
     }
     else {
-        $loginWrapper.css('display', 'none');
-        $('#ui-wrapper').css('display','inline-block');
+        $loginWrapper.fadeOut(500);
+        $('#ui-wrapper').css('display', 'inline-block');
+        //blurBackground(0,15);
+        $controls.fadeIn(500);
         $('#input-wrapper').fadeIn(1700); // MIGHT NOT WORK PROPERLY, IF SO DO IT WITH $loginWrapper.fadeIn(500)
         $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));
-        $controls.fadeIn(500);
     }
 }
 
 //Control calendar-viewer
-$calendarViewer.on('click', function () {
+$calendarViewButton.on('click', function () {
     $('#ui-wrapper').animate({
         display: 'none'
     }, 500);
-    blurBackground(0,5); // BLURRS THE BACKGROUND IMAGE
-    blurBackground(0,20,'#ui-wrapper');
-    $('#calendar-blurrer').css('display','block');
+    blurBackground(0, 5); // BLURRS THE BACKGROUND IMAGE
+    blurBackground(0, 20, '#ui-wrapper');
+    $('#calendar-blurrer').css('display', 'block');
     $calendar.show(500);
 });
 
-function blurBackground(fromRadius,toRadius,whatToBlur) {
+function blurBackground(fromRadius, toRadius, whatToBlur) {
     //debugger;
     whatToBlur = whatToBlur || '#background-image';
     setTimeout(function () {
