@@ -20,7 +20,7 @@ var $invalidPassword = $('<div/>').html('Invalid password');
 var $iconSave = $('span.glyphicon.glyphicon-ok')
 var counter = 0;
 
-$register.on('click', function(ev) {
+$register.on('click', function (ev) {
     var $this = $(this);
     var $formSignin = $('.form-sign-in');
     var $formSignUp = $('.form-sign-up');
@@ -29,7 +29,7 @@ $register.on('click', function(ev) {
     $this.css('display', 'none');
 });
 
-$signUpButton.on('click', function(event) {
+$signUpButton.on('click', function (event) {
     event.preventDefault();
     var loggedInUser = Parse.User.current();
     Parse.User.logOut();
@@ -47,10 +47,7 @@ $signUpButton.on('click', function(event) {
         user.signUp(null, {
             success: function (user) {
                 saveCurrentUserSession($signUpFieldUsername.val());
-                //$nameTitle.html('Logged in as ' + $signUpFieldUsername.val());
                 $invalidPassword.detach();
-                //$container.prepend($logOut);
-                //$container.prepend($nameTitle);
                 displayData();
             },
             error: function (user, error) {
@@ -65,41 +62,38 @@ $signUpButton.on('click', function(event) {
     }
 });
 
-$signInButton.on('click', function(ev) {
+$signInButton.on('click', function (ev) {
     event.preventDefault();
     var $this = $(this);
-
-    var $formSignin = $('.form-sign-in');
     var loggedInUser = Parse.User.current();
     Parse.User.logOut();
+    loggedInUser = Parse.User.current();
 
-    loggedInUser =  Parse.User.current();
-    if(!loggedInUser){
+    if (!loggedInUser) {
         Parse.User.logIn($signInFieldUsername.val(), $signInFieldPassword.val(), {
-            success: function(user) {
+            success: function (user) {
                 saveCurrentUserSession($signInFieldUsername.val());
                 displayData();
 
                 //console.log(user.get('username'));
                 var collection = user.get('dataStored');
-                for (var i = 1; i <= collection.length; i++){
+                for (var i = 1; i <= collection.length; i++) {
                     var Note = Parse.Object.extend("Note");
                     var query = new Parse.Query(Note);
-                    var today = new Date()
+                    var today = new Date();
                     var todayParsed = today.toDateString();
-                    console.log('note calendar date '+todayParsed);
+                    console.log('note calendar date ' + todayParsed);
                     var todayShort = todayParsed.substring(4, 16);
-                    console.log('note short calendar date '+todayShort);
-                    $('.note').each( function() {$(this).remove()})
-                    queryObjects(query, collection[i - 1].id, todayShort);
+                    console.log('note short calendar date ' + todayShort);
 
+                    $('.note').each(function () {
+                        $(this).remove()
+                    });
+                    queryObjects(query, collection[i - 1].id, todayShort);
                 }
 
                 // var compoundQuery = Parse.Query.or(issueQuery, meetingQuery);
                 // compoundQuery.equalTo("user", Parse.User.current());
-
-
-
 
 
                 //function queryObjects(currentQuery, queryId) {
@@ -131,7 +125,7 @@ $signInButton.on('click', function(ev) {
                 //}
 
             },
-            error: function(user, error) {
+            error: function (user, error) {
                 alert("Error: " + error.code + " " + error.message);
             }
         });
@@ -140,8 +134,27 @@ $signInButton.on('click', function(ev) {
     }
 });
 
+$logOut.on('click', function (ev) {
+    Parse.User.logOut();
+    sessionStorage.clear();
+    displayData();
+});
+
+// TODO: Add transitions, make it smooth
+$signUpBackToSignInButton.on('click', function (ev) {
+    var $formSignin = $('.form-sign-in');
+    $invalidPassword.detach();
+    $formSignUp.css('display', 'none');
+    $register.css('display', 'none');
+    $textSignUp.css('display', 'none');
+    $formSignin.css('display', 'inline-block');
+    $signInButton.css('display', 'inline-block');
+    $register.css('display', 'inline-block');
+});
+
+
 function queryObjects(currentQuery, queryId, day) {
-    currentQuery.get(queryId,{
+    currentQuery.get(queryId, {
         success: function (note) {
             var issue = note.get('issue');
             var place = note.get('place');
@@ -150,9 +163,9 @@ function queryObjects(currentQuery, queryId, day) {
 
             var noteDate = note.createdAt
             var noteParsedCreatedDate = noteDate.toDateString();
-            console.log('note calendar date '+noteParsedCreatedDate);
+            console.log('note calendar date ' + noteParsedCreatedDate);
             var noteShortCreatedDate = noteParsedCreatedDate.substring(4, 16);
-            console.log('note short calendar date '+noteShortCreatedDate);
+            console.log('note short calendar date ' + noteShortCreatedDate);
             console.log(counter);
             if (noteShortCreatedDate === day) {
                 if (issue != undefined) {
@@ -174,25 +187,8 @@ function queryObjects(currentQuery, queryId, day) {
     });
 }
 
-$logOut.on('click', function(ev) {
-    Parse.User.logOut();
-    sessionStorage.clear();
-    displayData();
-});
-
-$signUpBackToSignInButton.on('click', function(ev) {
-    var $formSignin = $('.form-sign-in');
-    $invalidPassword.detach();
-    $formSignUp.css('display', 'none');
-    $register.css('display','none');
-    $textSignUp.css('display', 'none');
-    $formSignin.css('display', 'inline-block');
-    $signInButton.css('display', 'inline-block');
-    $register.css('display','inline-block');
-});
-
-function saveCurrentUserSession(username){
-    if(typeof username === 'undefined' || username === null){
+function saveCurrentUserSession(username) {
+    if (typeof username === 'undefined' || username === null) {
         throw new Error('Incorrect username!');
     }
 

@@ -13,6 +13,17 @@ var $loginWrapper = $('#login-wrapper');
 var $controls = $('#controls');
 var $uiWrapper = $('#ui-wrapper');
 
+//Control calendar-viewer
+$calendarViewButton.on('click', function () {
+    $uiWrapper.animate({
+        display: 'none'
+    }, 500);
+    blurBackground(0, 5); // BLURRS THE BACKGROUND IMAGE
+    blurBackground(0, 20, '#ui-wrapper');
+    $('#calendar-blurrer').css('display', 'block');
+    $calendar.show(500);
+});
+
 //Control selection menu
 function GetSelectedText() {
     var selText = "";
@@ -50,35 +61,26 @@ function displayData() {
     var $nameTitle = $('#nameTitle');
 
     if (sessionStorage.getItem('sessionUser') === null) {
-        $uiWrapper.fadeOut(1000);
+        $uiWrapper.fadeOut(500);
         $loginWrapper.fadeIn(1500);
         setTimeout(function () {
             blurBackground(0, 15)
-        }, 600);
+        }, 400);
     }
     else {
         $loginWrapper.fadeOut(500);
         $uiWrapper.css('display', 'inline-block');
-        //blurBackground(0,15);
+        if (sessionStorage.getItem('sessionUserAlreadyLoggedIn') === null) {
+            blurBackground(15,0);
+            sessionStorage.setItem('sessionUserAlreadyLoggedIn', 'true');
+        }
         $controls.fadeIn(500);
         $('#input-wrapper').fadeIn(1700); // MIGHT NOT WORK PROPERLY, IF SO DO IT WITH $loginWrapper.fadeIn(500)
         $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));
     }
 }
 
-//Control calendar-viewer
-$calendarViewButton.on('click', function () {
-    $uiWrapper.animate({
-        display: 'none'
-    }, 500);
-    blurBackground(0, 5); // BLURRS THE BACKGROUND IMAGE
-    blurBackground(0, 20, '#ui-wrapper');
-    $('#calendar-blurrer').css('display', 'block');
-    $calendar.show(500);
-});
-
 function blurBackground(fromRadius, toRadius, whatToBlur) {
-    //debugger;
     whatToBlur = whatToBlur || '#background-image';
     setTimeout(function () {
         $({blurRadius: fromRadius}).animate({blurRadius: toRadius}, {
