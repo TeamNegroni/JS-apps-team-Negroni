@@ -1,4 +1,8 @@
 ﻿/*Login div preset styles*/
+body {
+    background-color: black;
+}
+
 #background-image {
     position: absolute;
     top: 0;

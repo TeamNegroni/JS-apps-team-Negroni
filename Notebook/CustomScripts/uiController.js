@@ -121,7 +121,7 @@ $calendarViewer.on('click', function () {
 function blurBackground(fromRadius,toRadius) {
     setTimeout(function () {
         $({blurRadius: fromRadius}).animate({blurRadius: toRadius}, {
-            duration: 200,
+            duration: 700,
             easing: 'swing', // CAN BE CHANGED
             step: function () {
                 $('#background-image').css({
