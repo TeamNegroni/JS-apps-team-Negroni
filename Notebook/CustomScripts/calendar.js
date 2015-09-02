@@ -93,23 +93,24 @@
             if ($clickedDay.hasClass('current-month')) {
                 date = new Date(date.getFullYear(), date.getMonth(), clickedDay);
                 //console.log(date);
-                // !!! Add connection to the server about the date info, use date variable,
-                // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
+                //!!! Add connection to the server about the date info, use date variable,
+                //!!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
 
                 var parsedDate = date.toDateString();
-                console.log('calendar date '+parsedDate);
                 var shortDate = parsedDate.substring(4, 16);
-                console.log('short calendar date ' + shortDate);
+
+                localStorage.setItem('date', date);
 
                 closeCalendar();
-                $('.note').each( function(a) {a.remove()})
+                var $allPreviousElements = $('#gridAdder').prevAll();
+                $allPreviousElements.remove();
                 var loggedInUser =  Parse.User.current();
                 var collection = loggedInUser.get('dataStored');
                 for (var i = 1; i <= collection.length; i++){
                     var Note = Parse.Object.extend("Note");
                     var query = new Parse.Query(Note);
                     var today = new Date();
-                    queryObjects(query, collection[i - 1].id, shortDate);
+                    queryObjects(query, collection[i - 1].id);
                 }
 
 
@@ -159,7 +160,7 @@
             .addClass('current-date');
         $currentDateLink.html('Today');
         $currentDateLink.on('click', function () {
-            console.log(todaysDate);
+            // console.log(todaysDate);
             date = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate());
 
             // !!! Add connection to the server about the todaysDate info, use todaysDate variable,

@@ -39,6 +39,8 @@ $signUpButton.on('click', function (event) {
     var user = new Parse.User();
     var init = $signUpFieldPasswordInitial.val();
     var confirmed = $signUpFieldPasswordConfirmed.val();
+    var today = new Date();
+    localStorage.setItem('date', today);
     if (init == confirmed) {
         user.set("username", $signUpFieldUsername.val());
         user.set("password", $signUpFieldPasswordInitial.val());
@@ -67,8 +69,9 @@ $signInButton.on('click', function (ev) {
     var $this = $(this);
     var loggedInUser = Parse.User.current();
     Parse.User.logOut();
+    var today = new Date();
+    localStorage.setItem('date', today);
     loggedInUser = Parse.User.current();
-
     if (!loggedInUser) {
         Parse.User.logIn($signInFieldUsername.val(), $signInFieldPassword.val(), {
             success: function (user) {
@@ -80,16 +83,7 @@ $signInButton.on('click', function (ev) {
                 for (var i = 1; i <= collection.length; i++) {
                     var Note = Parse.Object.extend("Note");
                     var query = new Parse.Query(Note);
-                    var today = new Date();
-                    var todayParsed = today.toDateString();
-                    console.log('note calendar date ' + todayParsed);
-                    var todayShort = todayParsed.substring(4, 16);
-                    console.log('note short calendar date ' + todayShort);
-
-                    $('.note').each(function () {
-                        $(this).remove()
-                    });
-                    queryObjects(query, collection[i - 1].id, todayShort);
+                    queryObjects(query, collection[i - 1].id);
                 }
 
                 // var compoundQuery = Parse.Query.or(issueQuery, meetingQuery);
@@ -138,6 +132,7 @@ $logOut.on('click', function (ev) {
     Parse.User.logOut();
     sessionStorage.clear();
     displayData();
+    window.location.reload(true);
 });
 
 // TODO: Add transitions, make it smooth
@@ -153,30 +148,29 @@ $signUpBackToSignInButton.on('click', function (ev) {
 });
 
 
-function queryObjects(currentQuery, queryId, day) {
+function queryObjects(currentQuery, queryId) {
     currentQuery.get(queryId, {
         success: function (note) {
             var issue = note.get('issue');
             var place = note.get('place');
             var amount = note.get('amount');
-            counter++;
+            var noteDayOfCreation = note.get('noteDayOfCreation');
+            var shortParsedNoteDayOfCreation = noteDayOfCreation.substring(4, 16);
 
-            var noteDate = note.createdAt
-            var noteParsedCreatedDate = noteDate.toDateString();
-            console.log('note calendar date ' + noteParsedCreatedDate);
-            var noteShortCreatedDate = noteParsedCreatedDate.substring(4, 16);
-            console.log('note short calendar date ' + noteShortCreatedDate);
-            console.log(counter);
-            if (noteShortCreatedDate === day) {
+            var storageDay = localStorage.getItem('date');
+            var shortStorageDay = storageDay.substring(4, 16);
+
+            // console.log('note calendar date ' + noteDayOfCreation);
+            if (shortParsedNoteDayOfCreation === shortStorageDay) {
                 if (issue != undefined) {
-                    generateIssueNoteExternal(queryId);
-                    generatePreviouslyCreatedIssues(note, counter);
+                    generateIssueNoteExternal(queryId, shortParsedNoteDayOfCreation);
+                    generatePreviouslyCreatedIssues(note);
                 } else if (place != undefined) {
-                    generateMeetingNoteExternal(queryId);
-                    generatePreviouslyCreatedMeetings(note, counter);
+                    generateMeetingNoteExternal(queryId, shortParsedNoteDayOfCreation);
+                    generatePreviouslyCreatedMeetings(note);
                 } else if (amount != undefined) {
-                    generateBankNoteExternal(queryId);
-                    generatePreviouslyCreatedBanks(note, counter);
+                    generateBankNoteExternal(queryId, shortParsedNoteDayOfCreation);
+                    generatePreviouslyCreatedBanks(note);
                 }
             }
         },
