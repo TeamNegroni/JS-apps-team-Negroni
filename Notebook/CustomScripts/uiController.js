@@ -15,7 +15,7 @@ var $calendarViewer = $('.calendar-viewer');
 var $calendar = $('#calendar');
 var $calendarBlurrer = $('#calendar-blurrer');
 var $loginWrapper = $('#login-wrapper');
-var $logoutBtn = $('#logOutButton');
+var $controls = $('#controls');
 
 //Controlling the date at the UI Pannel
 $currentDateController.attr('placeholder', currentDate.getDate() + "/" + currentDate.getMonth() + "/" + currentDate.getFullYear());
@@ -80,7 +80,7 @@ function activateInputAttributes() {
 
 function displayData() {
     var $nameTitle = $('#nameTitle');
-    $logOut = $('#logOut');
+    $controls = $('#controls');
 
     if (sessionStorage.getItem('sessionUser') === null) {
         blurBackground(0,15);
@@ -88,10 +88,10 @@ function displayData() {
     }
     else {
         $loginWrapper.css('display', 'none');
-        $('#ui-wrapper').fadeIn(1500); // MIGHT NOT WORK PROPERLY, IF SO DO IT WITH $loginWrapper.fadeIn(500)
+        $('#ui-wrapper').css('display','inline-block');
+        $('#input-wrapper').fadeIn(1700); // MIGHT NOT WORK PROPERLY, IF SO DO IT WITH $loginWrapper.fadeIn(500)
         $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));
-        $logOut.fadeIn(1000);
-        $logoutBtn.fadeIn(1000);
+        $controls.fadeIn(500);
     }
 }
 
@@ -101,23 +101,12 @@ $calendarViewer.on('click', function () {
     $('#ui-wrapper').animate({
         display: 'none'
     }, 500);
-    $logOut.animate({
+    $controls.animate({
         display: 'none'
     }, 500);
     // blurBackground(0,15); BLURRS THE BACKGROUND IMAGE
     blurBackground(0,20,'#ui-wrapper');
     $calendar.show(500);
-    /*
-     $calendarBlurrer.css({
-     'display': 'block',
-     'width': '1315',
-     'height': '643',
-     'position':'absolute',
-     'top':0,
-     'left':0,
-     'background-color': 'gray',
-     'opacity': '0.5'
-     });*/
 });
 
 function blurBackground(fromRadius,toRadius,whatToBlur) {
