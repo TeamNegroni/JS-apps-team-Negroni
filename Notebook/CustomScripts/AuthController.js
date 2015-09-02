@@ -12,7 +12,7 @@ var $signInFieldUsername = $('.form-sign-in .form-sign-in-username');
 var $signInFieldPassword = $('.form-sign-in .form-sign-in-password');
 var $signInButton = $('#login-wrapper .form-sign-in-button');
 
-var $container = $(".container");
+var $container = $("#container");
 var $logOut = $('#logOutButton');
 
 var $invalidPassword = $('<div/>').html('Invalid password');
