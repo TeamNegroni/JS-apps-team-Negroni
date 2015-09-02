@@ -56,8 +56,9 @@
     </div>
     <div id="ui-wrapper">
         <div class="row">
-            <div class="col-md-8" id="calendar-wrapper">
+            <div class="col-md-8" id="controls">
                 <button class="btn btn-default calendar-viewer">Show calendar</button>
+                <button class="btn btn-default" id="save-button">Save everything</button>
             </div>
             <div class="col-md-8" id="input-wrapper">
                 <ul id="grid">
@@ -86,23 +87,6 @@
                         </div>
                     </li>
                 </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-                <input class="form-control" id="current-date" type="text" placeholder="Date" readonly/>
-                <input type="text" id="date-picker"/>
-
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" id="date-controller-checkbox"> TO DO Mode
-                    </label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label>
-                    <input type="checkbox" id="edit-controller"> Edit
-                </label>
             </div>
         </div>
     </div>

@@ -118,7 +118,7 @@ function generateMeetingNoteExternal(id) {
     noteBody.append(meetingSpecs);
 
     $iconRemove.on('click', function () {
-        deleteNote($newPiece)
+        deleteNote($newPiece);
         $(this).parent().fadeOut(300, function () {
             $(this).remove();
         });

@@ -89,7 +89,6 @@ function displayData() {
     else {
         $loginWrapper.css('display', 'none');
         $('#ui-wrapper').fadeIn(1500); // MIGHT NOT WORK PROPERLY, IF SO DO IT WITH $loginWrapper.fadeIn(500)
-
         $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));
         $logOut.fadeIn(1000)
     }
