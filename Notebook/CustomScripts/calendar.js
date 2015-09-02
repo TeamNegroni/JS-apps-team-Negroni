@@ -38,19 +38,7 @@
         $controls.on('click', 'button', function () {
             var $this = $(this);
             if ($this.attr('id') === 'calendar-toggleButton') {
-               // $calendar.animate({
-                //    opacity: 0
-                //}, 500);
-                $calendar.hide(500);
-                // blurBackground(15,0); BACKGROUND
-                blurBackground(20,0,'#ui-wrapper');
-                $('#ui-wrapper').css('display', 'block');
-                $('#logOut').css('display', 'block');
-                date = new Date(todaysDate.getFullYear(),todaysDate.getMonth(),todaysDate.getDate());
-                setTimeout(function() {
-                    updateTable(date);
-                    updateMonthAndYearLabel();
-                },600);
+                closeCalendar();
             } else {
                 var goingOnMonth,
                     goingOnYear;
@@ -107,6 +95,7 @@
                 console.log(date);
                 // !!! Add connection to the server about the date info, use date variable,
                 // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
+                closeCalendar();
             } else {
                 if (clickedDay >= 15) {
                     goToMonth = date.getMonth() - 1;
@@ -129,7 +118,7 @@
             if ($this.hasClass('current-month')) {
                 color = '#2780e3'; // BLUE
             } else {
-                color = '#808080'; // GRAY
+                color = '#cbcbc1'; // GRAY
             }
             $this.animate({
                 backgroundColor: color
@@ -139,7 +128,7 @@
         $daysTable.on('mouseout', 'td', function () {
             var $this = $(this);
             $this.animate({
-                backgroundColor: 'black'
+                backgroundColor: 'rgba(246,246,246,0.8)'
             }, 100);
         });
 
@@ -156,15 +145,17 @@
             //$calendar.animate({ COMMENTED FOR TEST PURPOSES
             //    opacity: 0
             //}, 500);
-            date = new Date(todaysDate.getFullYear(),todaysDate.getMonth(),todaysDate.getDate());
+            date = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate());
             // setTimeout(function() { COMMENTED FOR TEST PURPOSES
-                updateTable(date);
-                updateMonthAndYearLabel();
+            updateTable(date);
+            updateMonthAndYearLabel();
             // },600); COMMENTED FOR TEST PURPOSES
 
             // !!! Add connection to the server about the todaysDate info, use todaysDate variable,
             // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
         });
+
+        $('#calendar-blurrer').on('click',closeCalendar);
 
 
         // blending it all together
@@ -172,8 +163,22 @@
         $wrapper.append($daysTable);
         $wrapper.append($currentDateLink);
 
+        function closeCalendar() {
+            $calendar.hide(500);
+            $('#calendar-blurrer').css('display','none');
+            blurBackground(5, 0);
+            blurBackground(20, 0, '#ui-wrapper');
+            $('#ui-wrapper').css('display', 'block');
+            $('#logOut').css('display', 'block');
+            date = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate());
+            setTimeout(function () {
+                updateTable(date);
+                updateMonthAndYearLabel();
+            }, 600);
+        }
+
         function animateTable(side) {
-            if(side === 'left') {
+            if (side === 'left') {
                 animate('right');
                 animate('left');
             } else {

@@ -229,7 +229,7 @@ a {
     display: none;
     margin-top: 4px;
     border-radius: 3px;
-    border: 2px solid darkgray;
+    border: 5px solid #393939;
     background-color: rgba(255, 255, 255, 0.50);
     width: 90%;
     height: 450px;

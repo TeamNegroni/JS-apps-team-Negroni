@@ -10,7 +10,6 @@ var $gridAdder = $('#gridAdder');
 var $editControllerCheckbox = $('#edit-controller');
 var WINDOW_WIDTH = window.innerWidth;
 var WRAPPER_HEIGHT = $container.css('height');
-var $calendarWrapper = $('#calendra-wrapper');
 var $calendarViewer = $('.calendar-viewer');
 var $calendar = $('#calendar');
 var $calendarBlurrer = $('#calendar-blurrer');
@@ -97,15 +96,12 @@ function displayData() {
 
 //Control calendar-viewer
 $calendarViewer.on('click', function () {
-    $calendarWrapper.hide(200);
     $('#ui-wrapper').animate({
         display: 'none'
     }, 500);
-    $controls.animate({
-        display: 'none'
-    }, 500);
-    // blurBackground(0,15); BLURRS THE BACKGROUND IMAGE
+    blurBackground(0,5); // BLURRS THE BACKGROUND IMAGE
     blurBackground(0,20,'#ui-wrapper');
+    $('#calendar-blurrer').css('display','block');
     $calendar.show(500);
 });
 
