@@ -121,7 +121,6 @@ function displayData() {
 
     function setLocalDataStored() {
         var loggedInUser = Parse.User.current();
-        var test = loggedInUser.get('dataStored');
         if (loggedInUser) {
             localStorage.setItem('dataStored', JSON.stringify(loggedInUser.get('dataStored')));
         }
