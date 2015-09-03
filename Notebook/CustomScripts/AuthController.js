@@ -125,7 +125,8 @@ $logOut.on('click', function (ev) {
     sessionStorage.clear();
 
     displayData();
-    window.location.reload(true);
+    var $allPreviousElements = $('#gridAdder').prevAll();
+    $allPreviousElements.remove();
 });
 
 // TODO: Add transitions, make it smooth
