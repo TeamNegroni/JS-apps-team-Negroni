@@ -20,351 +20,253 @@ $grid.sortable({
     forcePlaceholderSize: true
 });
 
-function generateNoteDiv(id) {
-    var noteDiv = $('<div/>').attr('class', 'note' + id);
-    var noteTitle = $('<input/>').attr('class', 'note-title').attr('placeholder', 'Title');
-    var noteContent = $('<textarea/>').attr('rows', '3').attr('cols', '22').attr('class', 'note-content').attr('placeholder', 'Content');
-
-    noteDiv.append(noteTitle);
-    noteDiv.append(noteContent);
-
-    return noteDiv;
-}
-
-function generateIssueNoteExternal(id, day) {
-    var $newPiece = $('<li/>');
+function generateGridPieceBody(id, creationDate, type) {
+    var $newPiece = $('<li/>'),
+        day = sessionStorage.getItem('date');
     $newPiece.attr('data-id', id);
-    var noteBody = generateNoteDiv(index);
-    var noteClassName = '.note' + index;
-    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
-    var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
-    var issueSpecs = $('<div/>').html('<div class="input-group-addon">Issue</div>' +
-    '<input type="text" class="form-control note-issue" placeholder="Description">');
-
-    noteBody.append(issueSpecs);
-
-    $iconRemove.on('click', function () {
-        deleteNote($newPiece);
-        $(this).parent().fadeOut(300, function () {
-            $(this).remove();
-        });
-    });
-
-    $iconSave.on('click', function (event) {
-        var $this = $(this);
-        var $note = $(noteClassName);
-        var $title = $note.find('.note-title');
-        var $content = $note.find('.note-content');
-        var $issue = $note.find('.note-issue');
-
-        ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
-        ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
-        ($('<div/>')).addClass('note-issue-text').html('Issue:' + $issue.val()).insertBefore($this);
-
-        var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
-        var user = Parse.User.current();
-        var Note = Parse.Object.extend("Note");
-        var storedNote = new Note({
-            idNumber: MyIssueNote.id,
-            title: MyIssueNote.title,
-            content: MyIssueNote.content,
-            issue: MyIssueNote.issue,
-            user: user
-        });
-
-        storedNote.save(null, {
-            success: function (storedNote) {
-                console.log("successfully saved");
-
-            },
-            error: function (storedNote, error) {
-                alert("Error: " + error.code + " " + error.message);
-            }
-        });
-    });
-
-    $newPiece.addClass('gridPiece').addClass('external-issue' + index);
-    $newPiece.text(index);
+    $newPiece.attr('position-id', index);
     index += 1;
-    console.log('external index:' + index)
+    $newPiece.attr('item-type', type);
+    $newPiece.attr('creation-date', creationDate);
+    $newPiece.addClass('gridPiece');
     $newPiece.resizable({
-        grid: [362, 362], // value to be edited
+        grid: [257, 202], // value to be edited
         autoHide: true,
         animate: true,
         helper: "resizable-helperPiece",
         animateEasing: "easeInOutQuint"
     });
 
-    $newPiece.append($iconRemove);
-    //$newPiece.append(noteBody);
-    //$newPiece.append($iconSave);
-    $newPiece.hide();
-    $newPiece.insertBefore('#gridAdder');
-    $newPiece.show(500);
-}
-
-function generateMeetingNoteExternal(id) {
-    var $newPiece = $('<li/>');
-    var noteBody = generateNoteDiv(index);
-    var noteClassName = '.note' + index;
-    $newPiece.attr('data-id', id);
+    var $iconsContainer = $('<div/>').addClass('icons-container');
     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
     var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
-    var meetingSpecs = $('<div/>').html('<div class="input-group-addon">Place</div>' +
-                         '<input type="text" class="form-control meeting-place" placeholder="Place">' +
-                         '<div class="input-group-addon">Hour</div>' +
-                         '<input type="text" class="form-control meeting-hour" id="datepicker" placeholder="">');
+    $iconsContainer.append($iconSave);
+    $iconsContainer.append($iconRemove);
 
-    noteBody.append(meetingSpecs);
+    $iconSave.on('click', function (event) {
+        saveItem(type);
+    });
 
     $iconRemove.on('click', function () {
         deleteNote($newPiece);
-        $(this).parent().fadeOut(300, function () {
+        $(this).parent().parent().fadeOut(300, function () {
             $(this).remove();
         });
     });
 
-    $iconSave.on('click', function (event) {
-        var $this = $(this);
-        var $note = $(noteClassName);
-        var $title = $note.find('.note-title');
-        var $content = $note.find('.note-content');
-        var $place = $note.find('.meeting-place');
-        var $hour = $note.find('.meeting-hour');
+    $newPiece.append($iconsContainer);
+    return $newPiece;
 
-        ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
-        ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
-        ($('<div/>')).addClass('meeting-place-text').html('Place:' + $place.val()).insertBefore($this);
-        ($('<div/>')).addClass('meeting-hour-text').html('Hour:' + $hour.val()).insertBefore($this);
+    function saveItem(type) {
+        var item,
+            user = Parse.User.current();
 
-        var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $hour.val());
-        var user = Parse.User.current();
-        var Note = Parse.Object.extend("Note");
-        var storedNote = new Note({
-            idNumber: MyMeetingNote.id,
-            title: MyMeetingNote.title,
-            content: MyMeetingNote.content,
-            place: MyMeetingNote.place,
-            hour: MyMeetingNote.hour,
-            user: user
-        });
+        switch (type) {
+            case 'issue':
+                item = saveIssueNote();
+                saveNoteOnServer(item)
+                break;
+            case 'meeting':
+                item = saveMeetingNote();
+                saveNoteOnServer(item)
+                break;
+            case 'bank':
+                item = saveBankNote();
+                saveNoteOnServer(item)
+                break;
+            case 'text':
+                item = saveTextTile();
+                saveNoteOnServer(item)
+                break;
+            case 'img':
+                item = saveImgTile();
+                saveNoteOnServer(item)
+                break;
+        }
 
-        storedNote.save(null, {
-            success: function (storedNote) {
-                console.log("successfully saved");
-            },
-            error: function (storedNote, error) {
-                alert("Error: " + error.code + " " + error.message);
-            }
-        });
-    });
+        function saveNoteOnServer(item) {
+            user.addUnique("dataStored", item);
+            user.save();
+            item.save(null, {
+                success: function (storedNote) {
+                    console.log("successfully saved");
+                },
+                error: function (storedNote, error) {
+                    alert("Error: " + error.code + " " + error.message);
+                }
+            });
+        }
 
-    $newPiece.addClass('gridPiece').addClass('external-meeting' + index);
-    $newPiece.text(index);
-    index += 1;
+        function saveIssueNote() {
+            var $title = $newPiece.find('.note-title');
+            var $content = $newPiece.find('.note-content');
+            var $issue = $newPiece.find('.note-issue');
+            var myNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
+            var Note = Parse.Object.extend("Note");
+            return storedNote = new Note({
+                idNumber: myNote.id,
+                title: myNote.title,
+                content: myNote.content,
+                issue: myNote.issue,
+                user: user,
+                noteDayOfCreation: day
+            });
+        }
 
-    $newPiece.resizable({
-        grid: [362, 362], // value to be edited
-        autoHide: true,
-        animate: true,
-        helper: "resizable-helperPiece",
-        animateEasing: "easeInOutQuint"
-    });
+        function saveMeetingNote() {
+            var $title = $newPiece.find('.note-title');
+            var $content = $newPiece.find('.note-content');
+            var $place = $newPiece.find('.meeting-place');
+            var $hour = $newPiece.find('.meeting-hour');
+            var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $hour.val());
+            var Note = Parse.Object.extend("Note");
+            return storedNote = new Note({
+                idNumber: MyMeetingNote.id,
+                title: MyMeetingNote.title,
+                content: MyMeetingNote.content,
+                place: MyMeetingNote.place,
+                hour: MyMeetingNote.hour,
+                user: user,
+                noteDayOfCreation: day
+            });
+        }
 
+        function saveBankNote() {
+            var $title = $newPiece.find('.note-title');
+            var $content = $newPiece.find('.note-content');
+            var $amount = $newPiece.find('.bank-note-amount');
+            var MyBankNote = module.getBankNote($title.val(), $content.val(), $amount.val());
+            var Note = Parse.Object.extend("Note");
+            return storedNote = new Note({
+                idNumber: MyBankNote.id,
+                title: MyBankNote.title,
+                content: MyBankNote.content,
+                amount: MyBankNote.amount,
+                user: user,
+                noteDayOfCreation: day
+            });
+        }
 
-    $newPiece.append($iconRemove);
-    //$newPiece.append(noteBody);
-    //$newPiece.append($iconSave);
-    $newPiece.hide();
-    $newPiece.insertBefore('#gridAdder');
-    $newPiece.show(500);
+        function saveTextTile() {
+
+        }
+
+        function saveImgTile() {
+            var $this = $(this);
+            var $input = $newPiece.find('input');
+            var MyImage = imageModule.getImage($input.val());
+            var user = Parse.User.current();
+            var Image = Parse.Object.extend("Image");
+            return storedNote = new Image({
+                user: user,
+                source: MyImage.src,
+                noteDayOfCreation: day
+            });
+        }
+    }
 }
 
-function generateBankNoteExternal(id) {
-    var $newPiece = $('<li/>');
-    var noteBody = generateNoteDiv(index);
-    var noteClassName = '.note' + index;
-    $newPiece.attr('data-id', id);
-    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
-    var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
-    var bankSpecs = $('<div/>').html('<div class="input-group-addon">Amount in $</div>' +
-                   '<input type="text" class="form-control bank-note-amount" id="exampleInputAmount" placeholder="Amount">');
+function generateNoteContainer() {
+    var $noteBodyContainer = $('<div/>').addClass('note-container');
+    var $noteTitle = $('<input/>').addClass('note-title').attr('placeholder', 'Title');
+    var $noteContent = $('<textarea/>').addClass('note-content').attr('placeholder', 'Content');
 
-    noteBody.append(bankSpecs);
+    $noteBodyContainer.append($noteTitle);
+    $noteBodyContainer.append($noteContent);
 
-    $iconRemove.on('click', function () {
-        deleteNote($newPiece);
-        $(this).parent().fadeOut(300, function () {
-            $(this).remove();
-        });
-    });
+    return $noteBodyContainer;
+}
 
-    $iconSave.on('click', function (event) {
-        var $this = $(this);
-        var $note = $(noteClassName);
-        var $title = $note.find('.note-title');
-        var $content = $note.find('.note-content');
-        var $amount = $note.find('.bank-note-amount');
+function addAndAnimateGridPiece($piece) {
+    $piece.hide();
+    $piece.insertBefore('#gridAdder');
+    $piece.show(500);
+}
 
-        ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
-        ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
-        ($('<div/>')).addClass('bank-note-amount-text').html('Amount:' + $amount.val()).insertBefore($this);
+function generateIssueNoteExternal(id, creationDate) {
+    var $newPiece = generateGridPieceBody(id, creationDate, 'issue');
+    var $noteBody = generateNoteContainer();
 
-        var MyBankNote = module.getBankNote($title.val(), $content.val(), $amount.val());
-        var user = Parse.User.current();
-        var Note = Parse.Object.extend("Note");
-        var storedNote = new Note({
-            idNumber: MyBankNote.id,
-            title: MyBankNote.title,
-            content: MyBankNote.content,
-            amount: MyBankNote.amount,
-            user: user
-        });
+    var $issueSpecs = $('<div/>').html('<div class="input-group-addon">Issue</div>' +
+        '<input type="text" class="form-control note-issue" placeholder="Description">');
 
-        storedNote.save(null, {
-            success: function (storedNote) {
-                console.log("successfully saved");
-            },
-            error: function (storedNote, error) {
-                alert("Error: " + error.code + " " + error.message);
-            }
-        });
-    });
+    $noteBody.filter('.note-container').prepend($issueSpecs);
+    $newPiece.append($noteBody);
 
-    $newPiece.addClass('gridPiece').addClass('external-bank' + index);
-    $newPiece.text(index);
-    index += 1;
+    addAndAnimateGridPiece($newPiece);
+}
 
-    $newPiece.resizable({
-        grid: [362, 362], // value to be edited
-        autoHide: true,
-        animate: true,
-        helper: "resizable-helperPiece",
-        animateEasing: "easeInOutQuint"
-    });
+function generateMeetingNoteExternal(id, creationDate) {
+    var $newPiece = generateGridPieceBody(id, creationDate, 'meeting');
+    var $noteBody = generateNoteContainer();
 
-    $newPiece.append($iconRemove);
-    //$newPiece.append(noteBody);
-    //$newPiece.append($iconSave);
-    $newPiece.hide();
-    $newPiece.insertBefore('#gridAdder');
-    $newPiece.show(500);
+    var $meetingSpecs = $('<div/>').html('<div class="input-group-addon">Place</div>' +
+        '<input type="text" class="form-control meeting-place" placeholder="Place">' +
+        '<div class="input-group-addon">Hour</div>' +
+        '<input type="text" class="form-control meeting-hour" id="datepicker" placeholder="">');
+
+    $noteBody.filter('.note-container').prepend($meetingSpecs);
+    $newPiece.append($noteBody);
+
+    addAndAnimateGridPiece($newPiece);
+}
+
+function generateBankNoteExternal(id, creationDate) {
+    var $newPiece = generateGridPieceBody(id, creationDate, 'bank');
+    var $noteBody = generateNoteContainer();
+
+    var $bankSpecs = $('<div/>').html('<div class="input-group-addon">Amount in $</div>' +
+        '<input type="text" class="form-control bank-note-amount" id="exampleInputAmount" placeholder="Amount">');
+
+    $noteBody.filter('.note-container').prepend($bankSpecs);
+    $newPiece.append($noteBody);
+
+    addAndAnimateGridPiece($newPiece);
 }
 
 function generatePreviouslyCreatedIssues(existingIssueNote) {
     var $element = $('#gridAdder').prev();
-    ($('<div/>')).addClass('note-title-text').html('Title:' + existingIssueNote.get('title')).appendTo($element);
-    ($('<div/>')).addClass('note-content-text').html('Content:' + existingIssueNote.get('content')).appendTo($element);
-    ($('<div/>')).addClass('note-issue-text').html('Issue:' + existingIssueNote.get('issue')).appendTo($element);
+    $element.find('.note-title').html(existingIssueNote.get('title'));
+    $element.find('.note-content').html(existingIssueNote.get('content'));
+    $element.find('.note-issue').html(existingIssueNote.get('issue'));
 }
 
 function generatePreviouslyCreatedMeetings(existingMeetingNote) {
     var $element = $('#gridAdder').prev();
     //console.log(existingMeetingNote.get('title'));
     //console.log('my meet' + $parent.html());
-    ($('<div/>')).addClass('note-title-text').html('Title:' + existingMeetingNote.get('title')).appendTo($element);
-    ($('<div/>')).addClass('note-content-text').html('Content:' + existingMeetingNote.get('content')).appendTo($element);
-    ($('<div/>')).addClass('meeting-place-text').html('Place:' + existingMeetingNote.get('place')).appendTo($element);
-    ($('<div/>')).addClass('meeting-hour-text').html('Hour:' + existingMeetingNote.get('hour')).appendTo($element);
+    $element.find('note-title-text').html(existingMeetingNote.get('title'));
+    $element.find('note-content-text').html(existingMeetingNote.get('content'));
+    $element.find('meeting-place-text').html(existingMeetingNote.get('place'));
+    $element.find('meeting-hour-text').html(existingMeetingNote.get('hour'));
 }
 
 function generatePreviouslyCreatedBanks(existingBankNote) {
     var $element = $('#gridAdder').prev();
-    ($('<div/>')).addClass('note-title-text').html('Title:' + existingBankNote.get('title')).appendTo($element);
-    ($('<div/>')).addClass('note-content-text').html('Content:' + existingBankNote.get('content')).appendTo($element);
-    ($('<div/>')).addClass('bank-note-amount-text').html('Amount:' + existingBankNote.get('amount')).appendTo($element);
+    $element.find('note-title-text').html(existingBankNote.get('title'));
+    $element.find('note-content-text').html(existingBankNote.get('content'));
+    $element.find('bank-note-amount-text').html(existingBankNote.get('amount'));
 }
- 
-function generateTextArea() {
-    var $newPiece = $('<li/>');
-    var $textArea = $('<textarea/>').addClass('form-control').attr('row', 3).css('max-width', 300);
-    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
 
-    $iconRemove.on('click', function () {
-        $(this).parent().fadeOut(300, function () { $(this).remove(); });
-    });
+function generateTextArea(id, creationDate) {
+    var $newPiece = generateGridPieceBody(id, creationDate, 'text');
 
-    $newPiece.addClass('gridPiece');
-    $newPiece.text(index);
-    index += 1;
+    var $textArea = $('<textarea/>').addClass('form-control').attr('row', 3).css('max-width', 300).addClass('text-tile');
 
-    $newPiece.resizable({
-        grid: [362, 362], // value to be edited
-        autoHide: true,
-        animate: true,
-        helper: "resizable-helperPiece",
-        animateEasing: "easeInOutQuint"
-    });
-
-    $newPiece.append($iconRemove);
     $newPiece.append($textArea);
-    $newPiece.hide();
-    $newPiece.insertBefore('#gridAdder');
-    $newPiece.show(500);
-    $inputTypes.hide(200);
-    $adderSign.show(200);
+
+    addAndAnimateGridPiece($newPiece);
 }
 
-function generateImageInput() {
-    var $newPiece = $('<li/>');
+function generateImageInput(id, creationDate) {
+    var $newPiece = generateGridPieceBody(id, creationDate, 'img');
+
     var $input = $('<input/>').attr('type', 'file').attr('accept', 'image/x-png, image/gif, image/jpeg');
     var $span = $('<span/>').addClass('file-input').addClass('btn').addClass('btn-primary').addClass('btn-file').html('Browse').append($input);
-    var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
-    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
-    var day = sessionStorage.getItem('date');
 
-    $iconRemove.on('click', function () {
-        deleteNote($newPiece);
-        $(this).parent().fadeOut(300, function () { $(this).remove(); });
-    });
+    $newPiece.append($input);
 
-    $newPiece.addClass('gridPiece');
-    $newPiece.text(index);
-    index += 1;
-
-    $newPiece.resizable({
-        grid: [362, 362], // value to be edited
-        autoHide: true,
-        animate: true,
-        helper: "resizable-helperPiece",
-        animateEasing: "easeInOutQuint"
-    });
-
-    $iconSave.on('click', function (event) {
-        var $this = $(this);
-        var user = Parse.User.current();
-        var MyImage = imageModule.getImage($input.val());
-        var user = Parse.User.current();
-        var Image = Parse.Object.extend("Image");
-        var storedNote = new Image({
-            user: user,
-            source: MyImage.src,
-            noteDayOfCreation: day
-        });
-
-        user.addUnique("dataStored", storedNote);
-        user.save();
-        // console.log(user.get("dataStored"));
-        storedNote.save(null, {
-            success: function (storedNote) {
-                $newPiece.attr('data-id', storedNote.id);
-                console.log("successfully saved");
-            },
-            error: function (storedNote, error) {
-                alert("Error: " + error.code + " " + error.message);
-            }
-        });
-    })
-
-
-    $newPiece.append($iconRemove);
-    $newPiece.append($span);
-    $newPiece.append($iconSave);
-    $newPiece.hide();
-    $newPiece.insertBefore('#gridAdder');
-    $newPiece.show(500);
-    $inputTypes.hide(200);
-    $adderSign.show(200);
+    addAndAnimateGridPiece($newPiece);
 }
 
 $adderSign.on('click', function () {
@@ -378,172 +280,14 @@ $inputTypeTextarea.on('click', function () {
 
 $inputTypeImage.on('click', function () {
     generateImageInput();
- });
+});
 
 $inputTypeIssueNote.on('click', function () {
-     var $this = $(this);
-     var $newPiece = $('<li/>');
-     var noteBody = generateNoteDiv(index);
-     var noteClassName = '.note' + index;
-     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
-     var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
-     var issueSpecs = $('<div/>').html('<div class="input-group-addon">Issue</div>' +
-     '<input type="text" class="form-control note-issue" placeholder="Description">');
-     var day = sessionStorage.getItem('date');
+    generateIssueNoteExternal();
+});
 
-     noteBody.append(issueSpecs);
-
-     $iconRemove.on('click', function () {
-         deleteNote($newPiece);
-         $(this).parent().fadeOut(300, function () { $(this).remove(); });
-     });
-
-     $iconSave.on('click', function (event) {
-         var $this = $(this);
-         var $note = $(noteClassName);
-         var $title = $note.find('.note-title');
-         var $content = $note.find('.note-content');
-         var $issue = $note.find('.note-issue');
-
-         noteBody.remove();
-         issueSpecs.remove();
-         $iconSave.hide();
-
-         ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
-         ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
-         ($('<div/>')).addClass('note-issue-text').html('Issue:' + $issue.val()).insertBefore($this);
-
-         var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
-         var user = Parse.User.current();
-         var Note = Parse.Object.extend("Note");
-         var storedNote = new Note({
-             idNumber: MyIssueNote.id,
-             title: MyIssueNote.title,
-             content: MyIssueNote.content,
-             issue: MyIssueNote.issue,
-             user: user,
-             noteDayOfCreation: day
-             });
-
-         user.addUnique("dataStored", storedNote);
-         user.save();
-         // console.log(user.get("dataStored"));
-         storedNote.save(null, {
-             success:function(storedNote){
-                 $newPiece.attr('data-id', storedNote.id);
-                 console.log("successfully saved");
-             },
-             error:function(storedNote,error){
-                 alert("Error: " + error.code + " " + error.message);
-             }
-         });
-     });
-
-     $newPiece.addClass('gridPiece');
-     $newPiece.text(index);
-     index += 1;
-     console.log('$inputTypeIssueNote:' + index);
-     $newPiece.resizable({
-         grid: [362, 362], // value to be edited
-         autoHide: true,
-         animate: true,
-         helper: "resizable-helperPiece",
-         animateEasing: "easeInOutQuint"
-     });
-
-     $newPiece.append($iconRemove);
-     $newPiece.append(noteBody);
-     $newPiece.append($iconSave);
-     $newPiece.hide();
-     $newPiece.insertBefore('#gridAdder');
-     $newPiece.show(500);
-     $inputTypes.hide(200);
-     $adderSign.show(200);
- });
-    
 $inputTypeMeetingNote.on('click', function () {
-    var $newPiece = $('<li/>');
-    var noteBody = generateNoteDiv(index);
-    var noteClassName = '.note' + index;
-    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
-    var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
-    var meetingSpecs = $('<div/>').html('<div class="input-group-addon">Place</div>' +
-    '<input type="text" class="form-control meeting-place" placeholder="Place">' +
-    '<div class="input-group-addon">Hour</div>' +
-    '<input type="text" class="form-control meeting-hour" id="datepicker" placeholder="">');
-    var day = sessionStorage.getItem('date');
-
-    noteBody.append(meetingSpecs);
-
-    $iconRemove.on('click', function () {
-        deleteNote($newPiece);
-        $(this).parent().fadeOut(300, function () { $(this).remove(); });
-    });
-
-    $iconSave.on('click', function (event) {
-        var $this = $(this);
-        var $note = $(noteClassName);
-        var $title = $note.find('.note-title');
-        var $content = $note.find('.note-content');
-        var $place = $note.find('.meeting-place');
-        var $hour = $note.find('.meeting-hour');
-
-        noteBody.remove();
-        meetingSpecs.remove();
-        $iconSave.hide();
-
-        ($('<div/>')).addClass('note-title-text').html('Title:' + $title.val()).insertBefore($this);
-        ($('<div/>')).addClass('note-content-text').html('Content:' + $content.val()).insertBefore($this);
-        ($('<div/>')).addClass('meeting-place-text').html('Place:' + $place.val()).insertBefore($this);
-        ($('<div/>')).addClass('meeting-hour-text').html('Hour:' + $hour.val()).insertBefore($this);
-
-        var MyMeetingNote = module.getMeetingNote($title.val(), $content.val(), $place.val(), $hour.val());
-        var user = Parse.User.current();
-        var Note = Parse.Object.extend("Note");
-        var storedNote = new Note({
-            idNumber: MyMeetingNote.id,
-            title: MyMeetingNote.title,
-            content: MyMeetingNote.content,
-            place: MyMeetingNote.place,
-            hour: MyMeetingNote.hour,
-            user: user,
-            noteDayOfCreation: day
-        });
-
-        user.addUnique("dataStored", storedNote);
-        user.save();
-
-        storedNote.save(null, {
-            success: function (storedNote) {
-                $newPiece.attr('data-id', storedNote.id);
-                console.log("successfully saved");
-            },
-            error: function (storedNote, error) {
-                alert("Error: " + error.code + " " + error.message);
-            }
-        });
-    });
-
-    $newPiece.addClass('gridPiece');
-    $newPiece.text(index);
-    index += 1;
-
-    $newPiece.resizable({
-        grid: [362, 362], // value to be edited
-        autoHide: true,
-        animate: true,
-        helper: "resizable-helperPiece",
-        animateEasing: "easeInOutQuint"
-    });
-
-    $newPiece.append($iconRemove);
-    $newPiece.append(noteBody);
-    $newPiece.append($iconSave);
-    $newPiece.hide();
-    $newPiece.insertBefore('#gridAdder');
-    $newPiece.show(500);
-    $inputTypes.hide(200);
-    $adderSign.show(200);
+    generateMeetingNoteExternal();
 });
 
 $inputTypeBankNote.on('click', function () {
@@ -553,13 +297,15 @@ $inputTypeBankNote.on('click', function () {
     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
     var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
     var bankSpecs = $('<div/>').html('<div class="input-group-addon">Amount in $</div>' +
-                    '<input type="text" class="form-control bank-note-amount" id="exampleInputAmount" placeholder="Amount">');
+        '<input type="text" class="form-control bank-note-amount" id="exampleInputAmount" placeholder="Amount">');
     var day = sessionStorage.getItem('date');
     noteBody.append(bankSpecs);
 
     $iconRemove.on('click', function () {
         deleteNote($newPiece);
-        $(this).parent().fadeOut(300, function () { $(this).remove(); });
+        $(this).parent().fadeOut(300, function () {
+            $(this).remove();
+        });
     });
 
     $iconSave.on('click', function (event) {
@@ -650,7 +396,7 @@ $(document).ready(function () {
 function deleteNote($newPiece) {
     var currentUser = Parse.User.current();
     var searchedId = $newPiece.attr('data-id');
-    var collection = currentUser.get('dataStored');
+    var collection = JSON.parse(localStorage.getItem('dataStored'));
     currentUser.set("dataStored", []);
     currentUser.save();
     for (var i = 0; i < collection.length; i++) {
@@ -668,5 +414,7 @@ function deleteNote($newPiece) {
             });
         }
     }
+    collection = currentUser.get('dataStored');
+    localStorage.setItem("dataStored", JSON.stringify(collection));
 }
 
