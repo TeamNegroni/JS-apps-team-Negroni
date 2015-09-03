@@ -19,6 +19,7 @@ var $invalidPassword = $('<div/>').html('Invalid password');
 
 var $iconSave = $('span.glyphicon.glyphicon-ok')
 var counter = 0;
+var $selectedDate = $('.show-selected-date');
 
 $register.on('click', function (ev) {
     var $this = $(this);
@@ -33,14 +34,14 @@ $signUpButton.on('click', function (event) {
     event.preventDefault();
     var loggedInUser = Parse.User.current();
     Parse.User.logOut();
-    console.log($signUpFieldUsername.val());
-    console.log($signUpFieldPasswordInitial.val());
-    //User.signUp($signUpFieldUsername.val(),$signUpFieldPasswordInitial.val()) ;
     var user = new Parse.User();
     var init = $signUpFieldPasswordInitial.val();
     var confirmed = $signUpFieldPasswordConfirmed.val();
     var today = new Date();
     localStorage.setItem('date', today);
+    var storageDay = localStorage.getItem('date');
+    var shortStorageDay = storageDay.substring(4, 16);
+    $selectedDate.html(shortStorageDay);
     if (init == confirmed) {
         user.set("username", $signUpFieldUsername.val());
         user.set("password", $signUpFieldPasswordInitial.val());
@@ -71,6 +72,9 @@ $signInButton.on('click', function (ev) {
     Parse.User.logOut();
     var today = new Date();
     localStorage.setItem('date', today);
+    var storageDay = localStorage.getItem('date');
+    var shortStorageDay = storageDay.substring(4, 16);
+    $selectedDate.html(shortStorageDay);
     loggedInUser = Parse.User.current();
     if (!loggedInUser) {
         Parse.User.logIn($signInFieldUsername.val(), $signInFieldPassword.val(), {

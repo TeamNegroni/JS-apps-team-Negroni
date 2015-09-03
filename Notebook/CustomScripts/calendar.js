@@ -100,6 +100,10 @@
                 var shortDate = parsedDate.substring(4, 16);
 
                 localStorage.setItem('date', date);
+                var storageDay = localStorage.getItem('date');
+                var shortStorageDay = storageDay.substring(4, 16);
+                var $selectedDate = $('.show-selected-date');
+                $selectedDate.html(shortStorageDay);
 
                 closeCalendar();
                 var $allPreviousElements = $('#gridAdder').prevAll();
