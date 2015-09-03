@@ -48,7 +48,9 @@ The HTML Structure for each page is as follows:
 	* Calendar
 * Link to Javascript Files
 ***
+
 ##3. CSS Files
+
 There are 5 css files
 * main.css
 * calendarStyle.css
