@@ -236,30 +236,19 @@ function generatePreviouslyCreatedMeetings(existingMeetingNote) {
     var $element = $('#gridAdder').prev();
     //console.log(existingMeetingNote.get('title'));
     //console.log('my meet' + $parent.html());
-<<<<<<< HEAD
+
     $element.find('.note-title').attr('value',existingIssueNote.get('title'));
     $element.find('.note-content').html(existingMeetingNote.get('content'));
     $element.find('.meeting-place').attr('value',existingIssueNote.get('place'));
     $element.find('.meeting-hour').attr('value',existingIssueNote.get('hour'));
-=======
-    $element.find('.note-title').html(existingMeetingNote.get('title'));
-    $element.find('.note-content').html(existingMeetingNote.get('content'));
-    $element.find('.meeting-place').html(existingMeetingNote.get('place'));
-    $element.find('.meeting-hour').html(existingMeetingNote.get('hour'));
->>>>>>> 8a9ac9eadb1b3c5f904ac593db5e6e017ef680c8
 }
 
 function generatePreviouslyCreatedBanks(existingBankNote) {
     var $element = $('#gridAdder').prev();
-<<<<<<< HEAD
+
     $element.find('note-title').attr('value',existingIssueNote.get('title'));
     $element.find('note-content').html(existingBankNote.get('content'));
     $element.find('bank-note-amount').attr('value',existingIssueNote.get('amount'));
-=======
-    $element.find('.note-title').html(existingBankNote.get('title'));
-    $element.find('.note-content').html(existingBankNote.get('content'));
-    $element.find('.bank-note-amount').html(existingBankNote.get('amount'));
->>>>>>> 8a9ac9eadb1b3c5f904ac593db5e6e017ef680c8
 }
 
 function generateTextArea(id, creationDate) {
