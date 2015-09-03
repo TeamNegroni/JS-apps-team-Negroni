@@ -226,26 +226,27 @@ function generateBankNoteExternal(id, creationDate) {
 
 function generatePreviouslyCreatedIssues(existingIssueNote) {
     var $element = $('#gridAdder').prev();
-    $element.find('.note-title').html(existingIssueNote.get('title'));
+    
+    $element.find('.note-title').attr('value',existingIssueNote.get('title'));
     $element.find('.note-content').html(existingIssueNote.get('content'));
-    $element.find('.note-issue').html(existingIssueNote.get('issue'));
+    $element.find('.note-issue').attr('value',existingIssueNote.get('issue'));
 }
 
 function generatePreviouslyCreatedMeetings(existingMeetingNote) {
     var $element = $('#gridAdder').prev();
     //console.log(existingMeetingNote.get('title'));
     //console.log('my meet' + $parent.html());
-    $element.find('note-title-text').html(existingMeetingNote.get('title'));
-    $element.find('note-content-text').html(existingMeetingNote.get('content'));
-    $element.find('meeting-place-text').html(existingMeetingNote.get('place'));
-    $element.find('meeting-hour-text').html(existingMeetingNote.get('hour'));
+    $element.find('.note-title').attr('value',existingIssueNote.get('title'));
+    $element.find('.note-content').html(existingMeetingNote.get('content'));
+    $element.find('.meeting-place').attr('value',existingIssueNote.get('place'));
+    $element.find('.meeting-hour').attr('value',existingIssueNote.get('hour'));
 }
 
 function generatePreviouslyCreatedBanks(existingBankNote) {
     var $element = $('#gridAdder').prev();
-    $element.find('note-title-text').html(existingBankNote.get('title'));
-    $element.find('note-content-text').html(existingBankNote.get('content'));
-    $element.find('bank-note-amount-text').html(existingBankNote.get('amount'));
+    $element.find('note-title').attr('value',existingIssueNote.get('title'));
+    $element.find('note-content').html(existingBankNote.get('content'));
+    $element.find('bank-note-amount').attr('value',existingIssueNote.get('amount'));
 }
 
 function generateTextArea(id, creationDate) {
