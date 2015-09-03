@@ -83,7 +83,6 @@
         });
 
         // setting up the table with days
-        // TODO: when a day is pressed must ask the server for data on that day
         $daysTable.addClass('daysTable');
         updateTable(date);
         $daysTable.on('click', 'td', function (e) {
@@ -132,7 +131,7 @@
         $daysTable.on('mouseout', 'td', function () {
             var $this = $(this);
             $this.animate({
-                backgroundColor: 'rgba(246,246,246,0.8)'
+                backgroundColor: 'rgba(0,0,0,0.8)'
             }, 100);
         });
 
@@ -153,7 +152,7 @@
             closeCalendar();
         });
 
-        $('#calendar-blurrer').on('click',closeCalendar);
+        $('#calendar-blurrer').on('click', closeCalendar);
 
 
         // blending it all together
@@ -164,12 +163,12 @@
         function closeCalendar() {
             $calendar.animate({
                 opacity: '0'
-            },500);
-            setTimeout(function() {
-                $calendar.css('display','none');
-            },510);
+            }, 500);
+            setTimeout(function () {
+                $calendar.css('display', 'none');
+            }, 510);
 
-            $('#calendar-blurrer').css('display','none');
+            $('#calendar-blurrer').css('display', 'none');
             blurBackground(5, 0);
             blurBackground(20, 0, '#ui-wrapper');
             $uiWrapper.css('display', 'block');
