@@ -50,7 +50,6 @@ The HTML Structure for each page is as follows:
 ***
 ##3. CSS Files
 There are 5 css files
- 
 * main.css
 * calendarStyle.css
 * bootstrap-theme.min.css
