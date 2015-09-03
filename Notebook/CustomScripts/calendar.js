@@ -91,9 +91,7 @@
                 goToMonth;
             if ($clickedDay.hasClass('current-month')) {
                 date = new Date(date.getFullYear(), date.getMonth(), clickedDay);
-                //console.log(date);
-                //!!! Add connection to the server about the date info, use date variable,
-                //!!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
+
                 updateMainDate(date);
                 closeCalendar();
                 var $allPreviousElements = $('#gridAdder').prevAll();
@@ -144,12 +142,12 @@
             .addClass('current-date');
         $currentDateLink.html('Today');
         $currentDateLink.on('click', function () {
-            // console.log(todaysDate);
             date = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate());
-
-            // !!! Add connection to the server about the todaysDate info, use todaysDate variable,
-            // !!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
+            updateMainDate(date);
             closeCalendar();
+            var $allPreviousElements = $('#gridAdder').prevAll();
+            $allPreviousElements.remove();
+            drawDataStored();
         });
 
         $('#calendar-blurrer').on('click', closeCalendar);

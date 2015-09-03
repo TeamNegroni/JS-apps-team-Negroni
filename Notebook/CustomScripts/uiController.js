@@ -12,7 +12,6 @@ var $calendar = $('#calendar');
 var $loginWrapper = $('#login-wrapper');
 var $controls = $('#controls');
 var $uiWrapper = $('#ui-wrapper');
-var $saveAllButton = $('#save-button');
 
 //Control calendar-viewer
 $calendarViewButton.on('click', function () {
@@ -26,36 +25,6 @@ $calendarViewButton.on('click', function () {
     $calendar.animate({
         opacity: '1'
     }, 500);
-});
-
-//
-$saveAllButton.on('click', function () {
-    var items = JSON.parse(localStorage.getItem('dataStored'));
-    console.log(items);
-    items.forEach(function (item) {
-        var currentObjectId = item.objectId;
-        console.log(currentObjectId);
-        var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
-        //var user = Parse.User.current();
-        //var Note = Parse.Object.extend("Note");
-        //var storedNote = new Note({
-        //    idNumber: MyIssueNote.id,
-        //    title: MyIssueNote.title,
-        //    content: MyIssueNote.content,
-        //    issue: MyIssueNote.issue,
-        //    user: user
-        //});
-//
-        //storedNote.save(null, {
-        //    success: function (storedNote) {
-        //        console.log("successfully saved");
-//
-        //    },
-        //    error: function (storedNote, error) {
-        //        alert("Error: " + error.code + " " + error.message);
-        //    }
-        //});
-    });
 });
 
 //$gridAdder.on('click', 'div:not(.input-type-buttons #input-type-wrapper)', function () {
