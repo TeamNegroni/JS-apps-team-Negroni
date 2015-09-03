@@ -105,6 +105,7 @@ $signUpBackToSignInButton.on('click', function (ev) {
 });
 
 function updateMainDate(date) {
+    date = date || today;
     sessionStorage.setItem('date', date.getDayName() + ' ' + date.getDate() + '-' + date.getMonthName() + '-' + date.getFullYear());
     var storageDay = sessionStorage.getItem('date');
     $selectedDate.html(storageDay);
@@ -162,3 +163,16 @@ function saveCurrentUserSession(username) {
 
     sessionStorage.setItem('sessionUser', username);
 }
+
+(function() {
+    var MONTH_NAMES = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var WEEK_DAY_NAMES = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+
+    Date.prototype.getMonthName = function () {
+        return MONTH_NAMES[this.getMonth()];
+    };
+
+    Date.prototype.getDayName = function () {
+        return WEEK_DAY_NAMES[this.getDay()];
+    };
+}());

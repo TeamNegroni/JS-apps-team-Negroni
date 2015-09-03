@@ -82,7 +82,6 @@ function displayData() {
         $uiWrapper.css('display', 'inline-block');
         $controls.fadeIn(500);
         $('#input-wrapper').fadeIn(1700);
-
         if (sessionStorage.getItem('sessionUserAlreadyLoggedIn') === null) {
             blurBackground(15, 0);
             sessionStorage.setItem('sessionUserAlreadyLoggedIn', 'true');
@@ -90,6 +89,7 @@ function displayData() {
             setLocalDataStored();
         }
 
+        updateMainDate();
         drawDataStored();
         $('#show-selected-date').html(sessionStorage.getItem('date'));
         $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));

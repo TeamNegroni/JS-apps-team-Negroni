@@ -103,7 +103,9 @@ function generateGridPieceBody(id, creationDate, type) {
                         $messageBox.animate({
                             opacity: 0
                         },1000);
-                    }, 1500)
+                    }, 1500);
+
+                    localStorage.setItem('dataStored', JSON.stringify(user.get('dataStored')));
                 },
                 error: function (storedNote, error) {
                     $messageBox.html("Error: " + error.code + " " + error.message);

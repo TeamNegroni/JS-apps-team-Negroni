@@ -91,7 +91,6 @@
                 goToMonth;
             if ($clickedDay.hasClass('current-month')) {
                 date = new Date(date.getFullYear(), date.getMonth(), clickedDay);
-
                 updateMainDate(date);
                 closeCalendar();
                 var $allPreviousElements = $('#gridAdder').prevAll();
@@ -141,6 +140,7 @@
             .addClass('current-date-link')
             .addClass('current-date');
         $currentDateLink.html('Today');
+
         $currentDateLink.on('click', function () {
             date = new Date(todaysDate.getFullYear(), todaysDate.getMonth(), todaysDate.getDate());
             updateMainDate(date);
