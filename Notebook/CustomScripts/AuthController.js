@@ -73,7 +73,7 @@ $signInButton.on('click', function (ev) {
         Parse.User.logIn($signInFieldUsername.val(), $signInFieldPassword.val(), {
             success: function (user) {
                 saveCurrentUserSession($signInFieldUsername.val());
-                sessionStorage.setItem('dataStored', JSON.stringify(user.get('dataStored')));
+                localStorage.setItem('dataStored', JSON.stringify(user.get('dataStored')));
                 displayData();
 
                 //console.log(user.get('username'));
@@ -123,6 +123,7 @@ $signInButton.on('click', function (ev) {
 $logOut.on('click', function (ev) {
     Parse.User.logOut();
     sessionStorage.clear();
+
     displayData();
     window.location.reload(true);
 });
@@ -146,7 +147,7 @@ function updateMainDate(date) {
 }
 
 function drawDataStored() {
-    var collection = JSON.parse(sessionStorage.getItem('dataStored'));
+    var collection = JSON.parse(localStorage.getItem('dataStored'));
     for (var i = 1; i <= collection.length; i++) {
         var Note = Parse.Object.extend("Note");
         var query = new Parse.Query(Note);
