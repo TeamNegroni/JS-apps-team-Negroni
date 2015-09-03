@@ -153,6 +153,7 @@ function generateGridPieceBody(id, creationDate, type) {
 
         function saveImgTile() {
             var $this = $(this);
+            var $input = $newPiece.find('input');
             var MyImage = imageModule.getImage($input.val());
             var user = Parse.User.current();
             var Image = Parse.Object.extend("Image");
