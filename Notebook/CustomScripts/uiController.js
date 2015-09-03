@@ -19,12 +19,12 @@ $calendarViewButton.on('click', function () {
     blurBackground(0, 20, '#ui-wrapper');
     $('#calendar-blurrer').css('display', 'block');
 
-    $calendar.css('opacity','0');
-    $calendar.css('display','block');
+    $calendar.css('opacity', '0');
+    $calendar.css('display', 'block');
 
     $calendar.animate({
         opacity: '1'
-    },500);
+    }, 500);
 });
 
 //Control selection menu
@@ -74,14 +74,23 @@ function displayData() {
         $loginWrapper.fadeOut(500);
         $uiWrapper.css('display', 'inline-block');
         if (sessionStorage.getItem('sessionUserAlreadyLoggedIn') === null) {
-            blurBackground(15,0);
+            blurBackground(15, 0);
             sessionStorage.setItem('sessionUserAlreadyLoggedIn', 'true');
+        } else {
+            setLocalDataStored();
         }
         $controls.fadeIn(500);
         $('#input-wrapper').fadeIn(1700); // MIGHT NOT WORK PROPERLY, IF SO DO IT WITH $loginWrapper.fadeIn(500)
         drawDataStored();
         $('#show-selected-date').html(sessionStorage.getItem('date'));
         $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));
+    }
+
+    function setLocalDataStored() {
+        var loggedInUser = Parse.User.current();
+        if (loggedInUser) {
+            localStorage.setItem('dataStored', JSON.stringify(loggedInUser.get('dataStored')));
+        }
     }
 }
 
