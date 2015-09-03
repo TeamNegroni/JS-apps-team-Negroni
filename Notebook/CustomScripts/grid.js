@@ -64,23 +64,23 @@ function generateGridPieceBody(id, creationDate, type) {
         switch (type) {
             case 'issue':
                 item = saveIssueNote();
-                saveItemOnServer(item)
+                saveItemOnServer(item);
                 break;
             case 'meeting':
                 item = saveMeetingNote();
-                saveItemOnServer(item)
+                saveItemOnServer(item);
                 break;
             case 'bank':
                 item = saveBankNote();
-                saveItemOnServer(item)
+                saveItemOnServer(item);
                 break;
             case 'text':
                 item = saveTextTile();
-                saveItemOnServer(item)
+                saveItemOnServer(item);
                 break;
             case 'img':
                 item = saveImgTile();
-                saveItemOnServer(item)
+                saveItemOnServer(item);
                 break;
         }
 
@@ -325,11 +325,12 @@ function deleteNote($newPiece) {
     var collection = JSON.parse(localStorage.getItem('dataStored'));
     currentUser.set("dataStored", []);
     currentUser.save();
+    debugger;
     for (var i = 0; i < collection.length; i++) {
-        if (collection[i].id != searchedId) {
+        if (collection[i].objectId != searchedId) {
             var Note = Parse.Object.extend("Note");
             var query = new Parse.Query(Note);
-            query.get(collection[i].id, {
+            query.get(collection[i].objectId, {
                 success: function (Note) {
                     currentUser.addUnique("dataStored", Note);
                     currentUser.save();
