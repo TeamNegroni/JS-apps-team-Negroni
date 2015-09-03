@@ -440,7 +440,7 @@ $inputTypeMeetingNote.on('click', function () {
     '<input type="text" class="form-control meeting-place" placeholder="Place">' +
     '<div class="input-group-addon">Hour</div>' +
     '<input type="text" class="form-control meeting-hour" id="datepicker" placeholder="">');
-    var day = localStorage.getItem('date');
+    var day = sessionStorage.getItem('date');
 
     noteBody.append(meetingSpecs);
 
@@ -523,7 +523,7 @@ $inputTypeBankNote.on('click', function () {
     var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
     var bankSpecs = $('<div/>').html('<div class="input-group-addon">Amount in $</div>' +
                     '<input type="text" class="form-control bank-note-amount" id="exampleInputAmount" placeholder="Amount">');
-    var day = localStorage.getItem('date');
+    var day = sessionStorage.getItem('date');
     noteBody.append(bankSpecs);
 
     $iconRemove.on('click', function () {

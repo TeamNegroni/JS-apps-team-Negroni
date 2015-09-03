@@ -163,19 +163,17 @@ function queryObjects(currentQuery, queryId) {
             var place = note.get('place');
             var amount = note.get('amount');
             var noteDayOfCreation = note.get('noteDayOfCreation');
-            var dayOfCreation = new Date(noteDayOfCreation);
-            var shortParsedNoteDayOfCreation = dayOfCreation.getDayName() + ' ' + dayOfCreation.getDate() + '-' + dayOfCreation.getMonthName() + '-' + dayOfCreation.getFullYear();
             var storageDay = sessionStorage.getItem('date');
             // console.log('note calendar date ' + noteDayOfCreation);
-            if (shortParsedNoteDayOfCreation === storageDay) {
+            if (noteDayOfCreation === storageDay) {
                 if (issue != undefined) {
-                    generateIssueNoteExternal(queryId, shortParsedNoteDayOfCreation);
+                    generateIssueNoteExternal(queryId, noteDayOfCreation);
                     generatePreviouslyCreatedIssues(note);
                 } else if (place != undefined) {
-                    generateMeetingNoteExternal(queryId, shortParsedNoteDayOfCreation);
+                    generateMeetingNoteExternal(queryId, noteDayOfCreation);
                     generatePreviouslyCreatedMeetings(note);
                 } else if (amount != undefined) {
-                    generateBankNoteExternal(queryId, shortParsedNoteDayOfCreation);
+                    generateBankNoteExternal(queryId, noteDayOfCreation);
                     generatePreviouslyCreatedBanks(note);
                 }
             }
