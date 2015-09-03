@@ -40,7 +40,6 @@ describe('#Testing Notes Functionality', function(){
 
     it('expect function getShoppingListNote to return object with title, content properties!', function(){
         var item = module.getShoppingListNote('test', 'test');
-        console.log(item);
         expect(item).to.contain.all.keys(['_title', '_content']);
     });
 
@@ -48,6 +47,40 @@ describe('#Testing Notes Functionality', function(){
         var item = module.getProduct('test');
         expect(item).to.contain.all.keys(['_name']);
     });
+    
+    it('expect BankNote to throw if incorrect money data is passed', function () {
+        var test= function() {
+            var obj=module.getBankNote('title','content','notMoney');
+        };
+        expect(test).to.throw(Error);
+    });
 
+    it('expect IssueNote to throw if invalid title data is passed', function () {
+       var test= function () {
+           var obj=module.getIssueNote('a','asdsadf',1);
+       };
+        expect(test).to.throw(Error);
+    });
 
+    it('expect BankNote to throw if invalid title data is passed', function () {
+        var test= function () {
+            var obj=module.getIssueNote('a','asdsadf',1);
+        };
+        expect(test).to.throw(Error);
+    });
+
+    it('expect MeetingNote to throw if invalid content data is passed', function () {
+        var test= function () {
+            var obj=module.getIssueNote('a','asdsadf',1,1);
+        };
+        expect(test).to.throw(Error);
+    });
+
+    it('expect ShoppingListNote to throw if invalid content data is passed', function () {
+        var test= function () {
+            var obj=module.getIssueNote('a',1);
+        };
+        expect(test).to.throw(Error);
+    });
+    
 });
