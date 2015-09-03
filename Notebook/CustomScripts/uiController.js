@@ -5,8 +5,8 @@ var $draggableComponents = $('.draggable-component');
 var $draggablesShowBorder = $('#draggables-show-border');
 var $inputAttribute = $('.input-attribute');
 var $gridAdder = $('#gridAdder');
-var WINDOW_WIDTH = window.innerWidth;
-var WRAPPER_HEIGHT = $container.css('height');
+var $adderSign = $('#adder-sign');
+var $inputTypes = $('#input-type-wrapper');
 var $calendarViewButton = $('#calendar-view-button');
 var $calendar = $('#calendar');
 var $loginWrapper = $('#login-wrapper');
@@ -32,7 +32,7 @@ $calendarViewButton.on('click', function () {
 $saveAllButton.on('click', function () {
     var items = JSON.parse(localStorage.getItem('dataStored'));
     console.log(items);
-    items.forEach(function(item) {
+    items.forEach(function (item) {
         var currentObjectId = item.objectId;
         console.log(currentObjectId);
         var MyIssueNote = module.getIssueNote($title.val(), $content.val(), $issue.val());
@@ -57,6 +57,11 @@ $saveAllButton.on('click', function () {
         //});
     });
 });
+
+//$gridAdder.on('click', 'div:not(.input-type-buttons #input-type-wrapper)', function () {
+//    $inputTypes.hide(200);
+//    $adderSign.show(200);
+//});
 
 //Control selection menu
 function GetSelectedText() {
@@ -93,6 +98,8 @@ function activateInputAttributes() {
 
 function displayData() {
     var $nameTitle = $('#nameTitle');
+    $inputTypes.hide(200);
+    $adderSign.show(200);
 
     if (sessionStorage.getItem('sessionUser') === null) {
         $uiWrapper.fadeOut(500);

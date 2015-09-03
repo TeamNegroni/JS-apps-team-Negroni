@@ -74,41 +74,6 @@ $signInButton.on('click', function (ev) {
                 saveCurrentUserSession($signInFieldUsername.val());
                 localStorage.setItem('dataStored', JSON.stringify(user.get('dataStored')));
                 displayData();
-
-                //console.log(user.get('username'));
-
-                // var compoundQuery = Parse.Query.or(issueQuery, meetingQuery);
-                // compoundQuery.equalTo("user", Parse.User.current());
-
-
-                //function queryObjects(currentQuery, queryId) {
-                //    currentQuery.equalTo("id",queryId);
-                //    currentQuery.find({
-                //        success: function (results) {
-                //            alert("Successfully retrieved " + results.length + " objects.");
-                //            for (var i = 1; i <= results.length; counter++, i++) {
-                //                var object = results[i - 1];
-                //                var issue = results[i - 1].get('issue');
-                //                var place = results[i - 1].get('place');
-                //                var amount = results[i - 1].get('amount');
-                //                if (issue != undefined) {
-                //                    generateIssueNoteExternal();
-                //                    generatePreviouslyCreatedIssues(object, counter);
-                //                } else if (place != undefined){
-                //                    generateMeetingNoteExternal();
-                //                    generatePreviouslyCreatedMeetings(object, counter);
-                //                }else if (amount != undefined){
-                //                    generateBankNoteExternal();
-                //                    generatePreviouslyCreatedBanks(object, counter);
-                //                }
-                //            }
-                //        },
-                //        error: function (error) {
-                //            alert("Error hnq: " + error.code + " " + error.message);
-                //        }
-                //    });
-                //}
-
             },
             error: function (user, error) {
                 alert("Error: " + error.code + " " + error.message);
@@ -122,7 +87,6 @@ $signInButton.on('click', function (ev) {
 $logOut.on('click', function (ev) {
     Parse.User.logOut();
     sessionStorage.clear();
-
     displayData();
     var $allPreviousElements = $('#gridAdder').prevAll();
     $allPreviousElements.remove();
@@ -161,6 +125,7 @@ function queryObjects(currentQuery, queryId) {
             var issue = note.get('issue');
             var place = note.get('place');
             var amount = note.get('amount');
+            var textarea = note.get('content');
             var noteDayOfCreation = note.get('noteDayOfCreation');
             var storageDay = sessionStorage.getItem('date');
             // console.log('note calendar date ' + noteDayOfCreation);
@@ -174,6 +139,9 @@ function queryObjects(currentQuery, queryId) {
                 } else if (amount != undefined) {
                     generateBankNoteExternal(queryId, noteDayOfCreation);
                     generatePreviouslyCreatedBanks(note);
+                } else if (!issue && !place && !amount && textarea) {
+                    generateTextArea(queryId, noteDayOfCreation);
+                    generatePreviouslyCreatedTextArea(note);
                 }
             }
         },
@@ -191,15 +159,3 @@ function saveCurrentUserSession(username) {
 
     sessionStorage.setItem('sessionUser', username);
 }
-
-
-//var User = Parse.User;
-//User.signUp('Don1', '1234')
-//        .then(function(){
-//            console.log('user registered');
-//        });
-//
-//var TestObject = Parse.Object.extend("TestObject");
-//var testObject = new TestObject();
-//testObject.save({foo: "bar"}).then(function(object) {alert("yay! it worked");
-//});

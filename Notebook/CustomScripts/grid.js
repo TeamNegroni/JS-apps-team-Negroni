@@ -21,6 +21,8 @@ $grid.sortable({
 });
 
 function generateGridPieceBody(id, creationDate, type) {
+    $inputTypes.hide(200);
+    $adderSign.show(200);
     var $newPiece = $('<li/>'),
         day = sessionStorage.getItem('date');
     $newPiece.attr('data-id', id);
@@ -148,7 +150,13 @@ function generateGridPieceBody(id, creationDate, type) {
         }
 
         function saveTextTile() {
-
+            var content = $newPiece.find('.text-tile').val();
+            var Note = Parse.Object.extend("Note");
+            return storedNote = new Note({
+                content: content,
+                user: user,
+                noteDayOfCreation: day
+            });
         }
 
         function saveImgTile() {
@@ -169,7 +177,7 @@ function generateGridPieceBody(id, creationDate, type) {
 function generateNoteContainer() {
     var $noteBodyContainer = $('<div/>').addClass('note-container');
     var $noteTitle = $('<input/>').addClass('note-title').attr('placeholder', 'Title');
-    var $noteContent = $('<textarea/>').addClass('note-content').attr('placeholder', 'Content');
+    var $noteContent = $('<textarea/>').addClass('note-content').attr('placeholder', 'Content').attr('rows','4');
 
     $noteBodyContainer.append($noteTitle);
     $noteBodyContainer.append($noteContent);
@@ -187,8 +195,7 @@ function generateIssueNoteExternal(id, creationDate) {
     var $newPiece = generateGridPieceBody(id, creationDate, 'issue');
     var $noteBody = generateNoteContainer();
 
-    var $issueSpecs = $('<div/>').html('<div class="input-group-addon">Issue</div>' +
-        '<input type="text" class="form-control note-issue" placeholder="Description">');
+    var $issueSpecs = $('<div/>').html('<input type="text" class="form-control note-issue" placeholder="Description">');
 
     $noteBody.filter('.note-container').prepend($issueSpecs);
     $newPiece.append($noteBody);
@@ -246,15 +253,20 @@ function generatePreviouslyCreatedMeetings(existingMeetingNote) {
 function generatePreviouslyCreatedBanks(existingBankNote) {
     var $element = $('#gridAdder').prev();
 
-    $element.find('note-title').attr('value',existingBankNote.get('title'));
-    $element.find('note-content').html(existingBankNote.get('content'));
-    $element.find('bank-note-amount').attr('value',existingBankNote.get('amount'));
+    $element.find('.note-title').attr('value',existingBankNote.get('title'));
+    $element.find('.note-content').html(existingBankNote.get('content'));
+    $element.find('.bank-note-amount').attr('value',existingBankNote.get('amount'));
+}
+
+function generatePreviouslyCreatedTextArea(existingTextArea) {
+    var $element = $('#gridAdder').prev();
+    $element.find('.text-tile').html(existingTextArea.get('content'));
 }
 
 function generateTextArea(id, creationDate) {
     var $newPiece = generateGridPieceBody(id, creationDate, 'text');
 
-    var $textArea = $('<textarea/>').addClass('form-control').attr('row', 3).css('max-width', 300).addClass('text-tile');
+    var $textArea = $('<textarea/>').addClass('form-control').attr('row', 10).addClass('text-tile');
 
     $newPiece.append($textArea);
 
@@ -325,7 +337,6 @@ function deleteNote($newPiece) {
     var collection = JSON.parse(localStorage.getItem('dataStored'));
     currentUser.set("dataStored", []);
     currentUser.save();
-    debugger;
     for (var i = 0; i < collection.length; i++) {
         if (collection[i].objectId != searchedId) {
             var Note = Parse.Object.extend("Note");

@@ -113,27 +113,36 @@ hr {
 }
 
 #grid .gridPiece .position-center {
-
 }
 
 #grid .gridPiece .text-tile {
     resize: none;
 }
 
-#grid .gridPiece #icons-container {
-
+#grid .gridPiece .icons-container {
+    background-color: red;
+    font-size: 2em;
 }
 
 #grid .gridPiece .note-container {
+    text-align: center;
+}
 
+#grid .gridPiece .note-container .issue-label {
+    position: absolute;
+    width: 100%;
 }
 
 #grid .gridPiece .note-container .note-title {
-
+    margin-top: 2%;
+    margin-left: 15%;
 }
 
 #grid .gridPiece .note-container .note-content {
     resize: none;
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 90%;
 }
 
 .sortable-placeholderPiece {

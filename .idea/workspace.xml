@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8e5da55d-29f0-4ded-b16e-822cee830c83" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/CustomScripts/AuthController.js" afterPath="$PROJECT_DIR$/Notebook/CustomScripts/AuthController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/CustomScripts/grid.js" afterPath="$PROJECT_DIR$/Notebook/CustomScripts/grid.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/index.html" afterPath="$PROJECT_DIR$/Notebook/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/Styles/main.css" afterPath="$PROJECT_DIR$/Notebook/Styles/main.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Notebook/CustomScripts/uiController.js" afterPath="$PROJECT_DIR$/Notebook/CustomScripts/uiController.js" />
     </list>
     <ignored path="JS-apps-team-Negroni.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,38 +26,40 @@
     <favorites_list name="JS-apps-team-Negroni" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.65699404">
+    <splitter split-orientation="horizontal" split-proportion="0.52008927">
       <split-first>
         <leaf>
-          <file leaf-file-name="AuthController.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="AuthController.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/AuthController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-6.413793">
-                  <caret line="148" column="17" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="17" />
+                <state vertical-scroll-proportion="0.7103918">
+                  <caret line="119" column="1" selection-start-line="119" selection-start-column="1" selection-end-line="119" selection-end-column="1" />
                   <folding>
                     <element signature="e#974#1208#0" expanded="false" />
                     <element signature="e#1255#2330#0" expanded="false" />
-                    <element signature="e#5039#5208#0" expanded="false" />
-                    <element signature="e#5305#5643#0" expanded="false" />
+                    <element signature="e#2374#3130#0" expanded="false" />
+                    <element signature="e#3168#3336#0" expanded="false" />
+                    <element signature="e#3433#3771#0" expanded="false" />
                     <element signature="n#!!block;n#updateMainDate#0" expanded="false" />
+                    <element signature="n#!!block;n#drawDataStored#0" expanded="false" />
+                    <element signature="n#!!block;n#queryObjects#0" expanded="false" />
                     <element signature="n#!!block;n#saveCurrentUserSession#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="grid.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="grid.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/grid.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4548552">
-                  <caret line="252" column="121" selection-start-line="252" selection-start-column="121" selection-end-line="252" selection-end-column="121" />
+                <state vertical-scroll-proportion="-12.0">
+                  <caret line="265" column="25" selection-start-line="265" selection-start-column="9" selection-end-line="265" selection-end-column="25" />
                   <folding>
                     <element signature="e#460#682#0" expanded="false" />
-                    <element signature="n#!!block;n#generateGridPieceBody#0" expanded="false" />
-                    <element signature="n#!!block;n#saveNoteOnServer#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
                     <element signature="n#!!block;n#saveIssueNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
                     <element signature="n#!!block;n#saveMeetingNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
                     <element signature="n#!!block;n#saveBankNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
+                    <element signature="n#!!block;n#saveTextTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
                     <element signature="n#!!block;n#saveImgTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
                     <element signature="n#!!block;n#generateNoteContainer#0" expanded="false" />
                     <element signature="n#!!block;n#addAndAnimateGridPiece#0" expanded="false" />
@@ -65,8 +69,10 @@
                     <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
                     <element signature="n#!!block;n#generatePreviouslyCreatedMeetings#0" expanded="false" />
                     <element signature="n#!!block;n#generatePreviouslyCreatedBanks#0" expanded="false" />
-                    <element signature="e#13219#13439#0" expanded="false" />
-                    <element signature="e#13473#13818#0" expanded="false" />
+                    <element signature="n#!!block;n#generateImageInput#0" expanded="false" />
+                    <element signature="e#10918#11138#0" expanded="false" />
+                    <element signature="e#11172#11517#0" expanded="false" />
+                    <element signature="n#!!block;n#deleteNote#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -75,11 +81,10 @@
           <file leaf-file-name="uiController.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/uiController.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-12.275862">
-                  <caret line="123" column="50" selection-start-line="123" selection-start-column="50" selection-end-line="123" selection-end-column="50" />
+                <state vertical-scroll-proportion="-3.9655173">
+                  <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
                   <folding>
-                    <element signature="e#707#995#0" expanded="false" />
-                    <element signature="e#1041#1993#0" expanded="false" />
+                    <element signature="e#701#989#0" expanded="false" />
                     <element signature="n#!!block;n#GetSelectedText#0" expanded="false" />
                     <element signature="n#!!block;n#activateInputAttributes#0" expanded="false" />
                     <element signature="n#!!block;n#blurBackground#0" expanded="false" />
@@ -91,8 +96,8 @@
           <file leaf-file-name="Notes.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/Notes.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0">
-                  <caret line="91" column="37" selection-start-line="91" selection-start-column="31" selection-end-line="91" selection-end-column="37" />
+                <state vertical-scroll-proportion="-6.413793">
+                  <caret line="23" column="46" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="46" />
                   <folding />
                 </state>
               </provider>
@@ -102,21 +107,21 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Notebook/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-2.6153846">
-                  <caret line="91" column="14" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
+                <state vertical-scroll-proportion="0.3030303">
+                  <caret line="76" column="102" selection-start-line="76" selection-start-column="102" selection-end-line="76" selection-end-column="102" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main.css" pinned="false" current-in-tab="true">
+          <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Notebook/Styles/main.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.30286738">
-                  <caret line="112" column="1" selection-start-line="112" selection-start-column="1" selection-end-line="112" selection-end-column="1" />
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="132" column="16" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="16" />
                   <folding />
                 </state>
               </provider>
@@ -125,7 +130,7 @@
           <file leaf-file-name="calendarStyle.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Notebook/Styles/calendarStyle.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-36.344826">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="74" column="27" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="27" />
                   <folding />
                 </state>
@@ -145,12 +150,12 @@
         <option value="$PROJECT_DIR$/Calendar/bootstrap-3.3.5-dist/js/bootstrap.js" />
         <option value="$PROJECT_DIR$/Notebook/node_modules/bootstrap/dist/js/bootstrap.js" />
         <option value="$PROJECT_DIR$/Notebook/Styles/calendarStyle.css" />
-        <option value="$PROJECT_DIR$/Notebook/index.html" />
         <option value="$PROJECT_DIR$/Notebook/CustomScripts/calendar.js" />
-        <option value="$PROJECT_DIR$/Notebook/CustomScripts/AuthController.js" />
         <option value="$PROJECT_DIR$/Notebook/CustomScripts/uiController.js" />
-        <option value="$PROJECT_DIR$/Notebook/CustomScripts/grid.js" />
         <option value="$PROJECT_DIR$/Notebook/Styles/main.css" />
+        <option value="$PROJECT_DIR$/Notebook/index.html" />
+        <option value="$PROJECT_DIR$/Notebook/CustomScripts/grid.js" />
+        <option value="$PROJECT_DIR$/Notebook/CustomScripts/AuthController.js" />
       </list>
     </option>
   </component>
@@ -307,7 +312,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="9" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -317,8 +322,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
           <folding>
-            <element signature="e#707#995#0" expanded="false" />
-            <element signature="e#1041#1993#0" expanded="false" />
+            <element signature="e#701#989#0" expanded="false" />
             <element signature="n#!!block;n#GetSelectedText#0" expanded="false" />
             <element signature="n#!!block;n#activateInputAttributes#0" expanded="false" />
             <element signature="n#!!block;n#blurBackground#0" expanded="false" />
@@ -332,11 +336,10 @@
           <caret line="393" column="30" selection-start-line="393" selection-start-column="13" selection-end-line="393" selection-end-column="30" />
           <folding>
             <element signature="e#460#682#0" expanded="false" />
-            <element signature="n#!!block;n#generateGridPieceBody#0" expanded="false" />
-            <element signature="n#!!block;n#saveNoteOnServer#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveIssueNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveMeetingNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveBankNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
+            <element signature="n#!!block;n#saveTextTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveImgTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#generateNoteContainer#0" expanded="false" />
             <element signature="n#!!block;n#addAndAnimateGridPiece#0" expanded="false" />
@@ -346,8 +349,10 @@
             <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedMeetings#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedBanks#0" expanded="false" />
-            <element signature="e#13219#13439#0" expanded="false" />
-            <element signature="e#13473#13818#0" expanded="false" />
+            <element signature="n#!!block;n#generateImageInput#0" expanded="false" />
+            <element signature="e#10918#11138#0" expanded="false" />
+            <element signature="e#11172#11517#0" expanded="false" />
+            <element signature="n#!!block;n#deleteNote#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -415,9 +420,12 @@
           <folding>
             <element signature="e#974#1208#0" expanded="false" />
             <element signature="e#1255#2330#0" expanded="false" />
-            <element signature="e#5039#5208#0" expanded="false" />
-            <element signature="e#5305#5643#0" expanded="false" />
+            <element signature="e#2374#3130#0" expanded="false" />
+            <element signature="e#3168#3336#0" expanded="false" />
+            <element signature="e#3433#3771#0" expanded="false" />
             <element signature="n#!!block;n#updateMainDate#0" expanded="false" />
+            <element signature="n#!!block;n#drawDataStored#0" expanded="false" />
+            <element signature="n#!!block;n#queryObjects#0" expanded="false" />
             <element signature="n#!!block;n#saveCurrentUserSession#0" expanded="false" />
           </folding>
         </state>
@@ -436,8 +444,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="104" column="19" selection-start-line="104" selection-start-column="19" selection-end-line="104" selection-end-column="19" />
           <folding>
-            <element signature="e#707#995#0" expanded="false" />
-            <element signature="e#1041#1993#0" expanded="false" />
+            <element signature="e#701#989#0" expanded="false" />
             <element signature="n#!!block;n#GetSelectedText#0" expanded="false" />
             <element signature="n#!!block;n#activateInputAttributes#0" expanded="false" />
             <element signature="n#!!block;n#blurBackground#0" expanded="false" />
@@ -451,11 +458,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#460#682#0" expanded="false" />
-            <element signature="n#!!block;n#generateGridPieceBody#0" expanded="false" />
-            <element signature="n#!!block;n#saveNoteOnServer#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveIssueNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveMeetingNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveBankNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
+            <element signature="n#!!block;n#saveTextTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveImgTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#generateNoteContainer#0" expanded="false" />
             <element signature="n#!!block;n#addAndAnimateGridPiece#0" expanded="false" />
@@ -465,8 +471,10 @@
             <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedMeetings#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedBanks#0" expanded="false" />
-            <element signature="e#13219#13439#0" expanded="false" />
-            <element signature="e#13473#13818#0" expanded="false" />
+            <element signature="n#!!block;n#generateImageInput#0" expanded="false" />
+            <element signature="e#10918#11138#0" expanded="false" />
+            <element signature="e#11172#11517#0" expanded="false" />
+            <element signature="n#!!block;n#deleteNote#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -510,9 +518,12 @@
           <folding>
             <element signature="e#974#1208#0" expanded="false" />
             <element signature="e#1255#2330#0" expanded="false" />
-            <element signature="e#5039#5208#0" expanded="false" />
-            <element signature="e#5305#5643#0" expanded="false" />
+            <element signature="e#2374#3130#0" expanded="false" />
+            <element signature="e#3168#3336#0" expanded="false" />
+            <element signature="e#3433#3771#0" expanded="false" />
             <element signature="n#!!block;n#updateMainDate#0" expanded="false" />
+            <element signature="n#!!block;n#drawDataStored#0" expanded="false" />
+            <element signature="n#!!block;n#queryObjects#0" expanded="false" />
             <element signature="n#!!block;n#saveCurrentUserSession#0" expanded="false" />
           </folding>
         </state>
@@ -532,11 +543,10 @@
           <caret line="169" column="37" selection-start-line="169" selection-start-column="36" selection-end-line="169" selection-end-column="37" />
           <folding>
             <element signature="e#460#682#0" expanded="false" />
-            <element signature="n#!!block;n#generateGridPieceBody#0" expanded="false" />
-            <element signature="n#!!block;n#saveNoteOnServer#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveIssueNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveMeetingNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveBankNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
+            <element signature="n#!!block;n#saveTextTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveImgTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#generateNoteContainer#0" expanded="false" />
             <element signature="n#!!block;n#addAndAnimateGridPiece#0" expanded="false" />
@@ -546,8 +556,10 @@
             <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedMeetings#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedBanks#0" expanded="false" />
-            <element signature="e#13219#13439#0" expanded="false" />
-            <element signature="e#13473#13818#0" expanded="false" />
+            <element signature="n#!!block;n#generateImageInput#0" expanded="false" />
+            <element signature="e#10918#11138#0" expanded="false" />
+            <element signature="e#11172#11517#0" expanded="false" />
+            <element signature="n#!!block;n#deleteNote#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -565,8 +577,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding>
-            <element signature="e#707#995#0" expanded="false" />
-            <element signature="e#1041#1993#0" expanded="false" />
+            <element signature="e#701#989#0" expanded="false" />
             <element signature="n#!!block;n#GetSelectedText#0" expanded="false" />
             <element signature="n#!!block;n#activateInputAttributes#0" expanded="false" />
             <element signature="n#!!block;n#blurBackground#0" expanded="false" />
@@ -605,9 +616,12 @@
           <folding>
             <element signature="e#974#1208#0" expanded="false" />
             <element signature="e#1255#2330#0" expanded="false" />
-            <element signature="e#5039#5208#0" expanded="false" />
-            <element signature="e#5305#5643#0" expanded="false" />
+            <element signature="e#2374#3130#0" expanded="false" />
+            <element signature="e#3168#3336#0" expanded="false" />
+            <element signature="e#3433#3771#0" expanded="false" />
             <element signature="n#!!block;n#updateMainDate#0" expanded="false" />
+            <element signature="n#!!block;n#drawDataStored#0" expanded="false" />
+            <element signature="n#!!block;n#queryObjects#0" expanded="false" />
             <element signature="n#!!block;n#saveCurrentUserSession#0" expanded="false" />
           </folding>
         </state>
@@ -627,11 +641,10 @@
           <caret line="105" column="41" selection-start-line="105" selection-start-column="41" selection-end-line="105" selection-end-column="41" />
           <folding>
             <element signature="e#460#682#0" expanded="false" />
-            <element signature="n#!!block;n#generateGridPieceBody#0" expanded="false" />
-            <element signature="n#!!block;n#saveNoteOnServer#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveIssueNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveMeetingNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveBankNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
+            <element signature="n#!!block;n#saveTextTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveImgTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#generateNoteContainer#0" expanded="false" />
             <element signature="n#!!block;n#addAndAnimateGridPiece#0" expanded="false" />
@@ -641,8 +654,10 @@
             <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedMeetings#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedBanks#0" expanded="false" />
-            <element signature="e#13219#13439#0" expanded="false" />
-            <element signature="e#13473#13818#0" expanded="false" />
+            <element signature="n#!!block;n#generateImageInput#0" expanded="false" />
+            <element signature="e#10918#11138#0" expanded="false" />
+            <element signature="e#11172#11517#0" expanded="false" />
+            <element signature="n#!!block;n#deleteNote#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -660,8 +675,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="56" selection-start-line="105" selection-start-column="29" selection-end-line="105" selection-end-column="56" />
           <folding>
-            <element signature="e#707#995#0" expanded="false" />
-            <element signature="e#1041#1993#0" expanded="false" />
+            <element signature="e#701#989#0" expanded="false" />
             <element signature="n#!!block;n#GetSelectedText#0" expanded="false" />
             <element signature="n#!!block;n#activateInputAttributes#0" expanded="false" />
             <element signature="n#!!block;n#blurBackground#0" expanded="false" />
@@ -692,9 +706,12 @@
           <folding>
             <element signature="e#974#1208#0" expanded="false" />
             <element signature="e#1255#2330#0" expanded="false" />
-            <element signature="e#5039#5208#0" expanded="false" />
-            <element signature="e#5305#5643#0" expanded="false" />
+            <element signature="e#2374#3130#0" expanded="false" />
+            <element signature="e#3168#3336#0" expanded="false" />
+            <element signature="e#3433#3771#0" expanded="false" />
             <element signature="n#!!block;n#updateMainDate#0" expanded="false" />
+            <element signature="n#!!block;n#drawDataStored#0" expanded="false" />
+            <element signature="n#!!block;n#queryObjects#0" expanded="false" />
             <element signature="n#!!block;n#saveCurrentUserSession#0" expanded="false" />
           </folding>
         </state>
@@ -714,11 +731,10 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#460#682#0" expanded="false" />
-            <element signature="n#!!block;n#generateGridPieceBody#0" expanded="false" />
-            <element signature="n#!!block;n#saveNoteOnServer#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveIssueNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveMeetingNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveBankNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
+            <element signature="n#!!block;n#saveTextTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveImgTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#generateNoteContainer#0" expanded="false" />
             <element signature="n#!!block;n#addAndAnimateGridPiece#0" expanded="false" />
@@ -728,8 +744,10 @@
             <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedMeetings#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedBanks#0" expanded="false" />
-            <element signature="e#13219#13439#0" expanded="false" />
-            <element signature="e#13473#13818#0" expanded="false" />
+            <element signature="n#!!block;n#generateImageInput#0" expanded="false" />
+            <element signature="e#10918#11138#0" expanded="false" />
+            <element signature="e#11172#11517#0" expanded="false" />
+            <element signature="n#!!block;n#deleteNote#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -747,8 +765,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#707#995#0" expanded="false" />
-            <element signature="e#1041#1993#0" expanded="false" />
+            <element signature="e#701#989#0" expanded="false" />
             <element signature="n#!!block;n#GetSelectedText#0" expanded="false" />
             <element signature="n#!!block;n#activateInputAttributes#0" expanded="false" />
             <element signature="n#!!block;n#blurBackground#0" expanded="false" />
@@ -806,44 +823,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/Notes.js">
+    <entry file="file://$PROJECT_DIR$/Notebook/Styles/calendarStyle.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="91" column="37" selection-start-line="91" selection-start-column="31" selection-end-line="91" selection-end-column="37" />
+          <caret line="74" column="27" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Notebook/Styles/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="132" column="16" selection-start-line="132" selection-start-column="16" selection-end-line="132" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Notebook/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.6153846">
-          <caret line="91" column="14" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.3030303">
+          <caret line="76" column="102" selection-start-line="76" selection-start-column="102" selection-end-line="76" selection-end-column="102" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/AuthController.js">
+    <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/Notes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.413793">
-          <caret line="148" column="17" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="17" />
-          <folding>
-            <element signature="e#974#1208#0" expanded="false" />
-            <element signature="e#1255#2330#0" expanded="false" />
-            <element signature="e#5039#5208#0" expanded="false" />
-            <element signature="e#5305#5643#0" expanded="false" />
-            <element signature="n#!!block;n#updateMainDate#0" expanded="false" />
-            <element signature="n#!!block;n#saveCurrentUserSession#0" expanded="false" />
-          </folding>
+          <caret line="23" column="46" selection-start-line="23" selection-start-column="42" selection-end-line="23" selection-end-column="46" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/uiController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.275862">
-          <caret line="123" column="50" selection-start-line="123" selection-start-column="50" selection-end-line="123" selection-end-column="50" />
+        <state vertical-scroll-proportion="-3.9655173">
+          <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
           <folding>
-            <element signature="e#707#995#0" expanded="false" />
-            <element signature="e#1041#1993#0" expanded="false" />
+            <element signature="e#701#989#0" expanded="false" />
             <element signature="n#!!block;n#GetSelectedText#0" expanded="false" />
             <element signature="n#!!block;n#activateInputAttributes#0" expanded="false" />
             <element signature="n#!!block;n#blurBackground#0" expanded="false" />
@@ -851,25 +868,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Notebook/Styles/calendarStyle.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-36.344826">
-          <caret line="74" column="27" selection-start-line="74" selection-start-column="25" selection-end-line="74" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/grid.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4548552">
-          <caret line="252" column="121" selection-start-line="252" selection-start-column="121" selection-end-line="252" selection-end-column="121" />
+        <state vertical-scroll-proportion="-12.0">
+          <caret line="265" column="25" selection-start-line="265" selection-start-column="9" selection-end-line="265" selection-end-column="25" />
           <folding>
             <element signature="e#460#682#0" expanded="false" />
-            <element signature="n#!!block;n#generateGridPieceBody#0" expanded="false" />
-            <element signature="n#!!block;n#saveNoteOnServer#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveIssueNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveMeetingNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveBankNote#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
+            <element signature="n#!!block;n#saveTextTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#saveImgTile#0;n#!!block;n#saveItem#0;n#!!block;n#generateGridPieceBody#0" expanded="false" />
             <element signature="n#!!block;n#generateNoteContainer#0" expanded="false" />
             <element signature="n#!!block;n#addAndAnimateGridPiece#0" expanded="false" />
@@ -879,17 +887,29 @@
             <element signature="n#!!block;n#generatePreviouslyCreatedIssues#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedMeetings#0" expanded="false" />
             <element signature="n#!!block;n#generatePreviouslyCreatedBanks#0" expanded="false" />
-            <element signature="e#13219#13439#0" expanded="false" />
-            <element signature="e#13473#13818#0" expanded="false" />
+            <element signature="n#!!block;n#generateImageInput#0" expanded="false" />
+            <element signature="e#10918#11138#0" expanded="false" />
+            <element signature="e#11172#11517#0" expanded="false" />
+            <element signature="n#!!block;n#deleteNote#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Notebook/Styles/main.css">
+    <entry file="file://$PROJECT_DIR$/Notebook/CustomScripts/AuthController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30286738">
-          <caret line="112" column="1" selection-start-line="112" selection-start-column="1" selection-end-line="112" selection-end-column="1" />
-          <folding />
+        <state vertical-scroll-proportion="0.7103918">
+          <caret line="119" column="1" selection-start-line="119" selection-start-column="1" selection-end-line="119" selection-end-column="1" />
+          <folding>
+            <element signature="e#974#1208#0" expanded="false" />
+            <element signature="e#1255#2330#0" expanded="false" />
+            <element signature="e#2374#3130#0" expanded="false" />
+            <element signature="e#3168#3336#0" expanded="false" />
+            <element signature="e#3433#3771#0" expanded="false" />
+            <element signature="n#!!block;n#updateMainDate#0" expanded="false" />
+            <element signature="n#!!block;n#drawDataStored#0" expanded="false" />
+            <element signature="n#!!block;n#queryObjects#0" expanded="false" />
+            <element signature="n#!!block;n#saveCurrentUserSession#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
