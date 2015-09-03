@@ -171,6 +171,10 @@ hr {
     display: none;
 }
 
+.dropdown-menu {
+    left: 100%;
+}
+
 .glyphicon-remove {
     float: right;
 }

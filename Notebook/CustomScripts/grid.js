@@ -2,17 +2,12 @@ var index = 1;
 var $grid = $('#grid'),
     $adderSign = $('#adder-sign');
 var $inputTypes = $('#input-type-wrapper');
-var $inputTypeImage = $('.input-type-image');
-var $inputTypeTextarea = $('.input-type-textarea');
-var $inputTypeIssueNote = $('.input-type-issue-note');
-var $inputTypeMeetingNote = $('.input-type-meeting-note');
-var $inputTypeBankNote = $('.input-type-bank-note');
-var $inputTypeShoppingNote = $('.input-type-shopping-note');
-
-function getNoteDate(){
-    var today = new Date();
-    var calendar
-}
+var $inputTypeImage = $('#input-type-image');
+var $inputTypeTextarea = $('#input-type-textarea');
+var $inputTypeIssueNote = $('#input-type-issue-note');
+var $inputTypeMeetingNote = $('#input-type-meeting-note');
+var $inputTypeBankNote = $('#input-type-bank-note');
+var $inputTypeShoppingNote = $('#input-type-shopping-note');
 
 $grid.sortable({
     containment: 'parent',

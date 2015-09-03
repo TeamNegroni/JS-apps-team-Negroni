@@ -59,7 +59,7 @@
                 </div>
                 <div id="navigate-buttons">
                     <button class="btn btn-default" id="calendar-view-button">Show calendar</button>
-                    <button class="btn btn-default" id="save-button">Save everything</button>
+                    <button class="btn btn-default" id="save-all-button">Save everything</button>
                 </div>
             </div>
         </div>
@@ -72,21 +72,18 @@
 
                         <div id="input-type-wrapper">
                             <div class="btn-group-vertical" role="group" aria-label="Group two">
-                                <button type="button" class="btn btn-default input-type-image">Image</button>
-                                <button type="button" class="btn btn-default input-type-textarea">Textarea</button>
+                                <button type="button" class="btn btn-default" id="input-type-image">Image</button>
+                                <button type="button" class="btn btn-default" id="input-type-textarea">Text</button>
+                                <button type="button" class="btn btn-default" id="input-type-shopping-note">Shopping list</button>
                                 <div class="dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="true">
-                                        Note
-                                    </button>
+                                            aria-haspopup="true" aria-expanded="true">Note</button>
                                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                        <li class="input-type-issue-note"><a>Issue Note</a></li>
-                                        <li class="input-type-meeting-note"><a>Meeting Note</a></li>
-                                        <li class="input-type-bank-note"><a>Bank Note</a></li>
-                                        <li class="input-type-shopping-note"><a>Shopping list Note</a></li>
+                                        <li id="input-type-issue-note"><a>Issue</a></li>
+                                        <li id="input-type-meeting-note"><a>Meeting</a></li>
+                                        <li id="input-type-bank-note"><a>Bank</a></li>
                                     </ul>
                                 </div>
-                                <button type="button" class="btn btn-default input-type"><em>Something</em></button>
                             </div>
                         </div>
                     </li>
