@@ -130,18 +130,21 @@ function queryObjects(currentQuery, queryId) {
             var storageDay = sessionStorage.getItem('date');
             // console.log('note calendar date ' + noteDayOfCreation);
             if (noteDayOfCreation === storageDay) {
-                if (issue != undefined) {
+                if (issue != undefined) {                              // ISSUE
                     generateIssueNoteExternal(queryId, noteDayOfCreation);
                     generatePreviouslyCreatedIssues(note);
                 } else if (place != undefined) {
                     generateMeetingNoteExternal(queryId, noteDayOfCreation);
                     generatePreviouslyCreatedMeetings(note);
-                } else if (amount != undefined) {
+                } else if (amount != undefined) {                      // BANK
                     generateBankNoteExternal(queryId, noteDayOfCreation);
                     generatePreviouslyCreatedBanks(note);
-                } else if (!issue && !place && !amount && textarea) {
+                } else if (!issue && !place && !amount && textarea) {  // TEXT
                     generateTextArea(queryId, noteDayOfCreation);
                     generatePreviouslyCreatedTextArea(note);
+                } else if (!issue && !place && !amount && !textarea) { // IMG
+                    generateImageInput(queryId,noteDayOfCreation);
+                    generatePreviouslyCreatedImage(note);
                 }
             }
         },

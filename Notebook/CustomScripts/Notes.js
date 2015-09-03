@@ -2,7 +2,11 @@
     var MIN_LENGTH = 3,
         MAX_LENGTH = 25,
         MAX_CONTENT_LENGTH = 300;
-       
+    var $messageBox = $('.tile-message');
+
+    function animateMessageBox() {
+
+    }
 
     function validateString(value) {
         if (value === undefined) {

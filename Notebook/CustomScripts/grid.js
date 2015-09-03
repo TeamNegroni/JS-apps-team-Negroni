@@ -25,6 +25,7 @@ function generateGridPieceBody(id, creationDate, type) {
     $adderSign.show(200);
     var $newPiece = $('<li/>'),
         day = sessionStorage.getItem('date');
+    var $messageBox = $('<div/>').addClass('tile-message');
     $newPiece.attr('data-id', id);
     $newPiece.attr('position-id', index);
     index += 1;
@@ -42,6 +43,7 @@ function generateGridPieceBody(id, creationDate, type) {
     var $iconsContainer = $('<div/>').addClass('icons-container');
     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
     var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
+
     $iconsContainer.append($iconSave);
     $iconsContainer.append($iconRemove);
 
@@ -57,6 +59,7 @@ function generateGridPieceBody(id, creationDate, type) {
     });
 
     $newPiece.append($iconsContainer);
+    $newPiece.append($messageBox);
     return $newPiece;
 
     function saveItem(type) {
@@ -91,10 +94,23 @@ function generateGridPieceBody(id, creationDate, type) {
             user.save();
             item.save(null, {
                 success: function (storedNote) {
-                    console.log("successfully saved");
+                    $messageBox.html('Saved successfully!');
+                    $messageBox.animate({
+                        opacity: 1
+                    },200);
+
+                    setTimeout(function () {
+                        $messageBox.animate({
+                            opacity: 0
+                        },1000);
+                    }, 1500)
                 },
                 error: function (storedNote, error) {
-                    alert("Error: " + error.code + " " + error.message);
+                    $messageBox.html("Error: " + error.code + " " + error.message);
+                    $messageBox.show(200);
+                    setTimeout(function () {
+                        $messageBox.hide(500);
+                    }, 1000);
                 }
             });
         }
@@ -160,14 +176,13 @@ function generateGridPieceBody(id, creationDate, type) {
         }
 
         function saveImgTile() {
-            var $this = $(this);
             var $input = $newPiece.find('input');
             var MyImage = imageModule.getImage($input.val());
             var user = Parse.User.current();
             var Image = Parse.Object.extend("Image");
             return storedNote = new Image({
                 user: user,
-                source: MyImage.src,
+                src: MyImage.src,
                 noteDayOfCreation: day
             });
         }
@@ -177,7 +192,7 @@ function generateGridPieceBody(id, creationDate, type) {
 function generateNoteContainer() {
     var $noteBodyContainer = $('<div/>').addClass('note-container');
     var $noteTitle = $('<input/>').addClass('note-title').attr('placeholder', 'Title');
-    var $noteContent = $('<textarea/>').addClass('note-content').attr('placeholder', 'Content').attr('rows','4');
+    var $noteContent = $('<textarea/>').addClass('note-content').attr('placeholder', 'Content').attr('rows', '4');
 
     $noteBodyContainer.append($noteTitle);
     $noteBodyContainer.append($noteContent);
@@ -231,38 +246,6 @@ function generateBankNoteExternal(id, creationDate) {
     addAndAnimateGridPiece($newPiece);
 }
 
-function generatePreviouslyCreatedIssues(existingIssueNote) {
-    var $element = $('#gridAdder').prev();
-    
-    $element.find('.note-title').attr('value',existingIssueNote.get('title'));
-    $element.find('.note-content').html(existingIssueNote.get('content'));
-    $element.find('.note-issue').attr('value',existingIssueNote.get('issue'));
-}
-
-function generatePreviouslyCreatedMeetings(existingMeetingNote) {
-    var $element = $('#gridAdder').prev();
-    //console.log(existingMeetingNote.get('title'));
-    //console.log('my meet' + $parent.html());
-
-    $element.find('.note-title').attr('value',existingMeetingNote.get('title'));
-    $element.find('.note-content').html(existingMeetingNote.get('content'));
-    $element.find('.meeting-place').attr('value',existingMeetingNote.get('place'));
-    $element.find('.meeting-hour').attr('value',existingMeetingNote.get('hour'));
-}
-
-function generatePreviouslyCreatedBanks(existingBankNote) {
-    var $element = $('#gridAdder').prev();
-
-    $element.find('.note-title').attr('value',existingBankNote.get('title'));
-    $element.find('.note-content').html(existingBankNote.get('content'));
-    $element.find('.bank-note-amount').attr('value',existingBankNote.get('amount'));
-}
-
-function generatePreviouslyCreatedTextArea(existingTextArea) {
-    var $element = $('#gridAdder').prev();
-    $element.find('.text-tile').html(existingTextArea.get('content'));
-}
-
 function generateTextArea(id, creationDate) {
     var $newPiece = generateGridPieceBody(id, creationDate, 'text');
 
@@ -280,8 +263,46 @@ function generateImageInput(id, creationDate) {
     var $span = $('<span/>').addClass('file-input').addClass('btn').addClass('btn-primary').addClass('btn-file').html('Browse').append($input);
 
     $newPiece.append($input);
+    $newPiece.append($span);
 
     addAndAnimateGridPiece($newPiece);
+}
+
+function generatePreviouslyCreatedIssues(existingIssueNote) {
+    var $element = $('#gridAdder').prev();
+
+    $element.find('.note-title').attr('value', existingIssueNote.get('title'));
+    $element.find('.note-content').html(existingIssueNote.get('content'));
+    $element.find('.note-issue').attr('value', existingIssueNote.get('issue'));
+}
+
+function generatePreviouslyCreatedMeetings(existingMeetingNote) {
+    var $element = $('#gridAdder').prev();
+    //console.log(existingMeetingNote.get('title'));
+    //console.log('my meet' + $parent.html());
+
+    $element.find('.note-title').attr('value', existingMeetingNote.get('title'));
+    $element.find('.note-content').html(existingMeetingNote.get('content'));
+    $element.find('.meeting-place').attr('value', existingMeetingNote.get('place'));
+    $element.find('.meeting-hour').attr('value', existingMeetingNote.get('hour'));
+}
+
+function generatePreviouslyCreatedBanks(existingBankNote) {
+    var $element = $('#gridAdder').prev();
+
+    $element.find('.note-title').attr('value', existingBankNote.get('title'));
+    $element.find('.note-content').html(existingBankNote.get('content'));
+    $element.find('.bank-note-amount').attr('value', existingBankNote.get('amount'));
+}
+
+function generatePreviouslyCreatedTextArea(existingTextArea) {
+    var $element = $('#gridAdder').prev();
+    $element.find('.text-tile').html(existingTextArea.get('content'));
+}
+
+function generatePreviouslyCreatedImage(existingImage) {
+    var $element = $('#gridAdder').prev();
+    $element.append($('<img/>').attr('src',existingImage.get('src')));
 }
 
 $adderSign.on('click', function () {
@@ -329,7 +350,6 @@ $(document).ready(function () {
         }
     });
 });
-
 
 function deleteNote($newPiece) {
     var currentUser = Parse.User.current();

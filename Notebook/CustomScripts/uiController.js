@@ -27,7 +27,7 @@ $calendarViewButton.on('click', function () {
     }, 500);
 });
 
-//$gridAdder.on('click', 'div:not(.input-type-buttons #input-type-wrapper)', function () {
+//$gridAdder.on('click', ':not(#input-type-wrapper)', function () {
 //    $inputTypes.hide(200);
 //    $adderSign.show(200);
 //});
