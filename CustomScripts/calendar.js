@@ -128,7 +128,7 @@
         $daysTable.on('mouseout', 'td', function () {
             var $this = $(this);
             $this.animate({
-                backgroundColor: 'rgba(0,0,0,0.8)'
+                backgroundColor: 'rgba(20, 20, 20, 0.1)'
             }, 100);
         });
 

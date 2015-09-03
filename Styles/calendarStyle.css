@@ -1,5 +1,5 @@
 #calendar {
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(20,20,20,0.7);
     position: absolute;
     top: 7%;
     left: 23%;
@@ -70,10 +70,11 @@
     border: 1px solid black;
     text-align: center;
     width: 100px;
+    color: white;
 }
 
 #calendar .daysTable td.another-month {
-    color: lightgray;
+    color: dimgrey;
 }
 
 #calendar .daysTable td.another-month:hover {
