@@ -309,9 +309,12 @@ function generateImageInput() {
     var $newPiece = $('<li/>');
     var $input = $('<input/>').attr('type', 'file').attr('accept', 'image/x-png, image/gif, image/jpeg');
     var $span = $('<span/>').addClass('file-input').addClass('btn').addClass('btn-primary').addClass('btn-file').html('Browse').append($input);
+    var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
     var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
+    var day = sessionStorage.getItem('date');
 
     $iconRemove.on('click', function () {
+        deleteNote($newPiece);
         $(this).parent().fadeOut(300, function () { $(this).remove(); });
     });
 
@@ -327,8 +330,36 @@ function generateImageInput() {
         animateEasing: "easeInOutQuint"
     });
 
+    $iconSave.on('click', function (event) {
+        var $this = $(this);
+        var user = Parse.User.current();
+        var MyImage = imageModule.getImage($input.val());
+        var user = Parse.User.current();
+        var Image = Parse.Object.extend("Image");
+        var storedNote = new Image({
+            user: user,
+            source: MyImage.src,
+            noteDayOfCreation: day
+        });
+
+        user.addUnique("dataStored", storedNote);
+        user.save();
+        // console.log(user.get("dataStored"));
+        storedNote.save(null, {
+            success: function (storedNote) {
+                $newPiece.attr('data-id', storedNote.id);
+                console.log("successfully saved");
+            },
+            error: function (storedNote, error) {
+                alert("Error: " + error.code + " " + error.message);
+            }
+        });
+    })
+
+
     $newPiece.append($iconRemove);
     $newPiece.append($span);
+    $newPiece.append($iconSave);
     $newPiece.hide();
     $newPiece.insertBefore('#gridAdder');
     $newPiece.show(500);
