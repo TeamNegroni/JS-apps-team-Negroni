@@ -1,0 +1,101 @@
+#calendar {
+    background-color: rgba(0,0,0,0.8);
+    position: absolute;
+    top: 7%;
+    left: 23%;
+    text-align: center;
+    width: 50%;
+    z-index: 10;
+}
+
+#calendar-blurrer {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+}
+
+#calendar #calendar-toggleButton {
+    float: left;
+}
+
+#calendar .controls {
+    text-align: center;
+    background-color: #2780e3;
+    color: white;
+    padding: 5px;
+}
+
+#calendar .current-date {
+    background-color: #2780e3;
+    color: white;
+    padding: 12px;
+    text-align: center;
+    bottom: 0;
+    width: calc(100% - 24px);
+}
+
+#calendar .controls .current-month-and-year {
+    display: inline-block;
+    width: 180px;
+    text-align: center;
+}
+
+/*#calendar .controls .btn { BECAUSE USING BOOTSTRAP
+    border: none;
+    width: 30px;
+    height: 30px;
+    background-color: green;
+    color: white;
+    border-radius: 25px;
+}
+
+#calendar .controls .btn:hover {
+    background-color: #33CC33;
+    cursor: pointer;
+}*/
+
+#calendar .daysTable {
+    font-size: 40px;
+    empty-cells: show;
+    margin: 0 auto;
+    border-spacing: 1px;
+    border-collapse: separate;
+}
+
+#calendar .daysTable th, td {
+    border: 1px solid black;
+    text-align: center;
+    width: 100px;
+}
+
+#calendar .daysTable td.another-month {
+    color: lightgray;
+}
+
+#calendar .daysTable td.another-month:hover {
+    /*background-color: #808080; NOW DONE BY JAVASCRIPT - 137*/
+}
+
+#calendar .daysTable td.current-month:hover {
+    cursor: pointer;
+    /*background-color: #2780e3; NOW DONE BY JAVASCRIPT - 137 */
+    color: white;
+}
+
+#calendar .daysTable td.current-day {
+    border: 2px solid #ca171b;
+}
+
+#calendar .current-date-link {
+    margin-left: 13px;
+    color: white;
+    text-decoration: none;
+}
+
+#calendar .current-date-link:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,359 @@
+﻿/*Login div preset styles*/
+body {
+    background-color: black;
+}
+
+#background-image {
+    position: absolute;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    background: url("../Images/background.jpg") no-repeat;
+}
+
+.form-signin-heading {
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0px 1px 2px #111;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.checkbox {
+    font-weight: normal;
+}
+
+.form-control {
+    margin: auto;
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    width: 40%;
+    height: 10%;
+    padding: 10px;
+}
+
+input[type="text"] {
+    margin-bottom: -1px;
+    border-top: 1px solid #000;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+    border-radius: 6px 6px 0px 0px;
+}
+
+input[type="password"] {
+    z-index: 2;
+    margin-bottom: 20px;
+    border-top: none;
+    border-bottom: 1px solid #000;
+    border-right: 1px solid #000;
+    border-left: 1px solid #000;
+    border-radius: 0px 0px 6px 6px;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0px 1px 0px 0px rgba(255, 255, 255, 0.5);
+}
+
+.btn {
+    font-weight: bold;
+    text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
+}
+
+p.sign-up {
+    text-shadow: 0px 1px 2px #222;
+    color: #fff;
+    font-size: 12px;
+}
+
+/*Row's elements bootstrap preset styles*/
+h4 {
+    margin-top: 25px;
+}
+
+.row {
+    width: 100%;
+}
+
+[class*="col-"] {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #eee;
+    background-color: rgba(86, 61, 124, .15);
+    border: 1px solid #ddd;
+    border: 1px solid rgba(86, 61, 124, .2);
+}
+
+hr {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+/*Wrappers' custom styles*/
+#current-date {
+    display: block;
+}
+
+#date-picker {
+    display: none;
+}
+
+/*Grid components styles*/
+#grid {
+    display: inline-block;
+    list-style-type: none;
+    padding: 5px;
+    margin: 0;
+    width: 100%;
+}
+
+#grid #gridAdder {
+    text-align: center;
+}
+
+#grid #gridAdder #adder-sign {
+    font-size: 32px;
+}
+
+#grid .gridPiece {
+    float: left;
+    border: 1px solid black;
+    height: 202px;
+    width: 257px;
+    margin: 5px;
+}
+
+#grid .gridPiece .dropdown-menu {
+    left: 100%;
+    top: 96%;
+}
+
+#grid .gridPiece .dropdown-toggle {
+    width: 100%;
+}
+
+
+#grid .gridPiece .position-center {
+}
+
+#grid .gridPiece .text-tile {
+    resize: none;
+}
+
+#grid .gridPiece .tile-message {
+    opacity: 0;
+    text-align: center;
+    position: absolute;
+    top: 85%;
+    height: 15%;
+    width: 100%;
+    font-size: 16px;
+    vertical-align: middle;
+    background-color: #337ab7;
+    border: 1px solid #2e6da4;
+    color: #fff;
+}
+
+#grid .gridPiece .icons-container {
+    background-color: red;
+    font-size: 2em;
+}
+
+#grid .gridPiece .note-container {
+    text-align: center;
+}
+
+#grid .gridPiece .note-container .issue-label {
+    position: absolute;
+    width: 100%;
+}
+
+#grid .gridPiece .note-container .note-title {
+    text-align: center;
+    margin-top: 2%;
+    margin-left: 15%;
+}
+
+#grid .gridPiece .note-container .note-content {
+    resize: none;
+    margin-top: 2%;
+    margin-left: 5%;
+    width: 90%;
+}
+
+.sortable-placeholderPiece {
+    margin: 5px; /* depends on .grindPiece */
+    float: left;
+    border: 1px red solid;
+    background-color: rgba(255,0,0,0.1)
+}
+
+.resizable-helperPiece {
+    border: 2px dotted rgb(246,246,246);
+    margin: -3px;
+}
+
+/*Input attributes status*/
+.input-attribute {
+    disabled: true;
+}
+
+/*Input types*/
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#id-form-sign-up {
+    display: none;
+}
+
+#id-form-sign-in {
+    text-align: center;
+}
+
+#input-type-wrapper {
+    display: none;
+}
+
+.input-type-buttons {
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+}
+
+.glyphicon-remove {
+    float: right;
+}
+
+.glyphicon-ok {
+    float: left;
+    margin-left: 10px;
+}
+
+/*Notes css*/
+.note {
+    margin: 10px;
+    padding: 20px;
+    width: 300px;
+    height: 250px;
+}
+
+.note-title {
+    margin: 0;
+    display: block;
+}
+
+.note-content {
+    margin: 10px 0px 10px 0px;
+    display: block;
+}
+
+.form-inline {
+    margin: 10px 0px 10px 0px;
+}
+
+a {
+    cursor: pointer;
+}
+
+/*Log out div styles*/
+#login-wrapper {
+    display: none;
+    padding: 10%;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: absolute;
+}
+
+#ui-wrapper {
+    position: absolute;
+    display: none;
+    padding: 0;
+    padding-left: 10%;
+    padding-top: 5%;
+    width: 100%;
+    height: 100%;
+}
+
+#input-wrapper {
+    display: none;
+    margin-top: 4px;
+    border-radius: 3px;
+    border: 5px solid #393939;
+    background-color: rgba(255, 255, 255, 0.50);
+    width: 90%;
+    height: 450px;
+    padding: 0;
+    overflow-y: auto;
+}
+
+#controls {
+    padding: 0;
+    padding-right: 1%;
+    width: 90%;
+    float: left;
+    display: none;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.50);
+}
+
+#controls #navigate-buttons {
+    display: inline-block;
+    margin: 14px;
+    float: left;
+}
+
+#controls #show-selected-date {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+    margin-left: 37%;
+    padding-top: 14px;
+}
+
+#controls #logOut {
+    display: inline-block;
+    float: right;
+    font-size: x-large;
+    color: darkgray;
+    font-weight: bold;
+}
+
+#controls #logOut #nameTitle {
+    margin: 14px;
+    display: inline-block;
+    float: left;
+    text-align: center;
+    font-family: "Verdana";
+}
+
+#controls #logOut #logOutButton {
+    margin: 0;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+#fb-root{
+    display: none;
+    margin-left: 10px;
+    margin-top: 5px;
+}
+
+#calendar {
+    display: none;
+}
+
