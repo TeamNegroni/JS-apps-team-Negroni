@@ -32,7 +32,7 @@ function generateGridPieceBody(id, creationDate, type) {
     $newPiece.attr('creation-date', creationDate);
     $newPiece.addClass('gridPiece');
     $newPiece.resizable({
-        grid: [257, 202], // value to be edited
+        grid: [269, 214], // no mo
         autoHide: true,
         animate: true,
         helper: "resizable-helperPiece",
