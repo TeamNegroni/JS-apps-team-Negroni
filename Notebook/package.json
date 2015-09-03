@@ -1,0 +1,30 @@
+{
+  "name": "notebook-application",
+  "version": "1.0.0",
+  "description": "Small, light and free to use diary like application",
+  "main": "index.js",
+  "dependencies": {
+    "babel-core": "^5.8.23",
+    "bootstrap": "^3.3.5",
+    "jquery": "^2.1.4",
+    "http-server": "^0.8.0",
+    "jquery-ui": "^1.10.5",
+    "traceur": "^0.0.91",
+    "typescript": "^1.5.3",
+    "systemjs": "^0.18.17"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamNegroni/JS-apps-team-Negroni.git"
+  },
+  "author": "Emil Tishinov, Ognian Kosov, Georgi Georgiev, Andrey Mitev, Stefan Stefanov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamNegroni/JS-apps-team-Negroni/issues"
+  },
+  "homepage": "https://github.com/TeamNegroni/JS-apps-team-Negroni#readme"
+}
