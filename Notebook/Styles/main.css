@@ -112,6 +112,14 @@ hr {
     margin: 5px;
 }
 
+#grid .gridPiece .position-center {
+
+}
+
+#grid .gridPiece .text-tile {
+    resize: none;
+}
+
 #grid .gridPiece #icons-container {
 
 }
@@ -126,11 +134,6 @@ hr {
 
 #grid .gridPiece .note-container .note-content {
     resize: none;
-}
-
-
-#grid .gridPiece .position-center {
-
 }
 
 .sortable-placeholderPiece {

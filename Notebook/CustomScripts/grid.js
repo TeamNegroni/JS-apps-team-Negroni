@@ -152,11 +152,18 @@ function generateGridPieceBody(id, creationDate, type) {
         }
 
         function saveImgTile() {
-
+            var $this = $(this);
+            var MyImage = imageModule.getImage($input.val());
+            var user = Parse.User.current();
+            var Image = Parse.Object.extend("Image");
+            return storedNote = new Image({
+                user: user,
+                source: MyImage.src,
+                noteDayOfCreation: day
+            });
         }
     }
 }
-
 
 function generateNoteContainer() {
     var $noteBodyContainer = $('<div/>').addClass('note-container');
@@ -240,69 +247,25 @@ function generatePreviouslyCreatedBanks(existingBankNote) {
     $element.find('bank-note-amount-text').html(existingBankNote.get('amount'));
 }
 
-function generateTextArea() {
-    var $newPiece = $('<li/>');
-    var $textArea = $('<textarea/>').addClass('form-control').attr('row', 3).css('max-width', 300);
-    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
+function generateTextArea(id, creationDate) {
+    var $newPiece = generateGridPieceBody(id, creationDate, 'text');
 
-    $iconRemove.on('click', function () {
-        $(this).parent().fadeOut(300, function () {
-            $(this).remove();
-        });
-    });
+    var $textArea = $('<textarea/>').addClass('form-control').attr('row', 3).css('max-width', 300).addClass('text-tile');
 
-    $newPiece.addClass('gridPiece');
-    $newPiece.text(index);
-    index += 1;
-
-    $newPiece.resizable({
-        grid: [362, 362], // value to be edited
-        autoHide: true,
-        animate: true,
-        helper: "resizable-helperPiece",
-        animateEasing: "easeInOutQuint"
-    });
-
-    $newPiece.append($iconRemove);
     $newPiece.append($textArea);
-    $newPiece.hide();
-    $newPiece.insertBefore('#gridAdder');
-    $newPiece.show(500);
-    $inputTypes.hide(200);
-    $adderSign.show(200);
+
+    addAndAnimateGridPiece($newPiece);
 }
 
-function generateImageInput() {
-    var $newPiece = $('<li/>');
+function generateImageInput(id, creationDate) {
+    var $newPiece = generateGridPieceBody(id, creationDate, 'img');
+
     var $input = $('<input/>').attr('type', 'file').attr('accept', 'image/x-png, image/gif, image/jpeg');
     var $span = $('<span/>').addClass('file-input').addClass('btn').addClass('btn-primary').addClass('btn-file').html('Browse').append($input);
-    var $iconRemove = $('<span/>').addClass('glyphicon').addClass('glyphicon-remove').attr('aria-hidden', 'true');
 
-    $iconRemove.on('click', function () {
-        $(this).parent().fadeOut(300, function () {
-            $(this).remove();
-        });
-    });
+    $newPiece.append($input);
 
-    $newPiece.addClass('gridPiece');
-    $newPiece.text(index);
-    index += 1;
-
-    $newPiece.resizable({
-        grid: [362, 362], // value to be edited
-        autoHide: true,
-        animate: true,
-        helper: "resizable-helperPiece",
-        animateEasing: "easeInOutQuint"
-    });
-
-    $newPiece.append($iconRemove);
-    $newPiece.append($span);
-    $newPiece.hide();
-    $newPiece.insertBefore('#gridAdder');
-    $newPiece.show(500);
-    $inputTypes.hide(200);
-    $adderSign.show(200);
+    addAndAnimateGridPiece($newPiece);
 }
 
 $adderSign.on('click', function () {
