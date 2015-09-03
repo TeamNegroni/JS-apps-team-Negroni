@@ -112,6 +112,27 @@ hr {
     margin: 5px;
 }
 
+#grid .gridPiece #icons-container {
+
+}
+
+#grid .gridPiece .note-container {
+
+}
+
+#grid .gridPiece .note-container .note-title {
+
+}
+
+#grid .gridPiece .note-container .note-content {
+    resize: none;
+}
+
+
+#grid .gridPiece .position-center {
+
+}
+
 .sortable-placeholderPiece {
     margin: 5px; /* depends on .grindPiece */
     float: left;
@@ -297,3 +318,4 @@ a {
 #calendar {
     display: none;
 }
+

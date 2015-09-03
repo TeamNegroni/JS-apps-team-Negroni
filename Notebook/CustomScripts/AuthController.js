@@ -17,7 +17,6 @@ var $logOut = $('#logOutButton');
 
 var $invalidPassword = $('<div/>').html('Invalid password');
 
-var $iconSave = $('span.glyphicon.glyphicon-ok')
 var counter = 0;
 var $selectedDate = $('#show-selected-date');
 var today = new Date();
