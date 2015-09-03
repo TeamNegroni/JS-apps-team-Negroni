@@ -95,30 +95,11 @@
                 //console.log(date);
                 //!!! Add connection to the server about the date info, use date variable,
                 //!!! hide the div with the calendar, here the calendar disappears and the module is called again on another 'View Calendar' button press.
-
-                var parsedDate = date.toDateString();
-                var shortDate = parsedDate.substring(4, 16);
-
-                localStorage.setItem('date', date);
-                var storageDay = localStorage.getItem('date');
-                var shortStorageDay = storageDay.substring(4, 16);
-                var $selectedDate = $('.show-selected-date');
-                $selectedDate.html(shortStorageDay);
-
+                updateMainDate(date);
                 closeCalendar();
                 var $allPreviousElements = $('#gridAdder').prevAll();
                 $allPreviousElements.remove();
-                var loggedInUser =  Parse.User.current();
-                var collection = loggedInUser.get('dataStored');
-                for (var i = 1; i <= collection.length; i++){
-                    var Note = Parse.Object.extend("Note");
-                    var query = new Parse.Query(Note);
-                    var today = new Date();
-                    queryObjects(query, collection[i - 1].id);
-                }
-
-
-
+                drawDataStored();
             } else {
                 if (clickedDay >= 15) {
                     goToMonth = date.getMonth() - 1;

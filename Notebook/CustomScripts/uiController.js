@@ -79,6 +79,8 @@ function displayData() {
         }
         $controls.fadeIn(500);
         $('#input-wrapper').fadeIn(1700); // MIGHT NOT WORK PROPERLY, IF SO DO IT WITH $loginWrapper.fadeIn(500)
+        drawDataStored();
+        $('#show-selected-date').html(sessionStorage.getItem('date'));
         $nameTitle.html('Hello, ' + sessionStorage.getItem('sessionUser'));
     }
 }

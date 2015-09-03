@@ -358,7 +358,7 @@ $inputTypeIssueNote.on('click', function () {
      var $iconSave = $('<span/>').addClass('glyphicon').addClass('glyphicon-ok').attr('aria-hidden', 'true');
      var issueSpecs = $('<div/>').html('<div class="input-group-addon">Issue</div>' +
      '<input type="text" class="form-control note-issue" placeholder="Description">');
-     var day = localStorage.getItem('date');
+     var day = sessionStorage.getItem('date');
 
      noteBody.append(issueSpecs);
 

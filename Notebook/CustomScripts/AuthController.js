@@ -19,7 +19,8 @@ var $invalidPassword = $('<div/>').html('Invalid password');
 
 var $iconSave = $('span.glyphicon.glyphicon-ok')
 var counter = 0;
-var $selectedDate = $('.show-selected-date');
+var $selectedDate = $('#show-selected-date');
+var today = new Date();
 
 $register.on('click', function (ev) {
     var $this = $(this);
@@ -37,11 +38,7 @@ $signUpButton.on('click', function (event) {
     var user = new Parse.User();
     var init = $signUpFieldPasswordInitial.val();
     var confirmed = $signUpFieldPasswordConfirmed.val();
-    var today = new Date();
-    localStorage.setItem('date', today);
-    var storageDay = localStorage.getItem('date');
-    var shortStorageDay = storageDay.substring(4, 16);
-    $selectedDate.html(shortStorageDay);
+    updateMainDate(today);
     if (init == confirmed) {
         user.set("username", $signUpFieldUsername.val());
         user.set("password", $signUpFieldPasswordInitial.val());
@@ -70,25 +67,16 @@ $signInButton.on('click', function (ev) {
     var $this = $(this);
     var loggedInUser = Parse.User.current();
     Parse.User.logOut();
-    var today = new Date();
-    localStorage.setItem('date', today);
-    var storageDay = localStorage.getItem('date');
-    var shortStorageDay = storageDay.substring(4, 16);
-    $selectedDate.html(shortStorageDay);
+    updateMainDate(today);
     loggedInUser = Parse.User.current();
     if (!loggedInUser) {
         Parse.User.logIn($signInFieldUsername.val(), $signInFieldPassword.val(), {
             success: function (user) {
                 saveCurrentUserSession($signInFieldUsername.val());
+                sessionStorage.setItem('dataStored', JSON.stringify(user.get('dataStored')));
                 displayData();
 
                 //console.log(user.get('username'));
-                var collection = user.get('dataStored');
-                for (var i = 1; i <= collection.length; i++) {
-                    var Note = Parse.Object.extend("Note");
-                    var query = new Parse.Query(Note);
-                    queryObjects(query, collection[i - 1].id);
-                }
 
                 // var compoundQuery = Parse.Query.or(issueQuery, meetingQuery);
                 // compoundQuery.equalTo("user", Parse.User.current());
@@ -151,6 +139,20 @@ $signUpBackToSignInButton.on('click', function (ev) {
     $register.css('display', 'inline-block');
 });
 
+function updateMainDate(date) {
+    sessionStorage.setItem('date', date.getDayName() + ' ' + date.getDate() + '-' + date.getMonthName() + '-' + date.getFullYear());
+    var storageDay = sessionStorage.getItem('date');
+    $selectedDate.html(storageDay);
+}
+
+function drawDataStored() {
+    var collection = JSON.parse(sessionStorage.getItem('dataStored'));
+    for (var i = 1; i <= collection.length; i++) {
+        var Note = Parse.Object.extend("Note");
+        var query = new Parse.Query(Note);
+        queryObjects(query, collection[i - 1].objectId);
+    }
+}
 
 function queryObjects(currentQuery, queryId) {
     currentQuery.get(queryId, {
@@ -159,13 +161,11 @@ function queryObjects(currentQuery, queryId) {
             var place = note.get('place');
             var amount = note.get('amount');
             var noteDayOfCreation = note.get('noteDayOfCreation');
-            var shortParsedNoteDayOfCreation = noteDayOfCreation.substring(4, 16);
-
-            var storageDay = localStorage.getItem('date');
-            var shortStorageDay = storageDay.substring(4, 16);
-
+            var dayOfCreation = new Date(noteDayOfCreation);
+            var shortParsedNoteDayOfCreation = dayOfCreation.getDayName() + ' ' + dayOfCreation.getDate() + '-' + dayOfCreation.getMonthName() + '-' + dayOfCreation.getFullYear();
+            var storageDay = sessionStorage.getItem('date');
             // console.log('note calendar date ' + noteDayOfCreation);
-            if (shortParsedNoteDayOfCreation === shortStorageDay) {
+            if (shortParsedNoteDayOfCreation === storageDay) {
                 if (issue != undefined) {
                     generateIssueNoteExternal(queryId, shortParsedNoteDayOfCreation);
                     generatePreviouslyCreatedIssues(note);
