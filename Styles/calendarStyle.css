@@ -31,7 +31,6 @@
 
 #calendar .current-date {
     background-color: #2780e3;
-    color: white;
     padding: 12px;
     text-align: center;
     bottom: 0;
@@ -70,15 +69,19 @@
     border: 1px solid black;
     text-align: center;
     width: 100px;
-    color: white;
+    color: dimgrey;
 }
 
 #calendar .daysTable td.another-month {
-    color: dimgrey;
+    color: white;
 }
 
 #calendar .daysTable td.another-month:hover {
     /*background-color: #808080; NOW DONE BY JAVASCRIPT - 137*/
+}
+
+#calendar .daysTable td.current-month {
+    color: dimgrey;
 }
 
 #calendar .daysTable td.current-month:hover {
