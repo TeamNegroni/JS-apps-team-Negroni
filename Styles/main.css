@@ -134,6 +134,12 @@ hr {
 }
 
 #grid .gridPiece .text-tile {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    height: 85%;
+    font-size: 1.2em;
+    text-align: justify;
     resize: none;
 }
 
