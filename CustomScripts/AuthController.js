@@ -1,16 +1,19 @@
-var $signUpFieldUsername = $('.form-sign-up .form-sign-up-username');
-var $signUpFieldEmail = $('.form-sign-up .email');
-var $signUpButton = $('.form-sign-up .btn-sign-up');
-var $signUpBackToSignInButton = $('.form-sign-up .btn-go-back-to-sign-in');
-var $signUpFieldPasswordInitial = $('.form-sign-up .passwordInitial');
-var $signUpFieldPasswordConfirmed = $('.form-sign-up .passwordConfirmed');
-var $register = $('.register');
-var $formSignUp = $('#id-form-sign-up');
+var $formSignIn = $('#form-sign-in');
+var $signInFieldUsername = $('#form-sign-in-username');
+var $signInFieldPassword = $('#form-sign-in-password');
+var $signInButton = $('#form-sign-in-button');
+var $signUpButton = $('#sign-up-button');
+
+
+var $formSignUp = $('#form-sign-up');
+var $signUpFieldUsername = $formSignUp.find('.form-sign-up-username');
+//var $signUpFieldEmail = $('.form-sign-up-email');
+var $signUpFieldPasswordInitial = $formSignUp.find('#form-sign-up-passwordInitial');
+var $signUpFieldPasswordConfirmed = $formSignUp.find('#form-sign-up-passwordConfirmed');
+var $signUpFieldRegisterButton = $formSignUp.find('#form-sign-up-register-button');
+var $signUpBackToSignInButton = $formSignUp.find('#already-registered-button');
 var $textSignUp = $('.text-center .sign-up');
 
-var $signInFieldUsername = $('.form-sign-in .form-sign-in-username');
-var $signInFieldPassword = $('.form-sign-in .form-sign-in-password');
-var $signInButton = $('#login-wrapper .form-sign-in-button');
 
 var $container = $("#container");
 var $logOut = $('#logOutButton');
@@ -21,16 +24,7 @@ var counter = 0;
 var $selectedDate = $('#show-selected-date');
 var today = new Date();
 
-$register.on('click', function (ev) {
-    var $this = $(this);
-    var $formSignin = $('.form-sign-in');
-    var $formSignUp = $('.form-sign-up');
-    $formSignin.css('display', 'none');
-    $formSignUp.css('display', 'inline-block');
-    $this.css('display', 'none');
-});
-
-$signUpButton.on('click', function (event) {
+$signUpFieldRegisterButton.on('click', function (event) {
     event.preventDefault();
     var loggedInUser = Parse.User.current();
     Parse.User.logOut();
@@ -94,14 +88,18 @@ $logOut.on('click', function (ev) {
 
 // TODO: Add transitions, make it smooth
 $signUpBackToSignInButton.on('click', function (ev) {
-    var $formSignin = $('.form-sign-in');
     $invalidPassword.detach();
-    $formSignUp.css('display', 'none');
-    $register.css('display', 'none');
-    $textSignUp.css('display', 'none');
-    $formSignin.css('display', 'inline-block');
-    $signInButton.css('display', 'inline-block');
-    $register.css('display', 'inline-block');
+    $formSignUp.css('display','none');
+    $formSignIn.css('display','block');
+});
+
+$signUpButton.on('click',function(ev) {
+    var $formSignIn = $('#form-sign-in'),
+        $formSignUp = $('#form-sign-up');
+
+    $invalidPassword.detach();
+    $formSignIn.css('display','none');
+    $formSignUp.css('display','block');
 });
 
 function updateMainDate(date) {

@@ -25,30 +25,29 @@
 <div id="container">
     <div id="background-image"></div>
     <div id="login-wrapper">
-        <form class="form-sign-in" id="id-form-sign-in">
+        <form id="form-sign-in">
             <h1 class="form-signin-heading">Please Login</h1>
-            <input type="text" class="form-control  form-sign-in-username" name="username" placeholder="Account name"
-                   required="" autofocus=""/>
-            <input type="password" class="form-control form-sign-in-password" name="password" placeholder="Password"
-                   required=""/>
-
-            <button class="btn btn-lg btn-primary form-sign-in-button" type="submit">Log in</button>
+            <input type="text" class="form-control" id="form-sign-in-username" name="username" placeholder="Account name"
+                   required/>
+            <input type="password" class="form-control" id="form-sign-in-password" name="password" placeholder="Password"
+                   required/>
+            <button class="btn btn-lg btn-primary" id="form-sign-in-button" type="submit">Log In</button>
+            <h3 class="text-center sign-up form-signin-heading"><b>Not registered?</b></h3>
+            <button class="btn btn-lg btn-primary" id="sign-up-button" onclick="return false;">Sign Up</button>
         </form>
-        <form class="form-sign-up" id="id-form-sign-up">
-            <h1 class="form-sign-up-heading">Please Sign Up</h1>
+        <form id="form-sign-up">
+            <h1 class="form-signin-heading">Please Sign Up</h1>
             <input type="text" class="form-control form-sign-up-username" name="username" placeholder="Account name"
-                   required="" autofocus=""/>
-            <input type="password" class="form-control passwordInitial" name="password" placeholder="Password"
-                   required=""/>
-            <input type="password" class="form-control passwordConfirmed" name="password" placeholder="Password"
-                   required=""/>
-            <button class="btn btn-lg btn-primary btn-sign-up" type="submit">Register</button>
-            <button class="btn btn-lg btn-primary btn-go-back-to-sign-in" type="submit">I am registered. Go Back To
+                   required/>
+            <input type="password" class="form-control" id="form-sign-up-passwordInitial" name="password" placeholder="Password"
+                   required/>
+            <input type="password" class="form-control" id="form-sign-up-passwordConfirmed" name="password" placeholder="Confirm Password"
+                   required/>
+            <button class="btn btn-lg btn-primary" id="form-sign-up-register-button" type="submit">Register</button>
+            <button class="btn btn-lg btn-primary" id="already-registered-button" onclick="return false;">I am registered. Go back to
                 Log-In
             </button>
         </form>
-        <p class="text-center sign-up"><strong>Sign up</strong> for a new account</p>
-        <button class="btn btn-lg btn-primary register" type="submit">Not registered</button>
     </div>
     <div id="ui-wrapper">
         <div class="row">
