@@ -59,15 +59,6 @@ function generateGridPieceBody(id, creationDate, type) {
             color: 'black'
         }, 150);
     });
-    //hover(function(e) {
-    //    $(this).animate({
-    //        color: '#337ab7'
-    //    },100);
-    //},function(e) {
-    //    var $target = $(e.target);
-    //    $target.animate({
-    //        color: 'black'
-    //    },100)});
 
     $iconSave.on('click', function (event) {
         saveItem(type);
@@ -117,7 +108,8 @@ function generateGridPieceBody(id, creationDate, type) {
             item.save(null, {
                 success: function (storedNote) {
                     $messageBox.html('Saved successfully!');
-                    $messageBox.css('display','block');
+
+                    $messageBox.css('display','table-cell');
                     $messageBox.css('z-index', '100');
                     $messageBox.animate({
                         opacity: 1
