@@ -46,6 +46,28 @@ function generateGridPieceBody(id, creationDate, type) {
 
     $iconsContainer.append($iconSave);
     $iconsContainer.append($iconRemove);
+    $iconsContainer.on('mouseover','span',function () {
+        $this = $(this);
+        $this.animate({
+            color: '#337ab7',
+            borderColor: 'white'
+        },150)
+    });
+    $iconsContainer.on('mouseout','span',function () {
+        $this = $(this);
+        $this.animate({
+            color: 'black'
+        }, 150);
+    });
+    //hover(function(e) {
+    //    $(this).animate({
+    //        color: '#337ab7'
+    //    },100);
+    //},function(e) {
+    //    var $target = $(e.target);
+    //    $target.animate({
+    //        color: 'black'
+    //    },100)});
 
     $iconSave.on('click', function (event) {
         saveItem(type);
@@ -95,14 +117,19 @@ function generateGridPieceBody(id, creationDate, type) {
             item.save(null, {
                 success: function (storedNote) {
                     $messageBox.html('Saved successfully!');
+                    $messageBox.css('display','block');
+                    $messageBox.css('z-index', '100');
                     $messageBox.animate({
                         opacity: 1
-                    },200);
+                    }, 200);
 
                     setTimeout(function () {
                         $messageBox.animate({
                             opacity: 0
-                        },1000);
+                        }, 1000, function () {
+                            $messageBox.css('z-index', '0');
+                            $messageBox.css('display','none');
+                        });
                     }, 1500);
 
                     localStorage.setItem('dataStored', JSON.stringify(user.get('dataStored')));
@@ -178,8 +205,7 @@ function generateGridPieceBody(id, creationDate, type) {
         }
 
         function saveImgTile() {
-            var $input = $newPiece.find('input');
-            var MyImage = imageModule.getImage($input.val());
+            var MyImage = imageModule.getImage(document.getElementById("image-input").files[0].fileName);
             var user = Parse.User.current();
             var Image = Parse.Object.extend("Image");
             return storedNote = new Image({
@@ -224,10 +250,10 @@ function generateMeetingNoteExternal(id, creationDate) {
     var $newPiece = generateGridPieceBody(id, creationDate, 'meeting');
     var $noteBody = generateNoteContainer();
 
-    var $meetingSpecs = $('<div/>').html('<div class="input-group-addon">Place</div>' +
-        '<input type="text" class="form-control meeting-place" placeholder="Place">' +
-        '<div class="input-group-addon">Hour</div>' +
-        '<input type="text" class="form-control meeting-hour" id="datepicker" placeholder="">');
+    var $meetingSpecs = $('<div/>').html('<div class="input-group-addon">Meeting? Where?</div>' +
+        '<input type="text" class="meeting-place" placeholder="Place">' +
+        '<div class="input-group-addon">When?</div>' +
+        '<input type="text" class="meeting-hour" id="datepicker" placeholder="Hour">');
 
     $noteBody.filter('.note-container').prepend($meetingSpecs);
     $newPiece.append($noteBody);
@@ -240,7 +266,7 @@ function generateBankNoteExternal(id, creationDate) {
     var $noteBody = generateNoteContainer();
 
     var $bankSpecs = $('<div/>').html('<div class="input-group-addon">Amount in $</div>' +
-        '<input type="text" class="form-control bank-note-amount" id="exampleInputAmount" placeholder="Amount">');
+        '<input type="text" class="bank-note-amount" id="exampleInputAmount" placeholder="Amount">');
 
     $noteBody.filter('.note-container').prepend($bankSpecs);
     $newPiece.append($noteBody);
@@ -261,7 +287,7 @@ function generateTextArea(id, creationDate) {
 function generateImageInput(id, creationDate) {
     var $newPiece = generateGridPieceBody(id, creationDate, 'img');
 
-    var $input = $('<input/>').attr('type', 'file').attr('accept', 'image/x-png, image/gif, image/jpeg');
+    var $input = $('<input/>').attr('type', 'file').attr('accept', 'image/x-png, image/gif, image/jpeg').attr('id', 'image-input');
     var $span = $('<span/>').addClass('file-input').addClass('btn').addClass('btn-primary').addClass('btn-file').html('Browse').append($input);
 
     $newPiece.append($input);
@@ -304,7 +330,7 @@ function generatePreviouslyCreatedTextArea(existingTextArea) {
 
 function generatePreviouslyCreatedImage(existingImage) {
     var $element = $('#gridAdder').prev();
-    $element.append($('<img/>').attr('src',existingImage.get('src')));
+    $element.append($('<img/>').attr('src', existingImage.get('src')));
 }
 
 $adderSign.on('click', function () {

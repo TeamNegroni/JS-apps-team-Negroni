@@ -1,6 +1,6 @@
 var imageModule = (function () {
     var Image = (function () {
-        var Image = {}
+        var Image = {};
         Object.defineProperties(Image, {
             init: {
                 value: function (src) {
@@ -13,7 +13,7 @@ var imageModule = (function () {
                     return this._src;
                 },
                 set: function (value) {
-                    this._name = src;
+                    this._src = value;
                 }
             }
         });

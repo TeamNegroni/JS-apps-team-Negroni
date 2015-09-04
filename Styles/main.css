@@ -138,6 +138,7 @@ hr {
 }
 
 #grid .gridPiece .tile-message {
+    display: none;
     opacity: 0;
     text-align: center;
     position: absolute;
@@ -156,8 +157,22 @@ hr {
     font-size: 2em;
 }
 
+#grid .gridPiece .icons-container:hover {
+    background-color: red;
+
+}
+
 #grid .gridPiece .note-container {
+    height: 100%;
     text-align: center;
+}
+
+#grid .gridPiece .note-container input{
+    width: 80%;
+    left: 15%;
+    overflow: visible;
+    text-align: center;
+    height: 20%;
 }
 
 #grid .gridPiece .note-container .issue-label {
@@ -168,7 +183,7 @@ hr {
 #grid .gridPiece .note-container .note-title {
     text-align: center;
     margin-top: 2%;
-    margin-left: 15%;
+    margin-left: 10%;
 }
 
 #grid .gridPiece .note-container .note-content {
@@ -176,6 +191,7 @@ hr {
     margin-top: 2%;
     margin-left: 5%;
     width: 90%;
+    height: 100%;
 }
 
 .sortable-placeholderPiece {
