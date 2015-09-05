@@ -21,7 +21,7 @@
 ***
 Thank you for your interest in our project! 
 
-<a href="https://cdn.rawgit.com/TeamNegroni/JS-apps-team-Negroni/master/index.html" alt="RawGit-Project-Adress">RawGit of the Project</a>
+<a href="https://rawgit.com/TeamNegroni/JS-apps-team-Negroni/master/index.html" alt="RawGit-Project-Adress">RawGit of the Project</a>
 ***
 ##Table of Contents
 1. Project Description
