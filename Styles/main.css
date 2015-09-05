@@ -120,11 +120,6 @@ hr {
     margin: 5px;
 }
 
-#grid .gridPiece .dropdown-menu {
-    left: 100%;
-    top: 96%;
-}
-
 #grid .gridPiece .dropdown-toggle {
     width: 100%;
 }

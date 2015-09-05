@@ -12,8 +12,6 @@ var $signUpFieldPasswordInitial = $formSignUp.find('#form-sign-up-passwordInitia
 var $signUpFieldPasswordConfirmed = $formSignUp.find('#form-sign-up-passwordConfirmed');
 var $signUpFieldRegisterButton = $formSignUp.find('#form-sign-up-register-button');
 var $signUpBackToSignInButton = $formSignUp.find('#already-registered-button');
-var $textSignUp = $('.text-center .sign-up');
-
 
 var $container = $("#container");
 var $logOut = $('#logOutButton');
